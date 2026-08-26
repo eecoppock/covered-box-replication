@@ -24,6 +24,19 @@
 #  of each trial type (first, second, third), not randomised: a QSF cannot carry
 #  choice randomisation that has been verified to import.
 #
+#  THE PROBE
+#    In none of Huang et al.'s trial types is the covered box unambiguously
+#    correct -- it is always the diagnostic option -- so only familiarization
+#    establishes that it is ever right. A participant who reads *some* as
+#    lower-bounded then never needs it again, and if it goes dead for them, a
+#    low covered-box rate is EXTINCTION rather than semantics.
+#
+#    The probe trial, which is ours and not theirs, names an object that is in
+#    neither open box. The covered box is correct whatever anyone's semantics.
+#    It comes after the critical trials, so it cannot prime them. If scalar
+#    participants pass it, their low critical rate is not extinction. If they
+#    fail it, that is a finding about the paradigm and belongs in the report.
+#
 #  THE QUESTION
 #    On critical trials the subset/exact match is absent. Anyone holding out
 #    for it must take the covered box. Huang et al. found 13% covered for
@@ -72,12 +85,13 @@ dat <- complete |>
   mutate(participant = ResponseId,
          term      = factor(term, levels = c("scalar", "number")),
          critical  = trial_type == "critical",
+         probe     = trial_type == "probe",
          resp      = as.integer(resp),
          covered   = resp == 3,
          question  = paste0(term, "_", trial_type, "_", set)) |>
   left_join(cmap, by = c("question", "resp" = "choice_id")) |>
   mutate(match_box = meaning == "match") |>
-  select(participant, term, trial_type, set, resp, meaning, critical,
+  select(participant, term, trial_type, set, resp, meaning, critical, probe,
          covered, match_box)
 
 # ---- checks ---------------------------------------------------------------
@@ -94,11 +108,23 @@ print(count(distinct(dat, participant, term), term))
 # ---- control trials: did the task work at all? ----------------------------
 # When the subset/exact match IS visible, everyone should take it.
 cat("\nControl trials — proportion choosing the subset/exact match:\n")
-print(dat |> filter(!critical) |>
+print(dat |> filter(!critical, !probe) |>
         group_by(term, trial_type) |>
         summarise(match = mean(match_box), n = n(), .groups = "drop"))
 
 # ---- the critical comparison ---------------------------------------------
+# ---- the probe: was the covered box still a live option? -----------------
+probe <- dat |> filter(probe) |>
+  group_by(term) |>
+  summarise(passed = mean(covered), n = n(), .groups = "drop")
+cat("\nProbe trial — the named object is in NEITHER open box,\n",
+    "so the covered box is correct for everyone:\n", sep = "")
+print(probe)
+if (any(probe$passed < .8))
+  cat("!! Under 80% on the probe. The covered box may have stopped being a live\n",
+      "   option, in which case a low critical rate is extinction, not semantics.\n",
+      sep = "")
+
 crit <- dat |> filter(critical) |>
   group_by(participant, term) |>
   summarise(covered = mean(covered), .groups = "drop")

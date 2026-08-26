@@ -24,6 +24,8 @@ n_careless     <- 4     # click at random; should fail familiarization
 p_scalar_crit_covered <- 0.13   # some(NONE,ALL): adults took ALL as a match
 p_number_crit_covered <- 1.00   # two(1,3v5): adults held out for exactly two
 p_control_correct     <- 0.95   # control trials: pick the subset/exact match
+p_probe_correct       <- 0.95   # probe: the named object is in neither open box,
+                                # so the covered box is correct for everyone
 
 cols  <- readLines("columns.txt")
 out_file <- "coveredbox-fake-data.csv"
@@ -53,7 +55,11 @@ for (i in seq_len(n_participants)) {
   p_cov <- if (is_scalar) p_scalar_crit_covered else p_number_crit_covered
   mine <- grep(paste0("^", term[i], "_"), cols, value = TRUE)
   for (cn in mine) {
-    if (grepl("_critical_", cn)) {
+    if (grepl("_probe_", cn)) {
+      # neither open box contains the named object -> covered (3)
+      resp[[cn]][i] <- as.character(
+        if (runif(1) < p_probe_correct) 3 else sample(1:2, 1))
+    } else if (grepl("_critical_", cn)) {
       # no match is visible: covered box (3), else the "more" open box (2)
       resp[[cn]][i] <- as.character(if (runif(1) < p_cov) 3 else 2)
     } else {

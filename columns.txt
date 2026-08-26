@@ -7,8 +7,10 @@ scalar_critical_s2
 scalar_critical_s3
 scalar_noneSome_s4
 scalar_someAll_s5
+scalar_probe_s6
 number_critical_s1
 number_critical_s2
 number_critical_s3
 number_oneTwo_s4
 number_twoMore_s5
+number_probe_s6

@@ -22,6 +22,7 @@ and every prompt in the survey is unique.
 # establish already.
 N_CRITICAL = 3
 N_CONTROL  = 1          # per control trial type
+N_PROBE    = 1          # see below
 
 # nine objects, each with its plural for the number prompt
 OBJECTS = [("cookie","cookies"), ("apple","apples"), ("balloon","balloons"),
@@ -32,29 +33,41 @@ NAMES = [("Zip","Nub"), ("Mo","Pim"), ("Dax","Wug"), ("Tev","Lom"), ("Bix","Rud"
          ("Kel","Sap"), ("Jom","Nid"), ("Vex","Pol"), ("Gub","Tam")]
 
 # trial types, in presentation order: critical first, then the two controls
-SCALAR_TYPES = ["critical", "noneSome", "someAll"]
-NUMBER_TYPES = ["critical", "oneTwo",   "twoMore"]
+# "probe" is not in Huang et al. In no trial type of theirs is the covered box
+# unambiguously correct -- it is always the diagnostic option -- so the only
+# thing establishing that it is ever right is familiarization. A participant who
+# reads *some* as lower-bounded then never needs it again, and if it goes dead
+# for them, a low covered-box rate is extinction rather than semantics.
+#
+# The probe asks for an object that is in NEITHER open box, so the covered box
+# is correct whatever anyone's semantics. It sits AFTER the critical trials, so
+# it cannot prime them, and it turns the worry into a measurement: if scalar
+# participants pass the probe, their low critical rate is not extinction.
+SCALAR_TYPES = ["critical", "noneSome", "someAll", "probe"]
+NUMBER_TYPES = ["critical", "oneTwo",   "twoMore", "probe"]
 
 # which two open boxes each trial type shows (choice 1, choice 2)
 SCALAR_BOXES = {"critical": ("NONE","ALL"),   # no subset match -> covered box
                 "noneSome": ("NONE","SOME"),
-                "someAll":  ("SOME","ALL")}
+                "someAll":  ("SOME","ALL"),
+                "probe":    ("NONE","SOME")}  # of the WRONG object
 NUMBER_BOXES = {"critical": (1,"more"),        # no exact match -> covered box
                 "oneTwo":   (1,2),
-                "twoMore":  (2,"more")}
+                "twoMore":  (2,"more"),
+                "probe":    (1,"more")}        # of the WRONG object
 
 # what choices 1 and 2 mean, for choice-map.csv
 SCALAR_MEANING = {"critical": ("none","all"), "noneSome": ("none","match"),
-                  "someAll":  ("match","all")}
+                  "someAll":  ("match","all"), "probe": ("wrong","wrong")}
 NUMBER_MEANING = {"critical": ("one","more"), "oneTwo": ("one","match"),
-                  "twoMore":  ("match","more")}
+                  "twoMore":  ("match","more"), "probe": ("wrong","wrong")}
 
 MORE = [3, 5, 3, 5, 3, 5, 3, 5, 3]     # the "more than two" count, per set
 
 def _plan():
     """[(trial type, index within it)], critical first"""
     out=[]
-    for j,k in enumerate([N_CRITICAL, N_CONTROL, N_CONTROL]):
+    for j,k in enumerate([N_CRITICAL, N_CONTROL, N_CONTROL, N_PROBE]):
         out += [(j, n) for n in range(k)]
     return out
 
@@ -63,6 +76,8 @@ def scalar_trials():
         kind = SCALAR_TYPES[t]
         target, other = NAMES[i]
         _, plural = OBJECTS[i]
+        if kind == "probe":                       # ask for an absent object
+            plural = OBJECTS[(i+3) % len(OBJECTS)][1]
         yield dict(term="scalar", kind=kind, set=i+1,
                    prompt=f"Give me the box where {target} has some of the {plural}.",
                    boxes=[f"scalar_s{i+1}_{b}" for b in SCALAR_BOXES[kind]],
@@ -72,6 +87,8 @@ def number_trials():
     for i,(t,_) in enumerate(_plan()):
         kind = NUMBER_TYPES[t]
         _, plural = OBJECTS[i]
+        if kind == "probe":                       # ask for an absent object
+            plural = OBJECTS[(i+3) % len(OBJECTS)][1]
         counts = [MORE[i] if b == "more" else b for b in NUMBER_BOXES[kind]]
         yield dict(term="number", kind=kind, set=i+1,
                    prompt=f"Give me the box with two {plural}.",

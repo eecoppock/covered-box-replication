@@ -85,8 +85,8 @@ entirely — otherwise it is 22 questions × 3 choices of manual insertion.
   infer the design by comparing trial types; at class scale that would mean six
   cells of five. Critical-first preserves naïvety where it matters, at the cost
   of a fixed order. Say so in the report.
-- **Nine screens per participant**: four familiarization, then three critical
-  trials, then one of each control type. Each has its own object and characters,
+- **Ten screens per participant**: four familiarization, three critical trials,
+  one of each control type, and one probe (below). Each has its own object and characters,
   so every prompt in the survey is distinct.
 
   Why so few. Simulated power to detect the published 13%-vs-100% contrast is
@@ -107,7 +107,33 @@ entirely — otherwise it is 22 questions × 3 choices of manual insertion.
   assignment, and both the stimulus generator and the QSF builder import it, so
   they cannot drift.
 - **Familiarization**: four trials, each naming a **different** shape — red star,
-  green triangle, purple hexagon, orange square — visible twice, hidden twice. Huang et al. gave feedback on the first pass; Qualtrics
+  green triangle, purple hexagon, orange square — visible twice, hidden twice.
+  Huang et al. ran theirs **twice**, eight trials with feedback on the first
+  pass; this is a single pass with none, because Qualtrics cannot easily give
+  feedback. That matters — see the probe.
+
+### The probe, which is not in the original
+
+In **none** of Huang et al.'s trial types is the covered box unambiguously
+correct. It is always the diagnostic option. So the only thing establishing that
+it is ever the right answer is familiarization — and a participant who reads
+*some* as lower-bounded then never needs it again for the rest of the study.
+
+If the covered box goes dead for them, a low covered-box rate on critical trials
+is **extinction, not semantics**, and nothing in the original design can tell the
+two apart. Weakening familiarization to a single pass, as above, makes this more
+likely rather than less.
+
+The probe trial names an object that is in **neither** open box — boxes of
+flowers, a prompt about leaves — so the covered box is correct whatever anyone's
+semantics. It sits after the critical trials, so it cannot prime them, and it
+converts the worry into a measurement:
+
+- scalar participants **pass** the probe → their low critical rate is real
+- scalar participants **fail** it → the paradigm degraded, and that is the finding
+
+`coveredbox-rep.R` reports the pass rate by term and warns below 80%. Whether to
+exclude on it is a judgment the report should argue rather than assume. Huang et al. gave feedback on the first pass; Qualtrics
   cannot easily, so instead these serve as the exclusion criterion. Current rule
   is all four correct; 3/4 is defensible if recruitment is tight.
 
