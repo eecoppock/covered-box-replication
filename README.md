@@ -42,6 +42,14 @@ of meaning, in a population that computes scalar implicatures robustly elsewhere
 Everything is generated. Change the constants at the top of `make-stimuli.py`
 (counts, colours, names) and rerun; nothing is hand-drawn.
 
+**Look at `index.html` after every regeneration.** `make-stimuli.py` rewrites it
+as a contact sheet of every image. Both stimulus bugs found so far — birds drawn
+~90px wide against 38px grid spacing, so four of them smeared into an
+uncountable pile and *Bix has all of the birds* had no readable answer; and a
+probe naming leaves against boxes of flowers — were invisible in the code and
+obvious in one glance at that page. Objects are now normalised to a ~36px
+footprint against 46px spacing, but the check is cheaper than the reasoning.
+
 ## Getting the images into Qualtrics
 
 Each trial is a multiple-choice question whose three **answer choices are the

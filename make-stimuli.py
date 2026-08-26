@@ -44,46 +44,54 @@ def blank(covered=False):
     return img, d
 
 # ------------------------------------------------------------------ objects
-def cookie(d,x,y,r=15):
+# Every object draws inside roughly a 36 x 36 box at s = 1.0. That matters: the
+# scalar panels lay objects out on a grid, and an object wider than the grid
+# spacing turns a countable set into an uncountable smear. Birds were ~90px wide
+# against 38px spacing, which made "Bix has all of the birds" unreadable and the
+# covered box a reasonable answer to a trial that should have had a visible one.
+def cookie(d,x,y,s=1.0):
+    r=int(17*s)
     d.ellipse([x-r,y-r,x+r,y+r], fill=(214,170,110), outline=(120,88,48), width=2)
-    for dx,dy in ((-5,-4),(5,-1),(0,6),(-6,5)):
-        d.ellipse([x+dx-2,y+dy-2,x+dx+2,y+dy+2], fill=(90,62,38))
+    for dx,dy in ((-.32,-.26),(.32,-.06),(0,.38),(-.38,.32)):
+        d.ellipse([x+dx*r-2,y+dy*r-2,x+dx*r+2,y+dy*r+2], fill=(90,62,38))
 
-def apple(d,x,y,r=15):
+def apple(d,x,y,s=1.0):
+    r=int(16*s)
     d.ellipse([x-r,y-r+2,x+r,y+r+2], fill=(206,64,58), outline=(120,32,30), width=2)
-    d.line([x,y-r,x+2,y-r-9], fill=(96,62,32), width=3)
-    d.ellipse([x+2,y-r-12,x+13,y-r-3], fill=(96,158,74), outline=(52,100,44))
+    d.line([x,y-r,x+2,y-r-int(8*s)], fill=(96,62,32), width=3)
+    d.ellipse([x+2,y-r-int(11*s),x+int(12*s),y-r-int(3*s)],
+              fill=(96,158,74), outline=(52,100,44))
 
-def balloon(d,x,y,r=15):
-    d.ellipse([x-r,y-r-3,x+r,y+r+1], fill=(158,104,196), outline=(96,58,128), width=2)
-    d.polygon([(x-4,y+r-1),(x+4,y+r-1),(x,y+r+6)], fill=(96,58,128))
-    d.line([x,y+r+5,x+4,y+r+18], fill=(90,90,90), width=2)
+def balloon(d,x,y,s=1.0):
+    r=int(15*s)
+    d.ellipse([x-r,y-r-3,x+r,y+r-1], fill=(158,104,196), outline=(96,58,128), width=2)
+    d.polygon([(x-4,y+r-2),(x+4,y+r-2),(x,y+r+5)], fill=(96,58,128))
+    d.line([x,y+r+4,x+3,y+r+int(13*s)], fill=(90,90,90), width=2)
 
 def fish(d,x,y,s=1.0):
-    bw,bh=int(30*s),int(18*s)
+    bw,bh=int(13*s),int(9*s)
     d.ellipse([x-bw,y-bh,x+bw,y+bh], fill=(92,160,214), outline=EDGE, width=2)
-    d.polygon([(x+bw-2,y),(x+bw+16*s,y-12*s),(x+bw+16*s,y+12*s)],
+    d.polygon([(x+bw-1,y),(x+bw+int(7*s),y-int(7*s)),(x+bw+int(7*s),y+int(7*s))],
               fill=(92,160,214), outline=EDGE)
-    d.ellipse([x-bw+8,y-6,x-bw+15,y+1], fill=(255,255,255), outline=EDGE)
+    d.ellipse([x-bw+4,y-3,x-bw+8,y+1], fill=(255,255,255), outline=EDGE)
 
 def bird(d,x,y,s=1.0):
-    bw,bh=int(26*s),int(17*s)
-    d.ellipse([x-bw,y-bh,x+bw,y+bh], fill=(230,168,60), outline=EDGE, width=2)
-    hr=int(13*s)
-    d.ellipse([x+bw-6,y-bh-hr+2,x+bw+2*hr-6,y-bh+hr+2], fill=(230,168,60),
-              outline=EDGE, width=2)
-    d.polygon([(x+bw+2*hr-8,y-bh+2),(x+bw+2*hr+9,y-bh+5),(x+bw+2*hr-8,y-bh+9)],
+    bw,bh=int(11*s),int(8*s)
+    d.ellipse([x-bw,y-bh+2,x+bw,y+bh+2], fill=(230,168,60), outline=EDGE, width=2)
+    hr=int(6*s)
+    d.ellipse([x+bw-hr,y-bh-hr,x+bw+hr,y-bh+hr], fill=(230,168,60), outline=EDGE, width=2)
+    d.polygon([(x+bw+hr-1,y-bh-1),(x+bw+hr+int(6*s),y-bh+1),(x+bw+hr-1,y-bh+4)],
               fill=(214,96,40), outline=EDGE)
-    d.ellipse([x+bw+hr-8,y-bh-4,x+bw+hr-3,y-bh+1], fill=EDGE)
-    d.arc([x-bw+6,y-10,x+bw-6,y+16], 200, 340, fill=EDGE, width=2)
 
 def flower(d,x,y,s=1.0):
-    r=int(11*s)
+    import math
+    r=int(8*s)
     for a in range(5):
-        import math
-        ang=math.radians(a*72-90); px,py=x+math.cos(ang)*15*s, y+math.sin(ang)*15*s
+        ang=math.radians(a*72-90)
+        px,py=x+math.cos(ang)*10*s, y+math.sin(ang)*10*s
         d.ellipse([px-r,py-r,px+r,py+r], fill=(226,110,150), outline=(150,60,96), width=2)
-    d.ellipse([x-8,y-8,x+8,y+8], fill=(244,206,74), outline=(150,110,30), width=2)
+    rr=int(6*s)
+    d.ellipse([x-rr,y-rr,x+rr,y+rr], fill=(244,206,74), outline=(150,110,30), width=2)
 
 def star(d,x,y,s=1.0):
     import math
@@ -94,16 +102,17 @@ def star(d,x,y,s=1.0):
     d.polygon(pts, fill=(244,196,58), outline=(150,116,20))
 
 def heart(d,x,y,s=1.0):
-    r=int(9*s)
-    d.ellipse([x-2*r,y-r-2,x,y+r-2], fill=(216,74,102), outline=(140,40,62))
-    d.ellipse([x,y-r-2,x+2*r,y+r-2], fill=(216,74,102), outline=(140,40,62))
-    d.polygon([(x-2*r+1,y+1),(x+2*r-1,y+1),(x,y+int(18*s))],
+    r=int(8*s)
+    d.ellipse([x-2*r,y-r-3,x,y+r-3], fill=(216,74,102), outline=(140,40,62))
+    d.ellipse([x,y-r-3,x+2*r,y+r-3], fill=(216,74,102), outline=(140,40,62))
+    d.polygon([(x-2*r+1,y-1),(x+2*r-1,y-1),(x,y+int(15*s))],
               fill=(216,74,102), outline=(140,40,62))
 
 def leaf(d,x,y,s=1.0):
-    d.polygon([(x,y-int(17*s)),(x+int(13*s),y),(x,y+int(17*s)),(x-int(13*s),y)],
+    h,w=int(17*s),int(11*s)
+    d.polygon([(x,y-h),(x+w,y),(x,y+h),(x-w,y)],
               fill=(104,166,86), outline=(56,104,50))
-    d.line([x,y-int(15*s),x,y+int(15*s)], fill=(56,104,50), width=2)
+    d.line([x,y-h+2,x,y+h-2], fill=(56,104,50), width=2)
 
 def shape_star(d,x,y,col=(214,60,60),s=1.0):
     import math
@@ -143,9 +152,10 @@ def cluster(d,cx,top,n,draw):
     if n==0: return
     cols=2 if n>1 else 1
     rows=(n+cols-1)//cols
+    SX, SY = 46, 44          # > the 36px object footprint, so sets stay countable
     for i in range(n):
         r,c=divmod(i,cols)
-        draw(d, int(cx+(c-(cols-1)/2)*38), int(top-(rows-1-r)*36))
+        draw(d, int(cx+(c-(cols-1)/2)*SX), int(top-(rows-1-r)*SY))
 
 def scalar_box(n_target, n_other, obj, names, total=4):
     img,d = blank()
@@ -160,9 +170,9 @@ def scalar_box(n_target, n_other, obj, names, total=4):
 def number_box(n, obj):
     img,d = blank()
     cx,cy = BOX_W//2, BOX_H//2
-    pos={1:[(0,0)],2:[(-72,0),(72,0)],3:[(-78,-56),(78,-56),(0,58)],
-         5:[(-92,-64),(92,-64),(0,0),(-92,64),(92,64)]}[n]
-    for dx,dy in pos: obj(d, cx+dx, cy+dy)
+    pos={1:[(0,0)],2:[(-70,0),(70,0)],3:[(-76,-58),(76,-58),(0,58)],
+         5:[(-92,-68),(92,-68),(0,0),(-92,68),(92,68)]}[n]
+    for dx,dy in pos: obj(d, cx+dx, cy+dy, 1.7)
     return img
 
 def familiar_box(shapes):
@@ -203,3 +213,45 @@ if __name__ == "__main__":
     for name, shapes in design.FAM_SHAPES.items():
         familiar_box([SH[x] for x in shapes]).save(f"{OUT}/{name}.png"); n+=1
     print(f"wrote {n} box images to {OUT}/")
+
+    # Regenerate the contact sheet. Every stimulus bug so far -- birds smeared
+    # into an uncountable pile, flowers standing in for leaves -- would have been
+    # obvious in one glance at this page, and invisible in the code.
+    import html as _html
+    files = sorted(f for f in os.listdir(OUT) if f.endswith(".png"))
+    groups = {"Familiarization": [f for f in files if f.startswith("fam")],
+              "Covered box":     [f for f in files if f == "covered.png"],
+              "Scalar panels":   [f for f in files if f.startswith("scalar")],
+              "Number panels":   [f for f in files if f.startswith("number")]}
+    cards = ""
+    for name, fs in groups.items():
+        if not fs: continue
+        cards += f"<h2>{_html.escape(name)}</h2>\n<div class=grid>\n"
+        for f in fs:
+            cards += (f'<figure><img src="{OUT}/{f}" alt="{f}" loading="lazy">'
+                      f'<figcaption>{f[:-4]}</figcaption></figure>\n')
+        cards += "</div>\n"
+    open("index.html","w").write(f"""<!doctype html>
+<html lang=en><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Covered-box stimuli</title>
+<style>
+ body{{{{font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      max-width:1100px;margin:2.5rem auto;padding:0 1.25rem;color:#1c1c1e}}}}
+ h1{{{{font-size:1.6rem;margin-bottom:.2rem}}}}
+ p.sub{{{{color:#555;margin-top:0}}}}
+ h2{{{{font-size:1.05rem;margin:2rem 0 .6rem;color:#444;
+     border-bottom:1px solid #e3e3e6;padding-bottom:.3rem}}}}
+ .grid{{{{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+        gap:1rem}}}}
+ figure{{{{margin:0}}}}
+ img{{{{width:100%;border:1px solid #d8d8dc;border-radius:8px;background:#fff}}}}
+ figcaption{{{{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;
+             color:#666;margin-top:.35rem;word-break:break-all}}}}
+</style>
+<h1>Covered-box stimuli</h1>
+<p class=sub>Huang, Spelke &amp; Snedeker (2013) Exp. 1 &mdash; a class replication.
+Generated by <code>make-stimuli.py</code>; characters and objects are original.
+<a href="https://github.com/eecoppock/covered-box-replication">Source</a>.</p>
+{{cards}}""")
+    print("wrote index.html contact sheet")
