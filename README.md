@@ -49,15 +49,21 @@ covered box's position for free, and the export records *which box* was chosen
 rather than which position. That is why the stimuli are one-image-per-box rather
 than one composite per trial.
 
-A QSF cannot reference images in a Qualtrics library, because their IDs do not
-exist until upload. Two ways round it:
+**This is already done.** The stimuli are served by GitHub Pages from this
+repository, and `HuangSnedeker_replication.qsf` points at them:
 
-1. **Host the PNGs and rebuild.** Anywhere public — BU web space, GitHub Pages,
-   an S3 bucket. Then `python3 build-qsf.py https://your.url/stimuli` and the
-   survey works the moment it is imported. This is much the easier path.
-2. **Upload to the Qualtrics graphics library** and replace the placeholder
-   `IMAGE_BASE_URL` in each choice. 22 questions × 3 choices, so about an hour
-   of clicking.
+> https://eecoppock.github.io/covered-box-replication/stimuli/
+
+So the survey works the moment it is imported — no uploading to the Qualtrics
+graphics library, no swapping placeholders. A contact sheet of all 30 images is
+at the [Pages root](https://eecoppock.github.io/covered-box-replication/).
+
+To point it somewhere else, pass a base URL:
+`python3 build-qsf.py https://your.url/stimuli`.
+
+The reason this matters: a QSF cannot reference images in a Qualtrics library,
+because their IDs do not exist until upload. Hosting them sidesteps that
+entirely — otherwise it is 22 questions × 3 choices of manual insertion.
 
 ## Design, and where it departs from the original
 
@@ -94,7 +100,6 @@ p ≈ 4 × 10⁻⁸ with 19 and 17 participants.
 
 ## Still to do
 
-- Host the images, or upload them, and rebuild the QSF with a real base URL.
 - Import and check: two blocks per term should appear in the right order, and
   choice-order randomisation should be on for every trial question.
 - The bird drawing is passable but not lovely; `make-stimuli.py::bird` is where
