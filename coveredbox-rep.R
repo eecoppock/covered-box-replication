@@ -118,6 +118,27 @@ print(count(distinct(dat, participant, term), term))
 
 # ---- control trials: did the task work at all? ----------------------------
 # When the subset/exact match IS visible, everyone should take it.
+# ---- the anchor: was the domain read box-internally? ----------------------
+# The first trial asks for the box where the target has ALL of the objects.
+# Read box-internally the ALL box is correct. Read globally -- all the objects
+# anywhere on screen -- no box is, since the target has four of the eight
+# visible, and the participant takes the covered box instead.
+#
+# This matters because the global reading explains away the headline. On a
+# critical trial the ALL box shows four of eight, which IS "some but not all"
+# globally, so it can be chosen with the exclusive reading of "some" intact.
+# A participant who takes the covered box here was reading globally, and their
+# critical responses mean something different.
+anchor <- dat |> filter(trial_type %in% c("allVis", "fiveVis")) |>
+  group_by(term) |>
+  summarise(box_internal = mean(match_box), n = n(), .groups = "drop")
+cat("\nAnchor trial — read the domain box-internally (scalar term):\n")
+print(anchor)
+if (any(anchor$box_internal[anchor$term == "scalar"] < .85))
+  cat("!! Some scalar participants may be quantifying over the whole display\n",
+      "   rather than over one box. Their critical responses are not evidence\n",
+      "   about implicature. Consider splitting the critical rate by this.\n", sep = "")
+
 HS_CONTROLS <- c("noneSome","someAll","oneTwo","twoMore")
 cat("\nControl trials, Huang et al.'s — proportion taking the subset/exact match:\n")
 print(dat |> filter(trial_type %in% HS_CONTROLS) |>
@@ -129,7 +150,8 @@ print(dat |> filter(trial_type %in% HS_CONTROLS) |>
 # about the recurring word. The answer is always a visible box, so these also
 # double as a check that participants track the quantifier and not the display.
 cat("\nAdded fillers in another quantifier — proportion correct:\n")
-print(dat |> filter(!critical, !probe, !trial_type %in% HS_CONTROLS) |>
+print(dat |> filter(!critical, !probe, !trial_type %in% HS_CONTROLS,
+                    !trial_type %in% c("allVis","fiveVis")) |>
         group_by(term, trial_type) |>
         summarise(correct = mean(match_box), n = n(), .groups = "drop"))
 
@@ -141,7 +163,7 @@ probe <- dat |> filter(probe) |>
 cat("\nProbe trial — the covered box, checked again at the very END.\n",
     "By this point every earlier trial has had a visible answer, so extinction\n",
     "pressure is at its highest. Passing here is therefore stronger evidence\n",
-    "that it was live during the critical trials, which came first:\n", sep = "")
+    "that it was live during the critical trials:\n", sep = "")
 print(probe)
 if (any(probe$passed < .8))
   cat("!! Under 80% on the probe. The covered box may have stopped being a live\n",
@@ -159,6 +181,14 @@ print(crit |> group_by(term) |>
                   ci_low  = mean - qt(.975, n-1)*se,
                   ci_high = mean + qt(.975, n-1)*se, .groups = "drop"))
 cat("Published: scalar .13, number 1.00\n")
+
+# the headline, split by how the participant read the domain
+dom <- dat |> filter(trial_type %in% c("allVis","fiveVis")) |>
+  select(participant, box_internal = match_box)
+cat("\nCritical rate split by the anchor response:\n")
+print(crit |> left_join(dom, by = "participant") |>
+        group_by(term, box_internal) |>
+        summarise(covered = mean(covered), n = n(), .groups = "drop"))
 
 cat("\nBetween-subjects comparison (Huang et al. used Mann-Whitney):\n")
 print(wilcox.test(covered ~ term, data = crit))

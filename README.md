@@ -105,6 +105,7 @@ entirely — otherwise it is 22 questions × 3 choices of manual insertion.
 
   | role | trials | what it does |
   |---|---|---|
+  | **anchor** — an *all* trial, **first** | 1 | fixes the domain, see below |
   | **critical** — (NONE,ALL) / (1, 3∨5) | 2 | the headline: no match visible, so anyone insisting on one must take the covered box. 13% vs 100%. |
   | **matchVsMore** — (SOME,ALL) / (2, 3∨5) | 1 | *not* a comprehension check. Both a subset and a total set are visible and adults take the subset 90% of the time — Huang et al. call this "a robust ability to calculate the scalar implicature". It is what makes the critical result strange: the implicature is computed when it picks something out and abandoned when it does not. |
   | **matchVsLess** — (NONE,SOME) / (1, 2) | **0** | dropped, see below |
@@ -127,6 +128,43 @@ entirely — otherwise it is 22 questions × 3 choices of manual insertion.
   et al.'s three test conditions, so this does not cover their full design. Its
   display is still seen, since `noneVis` uses the same pair of boxes, but under
   *none* rather than *some*. `N_TRIALS["matchVsLess"] = 1` restores it.
+
+### The anchor, and the domain of "the apples"
+
+*Give me the box where Zip has some of the apples* leaves open what **the
+apples** ranges over. The apples in the box under consideration, or the apples
+anywhere on screen?
+
+It matters, because the global reading is a **complete alternative account of
+the headline**. On a critical trial the ALL box shows the target with four of
+the eight apples visible. Read globally that *is* "some but not all" — so a
+participant can take the ALL box with the exclusive reading of *some* entirely
+intact, and 87% choosing it would say nothing about whether the implicature was
+computed.
+
+The first trial therefore asks for the box where the target has **all** of the
+objects, which separates the readings:
+
+| domain | correct answer |
+|---|---|
+| box-internal | the **ALL** box — the target has all four in that box |
+| global | the **covered** box — no box has all eight |
+
+Putting it first settles the question before any *some* trial is seen, and
+because the task presupposes an answer exists, meeting *all* first pushes toward
+the only construal on which one does. The response is also **recorded**:
+`coveredbox-rep.R` reports how many read the domain box-internally, warns if
+scalar participants fall below 85%, and splits the critical rate by it.
+
+The cost is that a trial with a visible answer now precedes the critical ones,
+which cuts against critical-first. Familiarization already shows two
+visible-answer trials and two requiring the covered box, so this adds little —
+and the domain confound explains the whole finding away, where extinction only
+biases it in a direction the probe measures.
+
+The number term has no partitive and so no domain ambiguity: *the box with two
+fish* counts within a box by construction. Its anchor is there to keep the two
+versions the same length and shape.
 
 ### Fillers in another quantifier
 

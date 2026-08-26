@@ -61,8 +61,39 @@ and every prompt in the survey is unique.
 #              manipulation is conservative: if the lower-bounded reading
 #              survives with "all" primed, that is stronger evidence. They sit
 #              after the critical trials in any case.
-N_TRIALS = {"critical": 2, "matchVsMore": 1, "matchVsLess": 0,
-            "otherQuant": 2, "probe": 1}
+#   anchor     an "all" trial, FIRST. See the note on domain below.
+N_TRIALS = {"anchor": 1, "critical": 2, "matchVsMore": 1, "matchVsLess": 0,
+            "otherQuant": 1, "probe": 1}
+
+# ---- the domain of "the apples", and why an "all" trial goes first ----------
+# "Give me the box where Zip has some of the apples" leaves the domain of "the
+# apples" open. Box-internal -- the apples in the box under consideration -- or
+# global, the apples anywhere on screen?
+#
+# It matters, because the global reading gives a complete alternative account of
+# the headline result. On a critical trial the ALL box shows Zip with four of
+# the eight apples visible. Read globally that IS "some but not all", so a
+# participant can take the ALL box with the exclusive reading of "some" fully
+# intact. Eighty-seven percent choosing it would then say nothing about whether
+# the implicature was computed.
+#
+# The "all" trial separates the readings, and putting it first settles the
+# question before any "some" trial is seen:
+#
+#   box-internal  the ALL box is correct: the target has all four in that box
+#   global        no box is correct -- the target has four of eight on screen --
+#                 so a global reader takes the covered box
+#
+# And because the task presupposes an answer exists, meeting "all" first pushes
+# toward the only construal on which one does. The response is also recorded:
+# a participant who takes the covered box here was reading globally, and their
+# later "some" responses should be read in that light.
+#
+# The cost is that a trial with a visible answer now precedes the critical ones,
+# which cuts against putting critical trials first. Familiarization already
+# shows two visible-answer trials and two requiring the covered box, so this
+# adds little; and the domain confound explains away the whole finding, where
+# extinction only biases it in a direction the probe measures.
 
 # "matchVsLess" is set to 0. It is the one trial type here that is a pure comprehension
 # check, it sits at ceiling in the original (100%), and four familiarization
@@ -93,11 +124,14 @@ NAMES = [("Zip","Nub"), ("Mo","Pim"), ("Dax","Wug"), ("Tev","Lom"), ("Bix","Rud"
 # is correct whatever anyone's semantics. It sits AFTER the critical trials, so
 # it cannot prime them, and it turns the worry into a measurement: if scalar
 # participants pass the probe, their low critical rate is not extinction.
-ORDER  = ["critical", "matchVsMore", "matchVsLess", "otherQuant", "probe"]
-SCALAR = {"critical":"critical", "matchVsLess":"noneSome", "matchVsMore":"someAll",
-          "otherQuant":["noneVis","allVis"], "probe":"probe"}
-NUMBER = {"critical":"critical", "matchVsLess":"oneTwo",   "matchVsMore":"twoMore",
-          "otherQuant":["threeVis","fiveVis"], "probe":"probe"}
+ORDER  = ["anchor", "critical", "matchVsMore", "matchVsLess", "otherQuant", "probe"]
+SCALAR = {"anchor":"allVis", "critical":"critical", "matchVsLess":"noneSome",
+          "matchVsMore":"someAll", "otherQuant":["noneVis"], "probe":"probe"}
+# the number term has no partitive and so no domain ambiguity -- "the box with
+# two fish" counts within a box by construction. Its anchor is there to keep the
+# two versions the same length and shape.
+NUMBER = {"anchor":"fiveVis", "critical":"critical", "matchVsLess":"oneTwo",
+          "matchVsMore":"twoMore", "otherQuant":["threeVis"], "probe":"probe"}
 
 # which two open boxes each trial type shows (choice 1, choice 2)
 SCALAR_BOXES = {"critical": ("NONE","ALL"),   # no subset match -> covered box
