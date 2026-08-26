@@ -106,13 +106,26 @@ anyway at three tokens.
 ### A note on hand-writing QSFs
 
 Qualtrics rejects a malformed import outright, with no diagnostic beyond
-*"Something went wrong and the project wasn't created."* This file therefore
-contains only structures checked against QSFs known to import: the MC payload
-matches the key set **and order** Qualtrics itself exports, every block carries
-`Options: null`, the flow uses nothing but `Root`, `Block` and `BlockRandomizer`,
-and `SurveyEntry.SurveyActiveResponseSet` names the `RS` element. Adding
-`RecodeValues`, choice randomisation, or a `Group` flow element will break it
-unless you have a working example to copy from.
+*"Something went wrong and the project wasn't created."* So the survey is not
+constructed from scratch: `CoveredBoxtest.qsf` is a real export from the same
+account containing exactly the question type needed — a horizontal multiple
+choice between graphic options — and `build-qsf.py` clones it, replacing only
+the questions, blocks and flow. Every other element is carried over untouched.
+
+Two details that cost several failed imports:
+
+- Graphic choices need `Configuration.LabelPosition = "BELOW"`.
+- Blocks carry **no `Options` key at all** — not `Options: null`, absent.
+
+Also: build from an export of *this* account. An earlier version borrowed
+boilerplate from a different survey and inherited its `SurveyOwnerID`, brand
+ID, and a `BallotBoxStuffingPreventionMessageLibrary` pointing at that survey's
+message library.
+
+`python3 build-qsf.py <base-url> --test` writes `_import-smoke-test.qsf`, two
+questions in one block with no randomiser. If a full import ever fails again,
+try that first: it separates "the structure is wrong" from "something in the
+bulk is wrong".
 
 ## One thing the analysis will hit, and it is worth a paragraph
 
