@@ -121,7 +121,7 @@ entirely — otherwise it is 22 questions × 3 choices of manual insertion.
   | **anchor** — an *all* trial, **first** | 1 | fixes the domain, see below |
   | **critical** — (NONE,ALL) / (1, 3∨5) | 2 | the headline: no match visible, so anyone insisting on one must take the covered box. 13% vs 100%. |
   | **matchVsMore** — (SOME,ALL) / (2, 3∨5) | 1 | *not* a comprehension check. Both a subset and a total set are visible and adults take the subset 90% of the time — Huang et al. call this "a robust ability to calculate the scalar implicature". It is what makes the critical result strange: the implicature is computed when it picks something out and abandoned when it does not. |
-  | **criticalOneSet** — (EMPTY,ALL) / (0, 3∨5) | 2 | **ours.** The same question with the domain loophole closed — see below |
+  | **criticalOneSet** — (EMPTY,ALL), scalar only | 2 | **ours.** The same question with the domain loophole closed — see below |
   | **matchVsLess** — (NONE,SOME) / (1, 2) | 1 | the comprehension check: *some* is not *none*, *two* is not *one*. At ceiling in the original. |
   | **otherQuant** — *none*/*all*, *three*/*five* | 2 | balance, see below |
   | **probe** | 1 | see further below |
@@ -154,6 +154,16 @@ So the two conditions differ **only** in whether the global reading is available
 and the gap between their covered-box rates measures how much of the standard
 result that reading was buying. If they agree, it was buying nothing. The
 analysis prints them side by side.
+
+**Scalar only.** *The box with two birds* has no partitive and so no domain
+ambiguity — it counts within a box by construction. Giving the number term an
+equivalent would just be the standard critical with a `0` where the `1` goes:
+no loophole closed, and a blank white box that reads as an image that failed to
+load rather than as a box containing nothing. The number term gets four critical
+trials instead, and no empty boxes.
+
+The scalar EMPTY panel has no such problem, because it still shows both
+characters — just with nothing above them.
 
 ### The anchor, and the domain of "the apples"
 

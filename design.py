@@ -164,11 +164,17 @@ SCALAR = {"anchor":"allVis", "probeEarly":"probeEarly", "critical":"critical",
           "criticalOneSet":"criticalOneSet", "matchVsLess":"noneSome",
           "matchVsMore":"someAll", "otherQuant":["noneVis","allVis"],
           "probe":"probe"}
-# the number term has no partitive and so no domain ambiguity -- "the box with
+# The number term has no partitive and so no domain ambiguity -- "the box with
 # two fish" counts within a box by construction. Its anchor is there to keep the
 # two versions the same length and shape.
+#
+# For the same reason criticalOneSet has no work to do here, and it maps to the
+# ORDINARY critical kind. Giving it an empty box would only make the standard
+# critical with a 0 in place of the 1 -- no loophole closed, and a blank white
+# box that reads as an image that failed to load rather than a box with nothing
+# in it. The number term therefore gets four critical trials and no empty boxes.
 NUMBER = {"anchor":"fiveVis", "probeEarly":"probeEarly", "critical":"critical",
-          "criticalOneSet":"criticalOneSet", "matchVsLess":"oneTwo",
+          "criticalOneSet":"critical", "matchVsLess":"oneTwo",
           "matchVsMore":"twoMore", "otherQuant":["threeVis","fiveVis"],
           "probe":"probe"}
 

@@ -1057,7 +1057,7 @@
       "TertiaryAttribute": null,
       "Payload": {
         "QuestionText": "<span style=\"font-size:19px;\">Give me the box with two birds.</span>",
-        "DataExportTag": "number_criticalOneSet_s5",
+        "DataExportTag": "number_critical_s5",
         "QuestionType": "MC",
         "Selector": "SAHR",
         "SubSelector": "TX",
@@ -1072,7 +1072,7 @@
         "QuestionDescription": "Give me the box with two birds.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s5_0.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s5_1.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "2": {
             "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s5_3.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
@@ -1106,7 +1106,7 @@
       "TertiaryAttribute": null,
       "Payload": {
         "QuestionText": "<span style=\"font-size:19px;\">Give me the box with two flowers.</span>",
-        "DataExportTag": "number_criticalOneSet_s6",
+        "DataExportTag": "number_critical_s6",
         "QuestionType": "MC",
         "Selector": "SAHR",
         "SubSelector": "TX",
@@ -1121,7 +1121,7 @@
         "QuestionDescription": "Give me the box with two flowers.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s6_0.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s6_1.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "2": {
             "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s6_5.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
