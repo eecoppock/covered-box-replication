@@ -85,8 +85,8 @@ entirely — otherwise it is 22 questions × 3 choices of manual insertion.
   infer the design by comparing trial types; at class scale that would mean six
   cells of five. Critical-first preserves naïvety where it matters, at the cost
   of a fixed order. Say so in the report.
-- **Ten screens per participant**: four familiarization, three critical trials,
-  one of each control type, and one probe (below). Each has its own object and characters,
+- **Ten screens per participant**: four familiarization, then two critical
+  trials, one control, two fillers and a probe. Each has its own object and characters,
   so every prompt in the survey is distinct.
 
   Why so few, and why this split. Simulated power for the critical contrast is
@@ -98,10 +98,21 @@ entirely — otherwise it is 22 questions × 3 choices of manual insertion.
   | role | trials | what it does |
   |---|---|---|
   | **critical** — (NONE,ALL) / (1, 3∨5) | 2 | the headline: no match visible, so anyone insisting on one must take the covered box. 13% vs 100%. |
-  | **strong** — (SOME,ALL) / (2, 3∨5) | 2 | *not* a comprehension check. Both a subset and a total set are visible and adults take the subset 90% of the time — Huang et al. call this "a robust ability to calculate the scalar implicature". It is what makes the critical result strange: the implicature is computed when it picks something out and abandoned when it does not. |
-  | **weak** — (NONE,SOME) / (1, 2) | 1 | this one really is a comprehension check: *some* is not *none*, *two* is not *one*. |
+  | **strong** — (SOME,ALL) / (2, 3∨5) | 1 | *not* a comprehension check. Both a subset and a total set are visible and adults take the subset 90% of the time — Huang et al. call this "a robust ability to calculate the scalar implicature". It is what makes the critical result strange: the implicature is computed when it picks something out and abandoned when it does not. |
+  | **weak** — (NONE,SOME) / (1, 2) | **0** | dropped, see below |
   | **altquant** — *none*/*all*, *three*/*five* | 2 | balance, see below |
   | **probe** | 1 | see further below |
+
+  Two critical against four others is already lopsided for a study whose point
+  lives in the critical trials; six non-critical, as an earlier version had, was
+  worse. **`weak` is set to 0**: it is the one pure comprehension check here, it
+  sits at ceiling in the original (100%), and four familiarization trials plus
+  two fillers already do that work. It was also the trial most inflating *some*.
+
+  The cost is real and belongs in the report — Some(NONE,SOME) is one of Huang
+  et al.'s three test conditions, so this does not cover their full design. Its
+  display is still seen, since `noneVis` uses the same pair of boxes, but under
+  *none* rather than *some*. `N_TRIALS["weak"] = 1` restores it.
 
 ### Fillers in another quantifier
 
@@ -116,8 +127,8 @@ box. They double as a check that participants are tracking the quantifier rather
 than the display: `noneVis` and `noneSome` use the very same pair of boxes and
 have opposite correct answers.
 
-Quantifier counts per participant are now **some 5 / none 2 / all 1** and
-**two 5 / three 1 / five 2**, against 5/1/0 before.
+Quantifier counts per participant are **some 3 / none 2 / all 1** and
+**two 3 / three 1 / five 2**, against 5/1/0 before the fillers existed.
 
 **On priming.** Putting *all* in front of a participant should if anything
 *increase* implicature computation, since activated alternatives are what drive

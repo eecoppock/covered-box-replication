@@ -53,7 +53,17 @@ and every prompt in the survey is unique.
 #              manipulation is conservative: if the lower-bounded reading
 #              survives with "all" primed, that is stronger evidence. They sit
 #              after the critical trials in any case.
-N_TRIALS = {"critical": 2, "strong": 2, "weak": 1, "altquant": 2, "probe": 1}
+N_TRIALS = {"critical": 2, "strong": 1, "weak": 0, "altquant": 2, "probe": 1}
+
+# "weak" is set to 0. It is the one trial type here that is a pure comprehension
+# check, it sits at ceiling in the original (100%), and four familiarization
+# trials plus two fillers already do that job. It was also the trial inflating
+# "some": dropping it moves the scalar balance from 5/2/1 to 3/2/1.
+#
+# The cost is real and belongs in the report: Some(NONE,SOME) is one of Huang et
+# al.'s three test conditions, so this replication does not cover their full
+# design. Its display is still seen -- noneVis uses the same pair of boxes -- but
+# with "none" rather than "some". Setting "weak" back to 1 restores it.
 
 # nine objects, each with its plural for the number prompt
 OBJECTS = [("cookie","cookies"), ("apple","apples"), ("balloon","balloons"),

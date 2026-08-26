@@ -465,11 +465,11 @@
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
       "PrimaryAttribute": "QID8",
-      "SecondaryAttribute": "Give me the box where Tev has some of the fish.",
+      "SecondaryAttribute": "Give me the box where Tev has none of the fish.",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<span style=\"font-size:19px;\">Give me the box where Tev has some of the fish.</span>",
-        "DataExportTag": "scalar_someAll_s4",
+        "QuestionText": "<span style=\"font-size:19px;\">Give me the box where Tev has none of the fish.</span>",
+        "DataExportTag": "scalar_noneVis_s4",
         "QuestionType": "MC",
         "Selector": "SAHR",
         "SubSelector": "TX",
@@ -481,13 +481,13 @@
           "QuestionDescriptionOption": "UseText",
           "LabelPosition": "BELOW"
         },
-        "QuestionDescription": "Give me the box where Tev has some of the fish.",
+        "QuestionDescription": "Give me the box where Tev has none of the fish.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s4_SOME.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s4_NONE.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s4_ALL.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s4_SOME.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "3": {
             "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
@@ -514,11 +514,11 @@
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
       "PrimaryAttribute": "QID9",
-      "SecondaryAttribute": "Give me the box where Bix has some of the birds.",
+      "SecondaryAttribute": "Give me the box where Bix has all of the birds.",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<span style=\"font-size:19px;\">Give me the box where Bix has some of the birds.</span>",
-        "DataExportTag": "scalar_noneSome_s5",
+        "QuestionText": "<span style=\"font-size:19px;\">Give me the box where Bix has all of the birds.</span>",
+        "DataExportTag": "scalar_allVis_s5",
         "QuestionType": "MC",
         "Selector": "SAHR",
         "SubSelector": "TX",
@@ -530,13 +530,13 @@
           "QuestionDescriptionOption": "UseText",
           "LabelPosition": "BELOW"
         },
-        "QuestionDescription": "Give me the box where Bix has some of the birds.",
+        "QuestionDescription": "Give me the box where Bix has all of the birds.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s5_NONE.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s5_SOME.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s5_SOME.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s5_ALL.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "3": {
             "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
@@ -567,7 +567,7 @@
       "TertiaryAttribute": null,
       "Payload": {
         "QuestionText": "<span style=\"font-size:19px;\">Give me the box where Kel has none of the flowers.</span>",
-        "DataExportTag": "scalar_noneVis_s6",
+        "DataExportTag": "scalar_probe_s6",
         "QuestionType": "MC",
         "Selector": "SAHR",
         "SubSelector": "TX",
@@ -582,10 +582,10 @@
         "QuestionDescription": "Give me the box where Kel has none of the flowers.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s6_NONE.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s6_SOME.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s6_SOME.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s6_ALL.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "3": {
             "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
@@ -612,104 +612,6 @@
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
       "PrimaryAttribute": "QID11",
-      "SecondaryAttribute": "Give me the box where Jom has all of the stars.",
-      "TertiaryAttribute": null,
-      "Payload": {
-        "QuestionText": "<span style=\"font-size:19px;\">Give me the box where Jom has all of the stars.</span>",
-        "DataExportTag": "scalar_allVis_s7",
-        "QuestionType": "MC",
-        "Selector": "SAHR",
-        "SubSelector": "TX",
-        "DataVisibility": {
-          "Private": false,
-          "Hidden": false
-        },
-        "Configuration": {
-          "QuestionDescriptionOption": "UseText",
-          "LabelPosition": "BELOW"
-        },
-        "QuestionDescription": "Give me the box where Jom has all of the stars.",
-        "Choices": {
-          "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s7_SOME.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
-          },
-          "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s7_ALL.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
-          },
-          "3": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
-          }
-        },
-        "ChoiceOrder": [
-          "1",
-          "3",
-          "2"
-        ],
-        "Validation": {
-          "Settings": {
-            "ForceResponse": "ON",
-            "Type": "None"
-          }
-        },
-        "Language": [],
-        "NextChoiceId": 4,
-        "NextAnswerId": 1,
-        "QuestionID": "QID11"
-      }
-    },
-    {
-      "SurveyID": "SV_3kLZ1KUE87N0MMm",
-      "Element": "SQ",
-      "PrimaryAttribute": "QID12",
-      "SecondaryAttribute": "Give me the box where Vex has none of the hearts.",
-      "TertiaryAttribute": null,
-      "Payload": {
-        "QuestionText": "<span style=\"font-size:19px;\">Give me the box where Vex has none of the hearts.</span>",
-        "DataExportTag": "scalar_probe_s8",
-        "QuestionType": "MC",
-        "Selector": "SAHR",
-        "SubSelector": "TX",
-        "DataVisibility": {
-          "Private": false,
-          "Hidden": false
-        },
-        "Configuration": {
-          "QuestionDescriptionOption": "UseText",
-          "LabelPosition": "BELOW"
-        },
-        "QuestionDescription": "Give me the box where Vex has none of the hearts.",
-        "Choices": {
-          "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s8_SOME.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
-          },
-          "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s8_ALL.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
-          },
-          "3": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
-          }
-        },
-        "ChoiceOrder": [
-          "1",
-          "2",
-          "3"
-        ],
-        "Validation": {
-          "Settings": {
-            "ForceResponse": "ON",
-            "Type": "None"
-          }
-        },
-        "Language": [],
-        "NextChoiceId": 4,
-        "NextAnswerId": 1,
-        "QuestionID": "QID12"
-      }
-    },
-    {
-      "SurveyID": "SV_3kLZ1KUE87N0MMm",
-      "Element": "SQ",
-      "PrimaryAttribute": "QID13",
       "SecondaryAttribute": "Give me the box with two cookies.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -739,8 +641,8 @@
           }
         },
         "ChoiceOrder": [
-          "3",
           "1",
+          "3",
           "2"
         ],
         "Validation": {
@@ -752,13 +654,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID13"
+        "QuestionID": "QID11"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID14",
+      "PrimaryAttribute": "QID12",
       "SecondaryAttribute": "Give me the box with two apples.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -789,8 +691,8 @@
         },
         "ChoiceOrder": [
           "1",
-          "3",
-          "2"
+          "2",
+          "3"
         ],
         "Validation": {
           "Settings": {
@@ -801,13 +703,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID14"
+        "QuestionID": "QID12"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID15",
+      "PrimaryAttribute": "QID13",
       "SecondaryAttribute": "Give me the box with two balloons.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -837,6 +739,104 @@
           }
         },
         "ChoiceOrder": [
+          "3",
+          "1",
+          "2"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "Type": "None"
+          }
+        },
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "QuestionID": "QID13"
+      }
+    },
+    {
+      "SurveyID": "SV_3kLZ1KUE87N0MMm",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID14",
+      "SecondaryAttribute": "Give me the box with three fish.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<span style=\"font-size:19px;\">Give me the box with three fish.</span>",
+        "DataExportTag": "number_threeVis_s4",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box with three fish.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s4_1.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s4_3.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "3",
+          "2"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "Type": "None"
+          }
+        },
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "QuestionID": "QID14"
+      }
+    },
+    {
+      "SurveyID": "SV_3kLZ1KUE87N0MMm",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID15",
+      "SecondaryAttribute": "Give me the box with five birds.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<span style=\"font-size:19px;\">Give me the box with five birds.</span>",
+        "DataExportTag": "number_fiveVis_s5",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box with five birds.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s5_2.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s5_5.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
           "1",
           "2",
           "3"
@@ -857,11 +857,11 @@
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
       "PrimaryAttribute": "QID16",
-      "SecondaryAttribute": "Give me the box with two fish.",
+      "SecondaryAttribute": "Give me the box with five flowers.",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<span style=\"font-size:19px;\">Give me the box with two fish.</span>",
-        "DataExportTag": "number_twoMore_s4",
+        "QuestionText": "<span style=\"font-size:19px;\">Give me the box with five flowers.</span>",
+        "DataExportTag": "number_probe_s6",
         "QuestionType": "MC",
         "Selector": "SAHR",
         "SubSelector": "TX",
@@ -873,13 +873,13 @@
           "QuestionDescriptionOption": "UseText",
           "LabelPosition": "BELOW"
         },
-        "QuestionDescription": "Give me the box with two fish.",
+        "QuestionDescription": "Give me the box with five flowers.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s4_2.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s6_1.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s4_5.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s6_2.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "3": {
             "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
@@ -900,202 +900,6 @@
         "NextChoiceId": 4,
         "NextAnswerId": 1,
         "QuestionID": "QID16"
-      }
-    },
-    {
-      "SurveyID": "SV_3kLZ1KUE87N0MMm",
-      "Element": "SQ",
-      "PrimaryAttribute": "QID17",
-      "SecondaryAttribute": "Give me the box with two birds.",
-      "TertiaryAttribute": null,
-      "Payload": {
-        "QuestionText": "<span style=\"font-size:19px;\">Give me the box with two birds.</span>",
-        "DataExportTag": "number_oneTwo_s5",
-        "QuestionType": "MC",
-        "Selector": "SAHR",
-        "SubSelector": "TX",
-        "DataVisibility": {
-          "Private": false,
-          "Hidden": false
-        },
-        "Configuration": {
-          "QuestionDescriptionOption": "UseText",
-          "LabelPosition": "BELOW"
-        },
-        "QuestionDescription": "Give me the box with two birds.",
-        "Choices": {
-          "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s5_1.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
-          },
-          "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s5_2.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
-          },
-          "3": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
-          }
-        },
-        "ChoiceOrder": [
-          "1",
-          "3",
-          "2"
-        ],
-        "Validation": {
-          "Settings": {
-            "ForceResponse": "ON",
-            "Type": "None"
-          }
-        },
-        "Language": [],
-        "NextChoiceId": 4,
-        "NextAnswerId": 1,
-        "QuestionID": "QID17"
-      }
-    },
-    {
-      "SurveyID": "SV_3kLZ1KUE87N0MMm",
-      "Element": "SQ",
-      "PrimaryAttribute": "QID18",
-      "SecondaryAttribute": "Give me the box with three flowers.",
-      "TertiaryAttribute": null,
-      "Payload": {
-        "QuestionText": "<span style=\"font-size:19px;\">Give me the box with three flowers.</span>",
-        "DataExportTag": "number_threeVis_s6",
-        "QuestionType": "MC",
-        "Selector": "SAHR",
-        "SubSelector": "TX",
-        "DataVisibility": {
-          "Private": false,
-          "Hidden": false
-        },
-        "Configuration": {
-          "QuestionDescriptionOption": "UseText",
-          "LabelPosition": "BELOW"
-        },
-        "QuestionDescription": "Give me the box with three flowers.",
-        "Choices": {
-          "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s6_1.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
-          },
-          "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s6_3.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
-          },
-          "3": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
-          }
-        },
-        "ChoiceOrder": [
-          "1",
-          "2",
-          "3"
-        ],
-        "Validation": {
-          "Settings": {
-            "ForceResponse": "ON",
-            "Type": "None"
-          }
-        },
-        "Language": [],
-        "NextChoiceId": 4,
-        "NextAnswerId": 1,
-        "QuestionID": "QID18"
-      }
-    },
-    {
-      "SurveyID": "SV_3kLZ1KUE87N0MMm",
-      "Element": "SQ",
-      "PrimaryAttribute": "QID19",
-      "SecondaryAttribute": "Give me the box with five stars.",
-      "TertiaryAttribute": null,
-      "Payload": {
-        "QuestionText": "<span style=\"font-size:19px;\">Give me the box with five stars.</span>",
-        "DataExportTag": "number_fiveVis_s7",
-        "QuestionType": "MC",
-        "Selector": "SAHR",
-        "SubSelector": "TX",
-        "DataVisibility": {
-          "Private": false,
-          "Hidden": false
-        },
-        "Configuration": {
-          "QuestionDescriptionOption": "UseText",
-          "LabelPosition": "BELOW"
-        },
-        "QuestionDescription": "Give me the box with five stars.",
-        "Choices": {
-          "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s7_2.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
-          },
-          "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s7_5.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
-          },
-          "3": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
-          }
-        },
-        "ChoiceOrder": [
-          "3",
-          "1",
-          "2"
-        ],
-        "Validation": {
-          "Settings": {
-            "ForceResponse": "ON",
-            "Type": "None"
-          }
-        },
-        "Language": [],
-        "NextChoiceId": 4,
-        "NextAnswerId": 1,
-        "QuestionID": "QID19"
-      }
-    },
-    {
-      "SurveyID": "SV_3kLZ1KUE87N0MMm",
-      "Element": "SQ",
-      "PrimaryAttribute": "QID20",
-      "SecondaryAttribute": "Give me the box with five hearts.",
-      "TertiaryAttribute": null,
-      "Payload": {
-        "QuestionText": "<span style=\"font-size:19px;\">Give me the box with five hearts.</span>",
-        "DataExportTag": "number_probe_s8",
-        "QuestionType": "MC",
-        "Selector": "SAHR",
-        "SubSelector": "TX",
-        "DataVisibility": {
-          "Private": false,
-          "Hidden": false
-        },
-        "Configuration": {
-          "QuestionDescriptionOption": "UseText",
-          "LabelPosition": "BELOW"
-        },
-        "QuestionDescription": "Give me the box with five hearts.",
-        "Choices": {
-          "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s8_1.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
-          },
-          "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s8_2.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
-          },
-          "3": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
-          }
-        },
-        "ChoiceOrder": [
-          "1",
-          "3",
-          "2"
-        ],
-        "Validation": {
-          "Settings": {
-            "ForceResponse": "ON",
-            "Type": "None"
-          }
-        },
-        "Language": [],
-        "NextChoiceId": 4,
-        "NextAnswerId": 1,
-        "QuestionID": "QID20"
       }
     },
     {
@@ -1180,10 +984,14 @@
             {
               "Type": "Question",
               "QuestionID": "QID10"
-            },
-            {
-              "Type": "Page Break"
-            },
+            }
+          ]
+        },
+        {
+          "Type": "Standard",
+          "Description": "number \u2014 critical trials then controls",
+          "ID": "BL_b1bc248a7ff2b2e",
+          "BlockElements": [
             {
               "Type": "Question",
               "QuestionID": "QID11"
@@ -1194,14 +1002,10 @@
             {
               "Type": "Question",
               "QuestionID": "QID12"
-            }
-          ]
-        },
-        {
-          "Type": "Standard",
-          "Description": "number \u2014 critical trials then controls",
-          "ID": "BL_b1bc248a7ff2b2e",
-          "BlockElements": [
+            },
+            {
+              "Type": "Page Break"
+            },
             {
               "Type": "Question",
               "QuestionID": "QID13"
@@ -1226,34 +1030,6 @@
             {
               "Type": "Question",
               "QuestionID": "QID16"
-            },
-            {
-              "Type": "Page Break"
-            },
-            {
-              "Type": "Question",
-              "QuestionID": "QID17"
-            },
-            {
-              "Type": "Page Break"
-            },
-            {
-              "Type": "Question",
-              "QuestionID": "QID18"
-            },
-            {
-              "Type": "Page Break"
-            },
-            {
-              "Type": "Question",
-              "QuestionID": "QID19"
-            },
-            {
-              "Type": "Page Break"
-            },
-            {
-              "Type": "Question",
-              "QuestionID": "QID20"
             }
           ]
         },
