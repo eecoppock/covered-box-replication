@@ -131,14 +131,32 @@ likely rather than less.
 
 The probe trial names an object that is in **neither** open box — boxes of
 flowers, a prompt about leaves — so the covered box is correct whatever anyone's
-semantics. It sits after the critical trials, so it cannot prime them, and it
-converts the worry into a measurement:
+semantics. It converts the worry into a measurement:
 
 - scalar participants **pass** the probe → their low critical rate is real
 - scalar participants **fail** it → the paradigm degraded, and that is the finding
 
-`coveredbox-rep.R` reports the pass rate by term and warns below 80%. Whether to
-exclude on it is a judgment the report should argue rather than assume. Huang et al. gave feedback on the first pass; Qualtrics
+**The critical trials are bracketed.** Familiarization trials 3 and 4 require
+the covered box *before* any test trial; the probe requires it *after* all of
+them. So the question "was it live while it mattered?" is answered on both
+sides.
+
+The probe is deliberately last rather than immediately after the critical
+trials. By then five trials have gone by in which no covered answer was ever
+correct — two critical, where most scalar participants take an open box, then
+three controls where a match is always visible. Extinction pressure is at its
+highest exactly there, so passing the probe at the end is *stronger* evidence
+than passing it earlier would be. It is a conservative test.
+
+Putting a probe *before* the critical trials was considered and rejected: a
+participant who has just chosen the covered box is likelier to choose it again
+on the very next screen, which is the one that matters. Familiarization already
+does that job, at a safe distance.
+
+`coveredbox-rep.R` reports the front of the bracket (fam3 and fam4, over **all**
+completed responses — among the included it is 100% by construction and says
+nothing) and the probe pass rate by term, warning below 80%. Whether to exclude
+on the probe is a judgment the report should argue rather than assume. Huang et al. gave feedback on the first pass; Qualtrics
   cannot easily, so instead these serve as the exclusion criterion. Current rule
   is all four correct; 3/4 is defensible if recruitment is tight.
 

@@ -76,6 +76,17 @@ cat("  completed responses :", nrow(complete), "\n")
 cat("  failed              :", sum(!fam$passed), "\n")
 print(count(fam, n_correct))
 
+# The covered box is bracketed. fam3 and fam4 require it BEFORE any test trial;
+# the probe requires it AFTER all of them. Report the front end over every
+# completed response, not just those who survive exclusion -- among the included
+# it is 100% by construction, which says nothing.
+front <- complete |>
+  select(ResponseId, fam3, fam4) |>
+  pivot_longer(-ResponseId, names_to = "trial", values_to = "resp") |>
+  summarise(chose_covered = mean(resp == "3", na.rm = TRUE), n = n())
+cat("  covered-box trials (fam3, fam4), all completed responses:",
+    sprintf("%.0f%% correct", 100 * front$chose_covered), "\n")
+
 dat <- complete |>
   filter(ResponseId %in% fam$ResponseId[fam$passed]) |>
   select(ResponseId, matches("^(scalar|number)_")) |>
@@ -117,8 +128,11 @@ print(dat |> filter(!critical, !probe) |>
 probe <- dat |> filter(probe) |>
   group_by(term) |>
   summarise(passed = mean(covered), n = n(), .groups = "drop")
-cat("\nProbe trial — the named object is in NEITHER open box,\n",
-    "so the covered box is correct for everyone:\n", sep = "")
+cat("\nProbe trial — the covered box, checked again at the very END.\n",
+    "By this point five trials have gone by in which no covered answer was\n",
+    "ever correct, so extinction pressure is at its highest. Passing here is\n",
+    "therefore strong evidence it was still live during the critical trials,\n",
+    "which came earlier under less pressure:\n", sep = "")
 print(probe)
 if (any(probe$passed < .8))
   cat("!! Under 80% on the probe. The covered box may have stopped being a live\n",
