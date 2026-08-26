@@ -129,20 +129,34 @@ is **extinction, not semantics**, and nothing in the original design can tell th
 two apart. Weakening familiarization to a single pass, as above, makes this more
 likely rather than less.
 
-The probe trial names an object that is in **neither** open box — boxes of
-flowers, a prompt about **hearts** — so the covered box is correct whatever
-anyone's semantics.
+The probe puts an absent *configuration* in front of the participant while
+keeping every presupposition satisfied except the one the paradigm runs on.
 
-The named object is written down in `design.py` as `PROBE_NAMED`, not derived.
-An earlier version picked it by arithmetic offset and landed on *leaves* against
-boxes of *flowers*: both plant parts, so "absent" stopped being obvious, and a
-participant entitled to wonder whether those pink things counted as leaves is a
-participant whose probe response means nothing. It has to be unmistakably
-absent, which is stronger than merely being a different word. Hearts appear
-nowhere else in the study. It converts the worry into a measurement:
+| term | boxes | prompt | why the covered box is right |
+|---|---|---|---|
+| scalar | Kel has **some** of the flowers / Kel has **all** of them | *Give me the box where Kel has **none** of the flowers.* | neither shows Kel with none |
+| number | **1** flower / **2** flowers | *Give me the box with **five** flowers.* | absent under exact semantics *and* under lower-bounded |
 
-- scalar participants **pass** the probe → their low critical rate is real
-- scalar participants **fail** it → the paradigm degraded, and that is the finding
+Getting the absence in the right place took two tries, and the failures are
+instructive.
+
+The task already turns on one presupposition failure: *the box with two fish*
+presupposes such a box exists, and when none is visible the inference is that it
+is hidden. That is the paradigm.
+
+An earlier probe asked for *some of the **hearts*** against boxes of flowers.
+That fails a **different** presupposition — the restrictor's. *The hearts*
+presupposes a salient set of hearts and there is none. A failed restrictor
+invites **repair** ("they must mean the flowers") rather than the inference that
+the referent is hidden, so the trial would have measured repair behaviour instead
+of whether the covered box is live. Before that, an offset picked *leaves*
+against flowers, which is not unmistakably absent at all.
+
+The number probe asks for **five** rather than three for a specific reason. Ask
+for three against boxes of 1 and 5 and a lower-bounded participant can answer
+with the visible 5, since 5 ≥ 3 — and the lower-bounded participants are exactly
+the ones whose covered box we doubt. A probe they can satisfy with an open box
+is no probe. Five against 1 and 2 is absent on either semantics.
 
 **The critical trials are bracketed.** Familiarization trials 3 and 4 require
 the covered box *before* any test trial; the probe requires it *after* all of

@@ -66,11 +66,11 @@ NUMBER = {"critical":"critical", "weak":"oneTwo",   "strong":"twoMore",  "probe"
 SCALAR_BOXES = {"critical": ("NONE","ALL"),   # no subset match -> covered box
                 "noneSome": ("NONE","SOME"),
                 "someAll":  ("SOME","ALL"),
-                "probe":    ("NONE","SOME")}  # of the WRONG object
+                "probe":    ("SOME","ALL")}   # neither shows the target with none
 NUMBER_BOXES = {"critical": (1,"more"),        # no exact match -> covered box
                 "oneTwo":   (1,2),
                 "twoMore":  (2,"more"),
-                "probe":    (1,"more")}        # of the WRONG object
+                "probe":    (1,2)}             # neither has five or more
 
 # what choices 1 and 2 mean, for choice-map.csv
 SCALAR_MEANING = {"critical": ("none","all"), "noneSome": ("none","match"),
@@ -80,14 +80,32 @@ NUMBER_MEANING = {"critical": ("one","more"), "oneTwo": ("one","match"),
 
 MORE = [3, 5, 3, 5, 3, 5, 3, 5, 3]     # the "more than two" count, per set
 
-# The object the PROBE asks for. It must be unmistakably absent from the boxes,
-# which is a stronger requirement than merely being a different word: picking it
-# by offset once landed on "leaves" while the boxes showed flowers, and a
-# participant entitled to wonder whether those pink things count as leaves is a
-# participant whose probe response means nothing. So it is named here, chosen to
-# be as far from any object drawn as the inventory allows, and it is deliberately
-# something no box in the study ever contains.
-PROBE_NAMED = "hearts"
+# ---- the probe, and the presupposition it must not violate -----------------
+# The probe needs a configuration that is absent from both open boxes, so that
+# the covered box is correct on anyone's semantics. Two earlier attempts got the
+# absence in the wrong place.
+#
+# The paradigm already runs on ONE presupposition failure: "the box with two
+# fish" presupposes such a box exists, and when none is visible, the inference is
+# that it must be hidden. That is the whole task.
+#
+# An earlier probe asked for "some of the hearts" against boxes of flowers. That
+# fails a DIFFERENT presupposition -- the restrictor's. "The hearts" presupposes
+# a salient set of hearts, and there is none. Failed restrictors invite repair
+# ("they must mean the flowers") rather than the inference that the referent is
+# hidden, so the trial would have measured repair behaviour instead of whether
+# the covered box is live.
+#
+# So the probe keeps the restrictor satisfied and puts the absence in the
+# configuration:
+#   scalar  boxes show SOME and ALL of the flowers; asks who has NONE of them.
+#           "The flowers" refers; no box shows the target having none.
+#   number  boxes show 1 and 2 flowers; asks for FIVE. Absent under exact
+#           semantics (no box has exactly five) and under lower-bounded
+#           semantics (none has five or more) -- which matters, since the
+#           participants whose covered box we most doubt are the lower-bounded
+#           ones, and a probe they could answer with a visible box is no probe.
+PROBE_COUNT = "five"
 
 def _plan():
     """roles in presentation order, repeated N_TRIALS times each"""
@@ -98,10 +116,9 @@ def scalar_trials():
         kind = SCALAR[role]
         target, other = NAMES[i]
         _, plural = OBJECTS[i]
-        if kind == "probe":
-            plural = PROBE_NAMED
+        quant = "none" if kind == "probe" else "some"
         yield dict(term="scalar", kind=kind, set=i+1,
-                   prompt=f"Give me the box where {target} has some of the {plural}.",
+                   prompt=f"Give me the box where {target} has {quant} of the {plural}.",
                    boxes=[f"scalar_s{i+1}_{b}" for b in SCALAR_BOXES[kind]],
                    meaning=SCALAR_MEANING[kind])
 
@@ -109,11 +126,10 @@ def number_trials():
     for i,role in enumerate(_plan()):
         kind = NUMBER[role]
         _, plural = OBJECTS[i]
-        if kind == "probe":
-            plural = PROBE_NAMED
         counts = [MORE[i] if b == "more" else b for b in NUMBER_BOXES[kind]]
+        want = PROBE_COUNT if kind == "probe" else "two"
         yield dict(term="number", kind=kind, set=i+1,
-                   prompt=f"Give me the box with two {plural}.",
+                   prompt=f"Give me the box with {want} {plural}.",
                    boxes=[f"number_s{i+1}_{c}" for c in counts],
                    meaning=NUMBER_MEANING[kind])
 
