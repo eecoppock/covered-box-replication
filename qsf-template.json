@@ -1,0 +1,189 @@
+{
+  "SurveyEntry": {
+    "SurveyID": "SV_TEMPLATE",
+    "SurveyName": "template",
+    "SurveyDescription": null,
+    "SurveyOwnerID": "",
+    "SurveyBrandID": "",
+    "DivisionID": null,
+    "SurveyLanguage": "EN",
+    "SurveyActiveResponseSet": "",
+    "SurveyStatus": "Inactive",
+    "SurveyStartDate": "0000-00-00 00:00:00",
+    "SurveyExpirationDate": "0000-00-00 00:00:00",
+    "SurveyCreationDate": "2026-01-01 00:00:00",
+    "CreatorID": "",
+    "LastModified": "2026-01-01 00:00:00",
+    "LastAccessed": "0000-00-00 00:00:00",
+    "LastActivated": "0000-00-00 00:00:00",
+    "Deleted": null
+  },
+  "Boilerplate": [
+    {
+      "SurveyID": "SV_TEMPLATE",
+      "Element": "PL",
+      "PrimaryAttribute": "Preview Link",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "PreviewType": "Brand",
+        "PreviewID": "8655b01f-f895-4435-b31d-42ee870740ff"
+      }
+    },
+    {
+      "SurveyID": "SV_TEMPLATE",
+      "Element": "PROJ",
+      "PrimaryAttribute": "CORE",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": "1.1.0",
+      "Payload": {
+        "ProjectCategory": "CORE",
+        "SchemaVersion": "1.1.0"
+      }
+    },
+    {
+      "SurveyID": "SV_TEMPLATE",
+      "Element": "QC",
+      "PrimaryAttribute": "Survey Question Count",
+      "SecondaryAttribute": "5",
+      "TertiaryAttribute": null,
+      "Payload": null
+    },
+    {
+      "SurveyID": "SV_TEMPLATE",
+      "Element": "RS",
+      "PrimaryAttribute": "RS_aY7zOXFV4PPQBGS",
+      "SecondaryAttribute": "Default Response Set",
+      "TertiaryAttribute": null,
+      "Payload": null
+    },
+    {
+      "SurveyID": "SV_TEMPLATE",
+      "Element": "SCO",
+      "PrimaryAttribute": "Scoring",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "ScoringCategories": [],
+        "ScoringCategoryGroups": [],
+        "ScoringSummaryCategory": null,
+        "ScoringSummaryAfterQuestions": 0,
+        "ScoringSummaryAfterSurvey": 0,
+        "DefaultScoringCategory": null,
+        "AutoScoringCategory": null
+      }
+    },
+    {
+      "SurveyID": "SV_TEMPLATE",
+      "Element": "SO",
+      "PrimaryAttribute": "Survey Options",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "BackButton": "false",
+        "SaveAndContinue": "true",
+        "SurveyProtection": "PublicSurvey",
+        "BallotBoxStuffingPrevention": "true",
+        "NoIndex": "Yes",
+        "SecureResponseFiles": "true",
+        "SurveyExpiration": "None",
+        "SurveyTermination": "DefaultMessage",
+        "Header": "",
+        "Footer": "",
+        "ProgressBarDisplay": "None",
+        "PartialData": "+1 week",
+        "ValidationMessage": null,
+        "PreviousButton": "",
+        "NextButton": "",
+        "SurveyTitle": "Survey about meaning in context",
+        "SkinLibrary": "bostonu",
+        "SkinType": "templated",
+        "Skin": {
+          "brandingId": "7133790721",
+          "templateId": "*base",
+          "overrides": null
+        },
+        "NewScoring": 1,
+        "SurveyMetaDescription": "This survey has just two questions. Each question asks you about what you would conclude based on a very short story (2-3 sentences).",
+        "EOSMessage": null,
+        "ShowExportTags": "false",
+        "CollectGeoLocation": "false",
+        "PasswordProtection": "No",
+        "AnonymizeResponse": "No",
+        "RefererCheck": "No",
+        "BallotBoxStuffingPreventionBehavior": "DisplayMessage",
+        "BallotBoxStuffingPreventionMessage": "MS_0cEVU1iMJtJchcG",
+        "BallotBoxStuffingPreventionMessageLibrary": "UR_0N7f1AKYMDJcM74",
+        "BallotBoxStuffingPreventionURL": null,
+        "RecaptchaV3": "false",
+        "ConfirmStart": false,
+        "AutoConfirmStart": false,
+        "RelevantID": "false",
+        "RelevantIDLockoutPeriod": "+30 days",
+        "UseCustomSurveyLinkCompletedMessage": null,
+        "SurveyLinkCompletedMessage": null,
+        "SurveyLinkCompletedMessageLibrary": null,
+        "ResponseSummary": "No",
+        "EOSMessageLibrary": null,
+        "EOSRedirectURL": null,
+        "EmailThankYou": "false",
+        "ThankYouEmailMessageLibrary": null,
+        "ThankYouEmailMessage": null,
+        "ValidateMessage": "false",
+        "ValidationMessageLibrary": null,
+        "InactiveSurvey": "DefaultMessage",
+        "PartialDeletion": null,
+        "PartialDataCloseAfter": "LastActivity",
+        "InactiveMessageLibrary": null,
+        "InactiveMessage": null,
+        "AvailableLanguages": {
+          "EN": []
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_TEMPLATE",
+      "Element": "STAT",
+      "PrimaryAttribute": "Survey Statistics",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "MobileCompatible": true,
+        "ID": "Survey Statistics"
+      }
+    }
+  ],
+  "TextQuestion": {
+    "SurveyID": "SV_TEMPLATE",
+    "Element": "SQ",
+    "PrimaryAttribute": "QID5",
+    "SecondaryAttribute": "This survey just has four questions. The questions ask you what you would conclude based on a ver...",
+    "TertiaryAttribute": null,
+    "Payload": {
+      "QuestionText": "This survey just has four questions. The questions ask you what you would conclude based on a very short story (2-3 sentences).<br>",
+      "DefaultChoices": false,
+      "DataExportTag": "Instructions",
+      "QuestionType": "DB",
+      "Selector": "TB",
+      "DataVisibility": {
+        "Private": false,
+        "Hidden": false
+      },
+      "Configuration": {
+        "QuestionDescriptionOption": "UseText"
+      },
+      "QuestionDescription": "This survey just has four questions. The questions ask you what you would conclude based on a ver...",
+      "ChoiceOrder": [],
+      "Validation": {
+        "Settings": {
+          "Type": "None"
+        }
+      },
+      "GradingData": [],
+      "Language": [],
+      "NextChoiceId": 4,
+      "NextAnswerId": 1,
+      "QuestionID": "QID5"
+    }
+  }
+}

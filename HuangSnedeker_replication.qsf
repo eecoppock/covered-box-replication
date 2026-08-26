@@ -1,0 +1,2252 @@
+{
+  "SurveyEntry": {
+    "SurveyID": "SV_HuangSnedekerRep",
+    "SurveyName": "Covered box replication",
+    "SurveyDescription": null,
+    "SurveyOwnerID": "",
+    "SurveyBrandID": "",
+    "DivisionID": null,
+    "SurveyLanguage": "EN",
+    "SurveyActiveResponseSet": "",
+    "SurveyStatus": "Inactive",
+    "SurveyStartDate": "0000-00-00 00:00:00",
+    "SurveyExpirationDate": "0000-00-00 00:00:00",
+    "SurveyCreationDate": "2026-01-01 00:00:00",
+    "CreatorID": "",
+    "LastModified": "2026-01-01 00:00:00",
+    "LastAccessed": "0000-00-00 00:00:00",
+    "LastActivated": "0000-00-00 00:00:00",
+    "Deleted": null
+  },
+  "SurveyElements": [
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "PL",
+      "PrimaryAttribute": "Preview Link",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "PreviewType": "Brand",
+        "PreviewID": "8655b01f-f895-4435-b31d-42ee870740ff"
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "PROJ",
+      "PrimaryAttribute": "CORE",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": "1.1.0",
+      "Payload": {
+        "ProjectCategory": "CORE",
+        "SchemaVersion": "1.1.0"
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "QC",
+      "PrimaryAttribute": "Survey Question Count",
+      "SecondaryAttribute": "5",
+      "TertiaryAttribute": null,
+      "Payload": null
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "RS",
+      "PrimaryAttribute": "RS_aY7zOXFV4PPQBGS",
+      "SecondaryAttribute": "Default Response Set",
+      "TertiaryAttribute": null,
+      "Payload": null
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SCO",
+      "PrimaryAttribute": "Scoring",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "ScoringCategories": [],
+        "ScoringCategoryGroups": [],
+        "ScoringSummaryCategory": null,
+        "ScoringSummaryAfterQuestions": 0,
+        "ScoringSummaryAfterSurvey": 0,
+        "DefaultScoringCategory": null,
+        "AutoScoringCategory": null
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SO",
+      "PrimaryAttribute": "Survey Options",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "BackButton": "false",
+        "SaveAndContinue": "true",
+        "SurveyProtection": "PublicSurvey",
+        "BallotBoxStuffingPrevention": "true",
+        "NoIndex": "Yes",
+        "SecureResponseFiles": "true",
+        "SurveyExpiration": "None",
+        "SurveyTermination": "DefaultMessage",
+        "Header": "",
+        "Footer": "",
+        "ProgressBarDisplay": "None",
+        "PartialData": "+1 week",
+        "ValidationMessage": null,
+        "PreviousButton": "",
+        "NextButton": "",
+        "SurveyTitle": "Survey about meaning in context",
+        "SkinLibrary": "bostonu",
+        "SkinType": "templated",
+        "Skin": {
+          "brandingId": "7133790721",
+          "templateId": "*base",
+          "overrides": null
+        },
+        "NewScoring": 1,
+        "SurveyMetaDescription": "This survey has just two questions. Each question asks you about what you would conclude based on a very short story (2-3 sentences).",
+        "EOSMessage": null,
+        "ShowExportTags": "false",
+        "CollectGeoLocation": "false",
+        "PasswordProtection": "No",
+        "AnonymizeResponse": "No",
+        "RefererCheck": "No",
+        "BallotBoxStuffingPreventionBehavior": "DisplayMessage",
+        "BallotBoxStuffingPreventionMessage": "MS_0cEVU1iMJtJchcG",
+        "BallotBoxStuffingPreventionMessageLibrary": "UR_0N7f1AKYMDJcM74",
+        "BallotBoxStuffingPreventionURL": null,
+        "RecaptchaV3": "false",
+        "ConfirmStart": false,
+        "AutoConfirmStart": false,
+        "RelevantID": "false",
+        "RelevantIDLockoutPeriod": "+30 days",
+        "UseCustomSurveyLinkCompletedMessage": null,
+        "SurveyLinkCompletedMessage": null,
+        "SurveyLinkCompletedMessageLibrary": null,
+        "ResponseSummary": "No",
+        "EOSMessageLibrary": null,
+        "EOSRedirectURL": null,
+        "EmailThankYou": "false",
+        "ThankYouEmailMessageLibrary": null,
+        "ThankYouEmailMessage": null,
+        "ValidateMessage": "false",
+        "ValidationMessageLibrary": null,
+        "InactiveSurvey": "DefaultMessage",
+        "PartialDeletion": null,
+        "PartialDataCloseAfter": "LastActivity",
+        "InactiveMessageLibrary": null,
+        "InactiveMessage": null,
+        "AvailableLanguages": {
+          "EN": []
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "STAT",
+      "PrimaryAttribute": "Survey Statistics",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "MobileCompatible": true,
+        "ID": "Survey Statistics"
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID1",
+      "SecondaryAttribute": "Instructions",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>In this task you will see three boxes on each screen. Two of them are open, so you can see what is inside. The third is closed, so you cannot.</p><p>Each time, you will be asked for the box that matches a description. <b>If neither open box matches, then the box you want must be the closed one.</b></p><p>There are a few practice screens first.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "Instructions",
+        "QuestionType": "DB",
+        "Selector": "TB",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Instructions",
+        "ChoiceOrder": [],
+        "Validation": {
+          "Settings": {
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "QuestionID": "QID1"
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID2",
+      "SecondaryAttribute": "Give me the box with the red star.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box with the red star.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "fam1",
+        "QuestionID": "QID2",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box with the red star.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/fam1_yes.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/fam1_no.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "1",
+          "2": "3",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID3",
+      "SecondaryAttribute": "Give me the box with the red star.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box with the red star.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "fam2",
+        "QuestionID": "QID3",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box with the red star.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/fam2_yes.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/fam2_no.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "1",
+          "2": "3",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID4",
+      "SecondaryAttribute": "Give me the box with the red star.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box with the red star.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "fam3",
+        "QuestionID": "QID4",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box with the red star.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/fam3_no_a.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/fam3_no_b.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "1",
+          "2": "3",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID5",
+      "SecondaryAttribute": "Give me the box with the red star.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box with the red star.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "fam4",
+        "QuestionID": "QID5",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box with the red star.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/fam4_no.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/fam1_no.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "1",
+          "2": "3",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID6",
+      "SecondaryAttribute": "Give me the box where Zip has some of the cookies.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box where Zip has some of the cookies.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "scalar_critical_s1",
+        "QuestionID": "QID6",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box where Zip has some of the cookies.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/scalar_s1_NONE.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/scalar_s1_ALL.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "1",
+          "2": "3",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID7",
+      "SecondaryAttribute": "Give me the box where Mo has some of the apples.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box where Mo has some of the apples.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "scalar_critical_s2",
+        "QuestionID": "QID7",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box where Mo has some of the apples.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/scalar_s2_NONE.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/scalar_s2_ALL.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "1",
+          "2": "3",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID8",
+      "SecondaryAttribute": "Give me the box where Dax has some of the balloons.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box where Dax has some of the balloons.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "scalar_critical_s3",
+        "QuestionID": "QID8",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box where Dax has some of the balloons.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/scalar_s3_NONE.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/scalar_s3_ALL.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "1",
+          "2": "3",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID9",
+      "SecondaryAttribute": "Give me the box where Zip has some of the cookies.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box where Zip has some of the cookies.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "scalar_noneSome_s1",
+        "QuestionID": "QID9",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box where Zip has some of the cookies.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/scalar_s1_NONE.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/scalar_s1_SOME.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "1",
+          "2": "2",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID10",
+      "SecondaryAttribute": "Give me the box where Zip has some of the cookies.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box where Zip has some of the cookies.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "scalar_someAll_s1",
+        "QuestionID": "QID10",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box where Zip has some of the cookies.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/scalar_s1_SOME.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/scalar_s1_ALL.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "2",
+          "2": "3",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID11",
+      "SecondaryAttribute": "Give me the box where Mo has some of the apples.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box where Mo has some of the apples.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "scalar_noneSome_s2",
+        "QuestionID": "QID11",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box where Mo has some of the apples.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/scalar_s2_NONE.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/scalar_s2_SOME.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "1",
+          "2": "2",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID12",
+      "SecondaryAttribute": "Give me the box where Mo has some of the apples.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box where Mo has some of the apples.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "scalar_someAll_s2",
+        "QuestionID": "QID12",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box where Mo has some of the apples.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/scalar_s2_SOME.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/scalar_s2_ALL.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "2",
+          "2": "3",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID13",
+      "SecondaryAttribute": "Give me the box where Dax has some of the balloons.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box where Dax has some of the balloons.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "scalar_noneSome_s3",
+        "QuestionID": "QID13",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box where Dax has some of the balloons.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/scalar_s3_NONE.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/scalar_s3_SOME.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "1",
+          "2": "2",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID14",
+      "SecondaryAttribute": "Give me the box where Dax has some of the balloons.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box where Dax has some of the balloons.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "scalar_someAll_s3",
+        "QuestionID": "QID14",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box where Dax has some of the balloons.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/scalar_s3_SOME.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/scalar_s3_ALL.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "2",
+          "2": "3",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID15",
+      "SecondaryAttribute": "Give me the box with two fish.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box with two fish.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "number_critical_s1",
+        "QuestionID": "QID15",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box with two fish.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/number_s1_1.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/number_s1_3.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "1",
+          "2": "3",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID16",
+      "SecondaryAttribute": "Give me the box with two birds.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box with two birds.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "number_critical_s2",
+        "QuestionID": "QID16",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box with two birds.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/number_s2_1.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/number_s2_5.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "1",
+          "2": "3",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID17",
+      "SecondaryAttribute": "Give me the box with two flowers.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box with two flowers.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "number_critical_s3",
+        "QuestionID": "QID17",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box with two flowers.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/number_s3_1.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/number_s3_3.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "1",
+          "2": "3",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID18",
+      "SecondaryAttribute": "Give me the box with two fish.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box with two fish.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "number_oneTwo_s1",
+        "QuestionID": "QID18",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box with two fish.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/number_s1_1.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/number_s1_2.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "1",
+          "2": "2",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID19",
+      "SecondaryAttribute": "Give me the box with two fish.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box with two fish.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "number_twoMore_s1",
+        "QuestionID": "QID19",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box with two fish.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/number_s1_2.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/number_s1_3.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "2",
+          "2": "3",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID20",
+      "SecondaryAttribute": "Give me the box with two birds.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box with two birds.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "number_oneTwo_s2",
+        "QuestionID": "QID20",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box with two birds.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/number_s2_1.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/number_s2_2.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "1",
+          "2": "2",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID21",
+      "SecondaryAttribute": "Give me the box with two birds.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box with two birds.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "number_twoMore_s2",
+        "QuestionID": "QID21",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box with two birds.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/number_s2_2.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/number_s2_5.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "2",
+          "2": "3",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID22",
+      "SecondaryAttribute": "Give me the box with two flowers.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box with two flowers.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "number_oneTwo_s3",
+        "QuestionID": "QID22",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box with two flowers.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/number_s3_1.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/number_s3_2.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "1",
+          "2": "2",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID23",
+      "SecondaryAttribute": "Give me the box with two flowers.",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:20px'>Give me the box with two flowers.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "number_twoMore_s3",
+        "QuestionID": "QID23",
+        "QuestionType": "MC",
+        "Selector": "SAHR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "LabelPosition": "BELOW"
+        },
+        "QuestionDescription": "Give me the box with two flowers.",
+        "Choices": {
+          "1": {
+            "Display": "<img src=\"IMAGE_BASE_URL/number_s3_2.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "2": {
+            "Display": "<img src=\"IMAGE_BASE_URL/number_s3_3.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          },
+          "3": {
+            "Display": "<img src=\"IMAGE_BASE_URL/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2",
+          "3"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "RecodeValues": {
+          "1": "2",
+          "2": "3",
+          "3": "4"
+        },
+        "Randomization": {
+          "Advanced": {
+            "TotalRandSubset": 3,
+            "QuestionsPerPage": "0",
+            "RandomizeAll": [
+              "1",
+              "2",
+              "3"
+            ],
+            "RandomSubSet": [],
+            "Undisplayed": [],
+            "FixedOrder": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "Type": "All",
+          "TotalRandSubset": 3
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "BL",
+      "PrimaryAttribute": "Survey Blocks",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": [
+        {
+          "Type": "Default",
+          "SubType": "",
+          "Description": "Instructions",
+          "ID": "BL_intro",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID1"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false"
+          }
+        },
+        {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "Familiarization",
+          "ID": "BL_fam",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID2"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID3"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID4"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID5"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false"
+          }
+        },
+        {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "scalar \u2014 critical trials",
+          "ID": "BL_scalar_crit",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID6"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID7"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID8"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "Advanced",
+            "Randomization": {
+              "Advanced": {
+                "FixedOrder": [],
+                "RandomizeAll": [
+                  "QID6",
+                  "QID7",
+                  "QID8"
+                ],
+                "RandomSubSet": [],
+                "Undisplayed": [],
+                "TotalRandSubset": 0,
+                "QuestionsPerPage": "1"
+              },
+              "EvenPresentation": false
+            }
+          }
+        },
+        {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "scalar \u2014 control trials",
+          "ID": "BL_scalar_ctrl",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID9"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID10"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID11"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID12"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID13"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID14"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "Advanced",
+            "Randomization": {
+              "Advanced": {
+                "FixedOrder": [],
+                "RandomizeAll": [
+                  "QID9",
+                  "QID10",
+                  "QID11",
+                  "QID12",
+                  "QID13",
+                  "QID14"
+                ],
+                "RandomSubSet": [],
+                "Undisplayed": [],
+                "TotalRandSubset": 0,
+                "QuestionsPerPage": "1"
+              },
+              "EvenPresentation": false
+            }
+          }
+        },
+        {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "number \u2014 critical trials",
+          "ID": "BL_number_crit",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID15"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID16"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID17"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "Advanced",
+            "Randomization": {
+              "Advanced": {
+                "FixedOrder": [],
+                "RandomizeAll": [
+                  "QID15",
+                  "QID16",
+                  "QID17"
+                ],
+                "RandomSubSet": [],
+                "Undisplayed": [],
+                "TotalRandSubset": 0,
+                "QuestionsPerPage": "1"
+              },
+              "EvenPresentation": false
+            }
+          }
+        },
+        {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "number \u2014 control trials",
+          "ID": "BL_number_ctrl",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID18"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID19"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID20"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID21"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID22"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID23"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "Advanced",
+            "Randomization": {
+              "Advanced": {
+                "FixedOrder": [],
+                "RandomizeAll": [
+                  "QID18",
+                  "QID19",
+                  "QID20",
+                  "QID21",
+                  "QID22",
+                  "QID23"
+                ],
+                "RandomSubSet": [],
+                "Undisplayed": [],
+                "TotalRandSubset": 0,
+                "QuestionsPerPage": "1"
+              },
+              "EvenPresentation": false
+            }
+          }
+        },
+        {
+          "Type": "Trash",
+          "Description": "Trash / Unused Questions",
+          "ID": "BL_trash"
+        }
+      ]
+    },
+    {
+      "SurveyID": "SV_HuangSnedekerRep",
+      "Element": "FL",
+      "PrimaryAttribute": "Survey Flow",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "Type": "Root",
+        "FlowID": "FL_1",
+        "Flow": [
+          {
+            "Type": "Standard",
+            "ID": "BL_intro",
+            "FlowID": "FL_2",
+            "Autofill": []
+          },
+          {
+            "Type": "Standard",
+            "ID": "BL_fam",
+            "FlowID": "FL_3",
+            "Autofill": []
+          },
+          {
+            "Type": "BlockRandomizer",
+            "FlowID": "FL_4",
+            "SubSet": 1,
+            "EvenPresentation": true,
+            "Flow": [
+              {
+                "Type": "Group",
+                "FlowID": "FL_5",
+                "Description": "scalar term",
+                "Flow": [
+                  {
+                    "Type": "Standard",
+                    "ID": "BL_scalar_crit",
+                    "FlowID": "FL_6",
+                    "Autofill": []
+                  },
+                  {
+                    "Type": "Standard",
+                    "ID": "BL_scalar_ctrl",
+                    "FlowID": "FL_7",
+                    "Autofill": []
+                  }
+                ]
+              },
+              {
+                "Type": "Group",
+                "FlowID": "FL_8",
+                "Description": "number term",
+                "Flow": [
+                  {
+                    "Type": "Standard",
+                    "ID": "BL_number_crit",
+                    "FlowID": "FL_9",
+                    "Autofill": []
+                  },
+                  {
+                    "Type": "Standard",
+                    "ID": "BL_number_ctrl",
+                    "FlowID": "FL_10",
+                    "Autofill": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "Properties": {
+          "Count": 12
+        }
+      }
+    }
+  ]
+}

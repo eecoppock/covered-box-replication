@@ -1,0 +1,5 @@
+.DS_Store
+.Rhistory
+.RData
+Rplots.pdf
+__pycache__/
