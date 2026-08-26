@@ -91,10 +91,28 @@ entirely — otherwise it is 22 questions × 3 choices of manual insertion.
   cannot easily, so instead these serve as the exclusion criterion. Current rule
   is all four correct; 3/4 is defensible if recruitment is tight.
 
-Response codes are uniform across every trial:
-**1** = the "less" box · **2** = the subset/exact match · **3** = the "more" box ·
-**4** = the covered box. The measure of interest is the rate of **4** on critical
-trials.
+Response codes: **1** = first open box · **2** = second open box ·
+**3** = the covered box. Choice IDs are stable whatever order the boxes are
+displayed in; what 1 and 2 mean varies by trial type, so `build-qsf.py` writes
+**`choice-map.csv`** and the analysis reads it instead of hard-coding anything.
+The measure of interest is the rate of **3** on critical trials.
+
+The covered box's position is counterbalanced **by hand** — across the three
+tokens of each trial type it appears first, second and third. Qualtrics can
+randomise choice order, but no QSF available here demonstrated that structure,
+and an unverified guess costs the whole import. Fully balanced beats randomised
+anyway at three tokens.
+
+### A note on hand-writing QSFs
+
+Qualtrics rejects a malformed import outright, with no diagnostic beyond
+*"Something went wrong and the project wasn't created."* This file therefore
+contains only structures checked against QSFs known to import: the MC payload
+matches the key set **and order** Qualtrics itself exports, every block carries
+`Options: null`, the flow uses nothing but `Root`, `Block` and `BlockRandomizer`,
+and `SurveyEntry.SurveyActiveResponseSet` names the `RS` element. Adding
+`RecodeValues`, choice randomisation, or a `Group` flow element will break it
+unless you have a working example to copy from.
 
 ## One thing the analysis will hit, and it is worth a paragraph
 

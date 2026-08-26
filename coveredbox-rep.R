@@ -15,10 +15,14 @@
 #    export records which BOX was chosen, not which position.
 #
 #  RESPONSE CODES
-#    1 = the "less" box     (none of the cookies / one fish)
-#    2 = the subset or exact match (some of the cookies / two fish)
-#    3 = the "more" box     (all of the cookies / three or five fish)
-#    4 = the COVERED box
+#    1 = the first open box   2 = the second open box   3 = the COVERED box
+#  Choice IDs are stable no matter what order the boxes are displayed in, and
+#  what 1 and 2 mean varies by trial type, so build-qsf.py writes choice-map.csv
+#  and this script reads it rather than hard-coding the mapping.
+#
+#  The covered box's position is counterbalanced by hand across the three tokens
+#  of each trial type (first, second, third), not randomised: a QSF cannot carry
+#  choice randomisation that has been verified to import.
 #
 #  THE QUESTION
 #    On critical trials the subset/exact match is absent. Anyone holding out
@@ -37,10 +41,15 @@ raw <- read_csv(data_file, col_types = cols(.default = col_character())) |>
 
 complete <- raw |> filter(Finished %in% c("True","TRUE","true","1"))
 
+# what each choice ID means, per question -- written by build-qsf.py
+cmap <- read_csv("choice-map.csv", show_col_types = FALSE) |>
+  filter(choice_id != "correct") |>
+  mutate(choice_id = as.integer(choice_id))
+
 # ---- familiarization ------------------------------------------------------
 # Two trials where the red star is visible, two where it is not. Anyone who
 # misses one was not reading the instructions.
-correct <- c(fam1 = "1", fam2 = "1", fam3 = "4", fam4 = "4")
+correct <- c(fam1 = "1", fam2 = "1", fam3 = "3", fam4 = "3")
 fam <- complete |>
   select(ResponseId, all_of(names(correct))) |>
   pivot_longer(-ResponseId, names_to = "trial", values_to = "resp") |>
@@ -64,9 +73,12 @@ dat <- complete |>
          term      = factor(term, levels = c("scalar", "number")),
          critical  = trial_type == "critical",
          resp      = as.integer(resp),
-         covered   = resp == 4,
-         match_box = resp == 2) |>
-  select(participant, term, trial_type, set, resp, critical, covered, match_box)
+         covered   = resp == 3,
+         question  = paste0(term, "_", trial_type, "_", set)) |>
+  left_join(cmap, by = c("question", "resp" = "choice_id")) |>
+  mutate(match_box = meaning == "match") |>
+  select(participant, term, trial_type, set, resp, meaning, critical,
+         covered, match_box)
 
 # ---- checks ---------------------------------------------------------------
 chk <- dat |> group_by(participant) |>

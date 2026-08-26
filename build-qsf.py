@@ -2,191 +2,182 @@
 """
 Builds the Qualtrics survey for the Huang, Spelke & Snedeker Exp. 1 replication.
 
-Each trial is a multiple-choice question whose three answer choices are the three
-box images. Qualtrics randomises choice order, which counterbalances the covered
-box's position; the export records WHICH BOX was chosen, not which position.
-
     python3 build-qsf.py [BASE_URL]
 
-BASE_URL is where the PNGs in stimuli/ are served from. Leave it as the default
-placeholder and find-replace later, or pass a real URL to get a survey that works
-the moment it is imported.
+Each trial is a multiple-choice question whose three answer choices are the three
+box images, shown side by side.
+
+DESIGN NOTE ON THE FILE FORMAT. A QSF is picky, and Qualtrics rejects the whole
+import with no diagnostic if anything is off. So this script only emits
+structures that appear in QSFs known to import: the MC payload copies the key
+set and order Qualtrics itself exports, every block carries Options: null, and
+the flow uses nothing beyond Root, Block and BlockRandomizer. In particular
+there is no choice-order randomisation and no RecodeValues, because neither
+could be verified against a working example.
+
+Position is therefore counterbalanced by hand instead: within each trial type
+the three tokens put the covered box first, second and third. That is fully
+balanced rather than merely random, which is if anything better.
+
+Choice IDs are stable and mean the same thing on every trial regardless of the
+order they are displayed in:
+
+    1 = the "less" box   2 = the other open box   3 = the COVERED box
+
+What "the other open box" is varies by trial type, so build-qsf.py also writes
+choice-map.csv saying what each ID means where. The analysis reads it.
 """
-import json, copy, sys, os
+import json, copy, sys, csv
 
 BASE = sys.argv[1] if len(sys.argv) > 1 else "IMAGE_BASE_URL"
-TEMPLATE = "qsf-template.json"   # vendored; this repo has no outside deps
-OUT = "HuangSnedeker_replication.qsf"
+TEMPLATE, OUT = "qsf-template.json", "HuangSnedeker_replication.qsf"
+SID = "SV_5oCoveredBox1"
 
-def img(name, w=300):
+def img(name, w=290):
     return (f'<img src="{BASE}/{name}.png" '
             f'style="width:100%;max-width:{w}px;height:auto;" alt="">')
 
-# recode: 1 = less/none  2 = subset or exact match  3 = more/all  4 = covered box
 SCALAR_SETS = [(1,"Zip","cookies"), (2,"Mo","apples"), (3,"Dax","balloons")]
 NUMBER_SETS = [(1,"fish",3), (2,"birds",5), (3,"flowers",3)]
 
-def scalar_trials():
+# (tag, prompt, [box for choice 1, box for choice 2], meaning of choice 1 and 2)
+def trials():
     out=[]
-    for s,name,obj in SCALAR_SETS:
-        p=f"Give me the box where {name} has some of the {obj}."
-        out.append(("crit", f"scalar_critical_s{s}", p,
-                    [(1,f"scalar_s{s}_NONE"),(3,f"scalar_s{s}_ALL"),(4,"covered")]))
-    for s,name,obj in SCALAR_SETS:
-        p=f"Give me the box where {name} has some of the {obj}."
-        out.append(("ctrl", f"scalar_noneSome_s{s}", p,
-                    [(1,f"scalar_s{s}_NONE"),(2,f"scalar_s{s}_SOME"),(4,"covered")]))
-        out.append(("ctrl", f"scalar_someAll_s{s}", p,
-                    [(2,f"scalar_s{s}_SOME"),(3,f"scalar_s{s}_ALL"),(4,"covered")]))
-    return out
-
-def number_trials():
-    out=[]
+    for s,who,obj in SCALAR_SETS:
+        p=f"Give me the box where {who} has some of the {obj}."
+        out.append(("scalar","critical",s,p,[f"scalar_s{s}_NONE",f"scalar_s{s}_ALL"],
+                    ["none","all"]))
+    for s,who,obj in SCALAR_SETS:
+        p=f"Give me the box where {who} has some of the {obj}."
+        out.append(("scalar","noneSome",s,p,[f"scalar_s{s}_NONE",f"scalar_s{s}_SOME"],
+                    ["none","match"]))
+        out.append(("scalar","someAll",s,p,[f"scalar_s{s}_SOME",f"scalar_s{s}_ALL"],
+                    ["match","all"]))
     for s,obj,more in NUMBER_SETS:
         p=f"Give me the box with two {obj}."
-        out.append(("crit", f"number_critical_s{s}", p,
-                    [(1,f"number_s{s}_1"),(3,f"number_s{s}_{more}"),(4,"covered")]))
+        out.append(("number","critical",s,p,[f"number_s{s}_1",f"number_s{s}_{more}"],
+                    ["one","more"]))
     for s,obj,more in NUMBER_SETS:
         p=f"Give me the box with two {obj}."
-        out.append(("ctrl", f"number_oneTwo_s{s}", p,
-                    [(1,f"number_s{s}_1"),(2,f"number_s{s}_2"),(4,"covered")]))
-        out.append(("ctrl", f"number_twoMore_s{s}", p,
-                    [(2,f"number_s{s}_2"),(3,f"number_s{s}_{more}"),(4,"covered")]))
+        out.append(("number","oneTwo",s,p,[f"number_s{s}_1",f"number_s{s}_2"],
+                    ["one","match"]))
+        out.append(("number","twoMore",s,p,[f"number_s{s}_2",f"number_s{s}_{more}"],
+                    ["match","more"]))
     return out
 
-FAM = [  # (tag, correct recode, boxes)
- ("fam1", 1, [(1,"fam1_yes"),(3,"fam1_no"),(4,"covered")]),
- ("fam2", 1, [(1,"fam2_yes"),(3,"fam2_no"),(4,"covered")]),
- ("fam3", 4, [(1,"fam3_no_a"),(3,"fam3_no_b"),(4,"covered")]),
- ("fam4", 4, [(1,"fam4_no"),(3,"fam1_no"),(4,"covered")]),
-]
+FAM = [("fam1", "1", ["fam1_yes","fam1_no"]),   # red star visible -> choice 1
+       ("fam2", "1", ["fam2_yes","fam2_no"]),
+       ("fam3", "3", ["fam3_no_a","fam3_no_b"]), # not visible -> covered
+       ("fam4", "3", ["fam4_no","fam1_no"])]
 FAM_PROMPT = "Give me the box with the red star."
 
 INSTRUCTIONS = (
- "<p>In this task you will see three boxes on each screen. Two of them are open, "
- "so you can see what is inside. The third is closed, so you cannot.</p>"
- "<p>Each time, you will be asked for the box that matches a description. "
- "<b>If neither open box matches, then the box you want must be the closed "
- "one.</b></p><p>There are a few practice screens first.</p>")
+ "<p>On each screen you will see three boxes. Two are open, so you can see what "
+ "is inside. The third is closed, so you cannot.</p>"
+ "<p>Each time, choose the box that matches the description. <b>If neither open "
+ "box matches, then the box you want must be the closed one.</b></p>"
+ "<p>A few practice screens come first.</p>")
 
 # ---------------------------------------------------------------- build
 tpl = json.load(open(TEMPLATE))
-text_tpl = tpl["TextQuestion"]
-
 qsf = {"SurveyEntry": dict(tpl["SurveyEntry"]), "SurveyElements": []}
-qsf["SurveyEntry"].update({
-    "SurveyID":"SV_HuangSnedekerRep", "SurveyName":"Covered box replication",
-    "SurveyDescription":None, "SurveyStatus":"Inactive"})
+
+# the active response set must name the RS element, or the import fails silently
+rs = [e for e in tpl["Boilerplate"] if e["Element"] == "RS"][0]["PrimaryAttribute"]
+qsf["SurveyEntry"].update({"SurveyID": SID, "SurveyName": "Covered box replication",
+    "SurveyDescription": None, "SurveyStatus": "Inactive",
+    "SurveyActiveResponseSet": rs, "SurveyLanguage": "EN"})
 
 for e in tpl["Boilerplate"]:
-    c=copy.deepcopy(e); c["SurveyID"]="SV_HuangSnedekerRep"
+    c = copy.deepcopy(e); c["SurveyID"] = SID
     qsf["SurveyElements"].append(c)
 
 qid = [0]
-def new_qid():
-    qid[0]+=1; return f"QID{qid[0]}"
+def mc(tag, prompt, boxes):
+    """boxes = [choice-1 image, choice-2 image]; choice 3 is always the covered box."""
+    qid[0] += 1; q = f"QID{qid[0]}"
+    names = boxes + ["covered"]
+    choices = {str(i+1): {"Display": img(n)} for i, n in enumerate(names)}
+    # counterbalance: rotate so the covered box sits first / second / third
+    rot = (qid[0] - 1) % 3
+    order = ["3","1","2"] if rot == 0 else ["1","3","2"] if rot == 1 else ["1","2","3"]
+    qsf["SurveyElements"].append({
+      "SurveyID": SID, "Element": "SQ", "PrimaryAttribute": q,
+      "SecondaryAttribute": prompt[:95], "TertiaryAttribute": None,
+      "Payload": {
+        "QuestionText": f"<span style=\"font-size:19px;\">{prompt}</span>",
+        "DefaultChoices": False, "DataExportTag": tag, "QuestionID": q,
+        "QuestionType": "MC", "Selector": "SAHR",
+        "DataVisibility": {"Private": False, "Hidden": False},
+        "Configuration": {"QuestionDescriptionOption": "UseText"},
+        "QuestionDescription": prompt[:95],
+        "Validation": {"Settings": {"ForceResponse": "ON", "Type": "None"}},
+        "GradingData": [], "Language": [], "NextChoiceId": 4, "NextAnswerId": 1,
+        "SubSelector": "TX", "Choices": choices, "ChoiceOrder": order}})
+    return q, order
 
-def mc_question(tag, prompt, choices):
-    q=new_qid()
-    ch={}; order=[]; recode={}
-    for i,(rc,imgname) in enumerate(choices, start=1):
-        ch[str(i)]={"Display": img(imgname)}
-        order.append(str(i)); recode[str(i)]=str(rc)
-    el={"SurveyID":"SV_HuangSnedekerRep","Element":"SQ","PrimaryAttribute":q,
-        "SecondaryAttribute":prompt[:95],"TertiaryAttribute":None,
-        "Payload":{
-          "QuestionText": f"<p style='font-size:20px'>{prompt}</p>",
-          "DefaultChoices":False,"DataExportTag":tag,"QuestionID":q,
-          "QuestionType":"MC","Selector":"SAHR","SubSelector":"TX",
-          "DataVisibility":{"Private":False,"Hidden":False},
-          "Configuration":{"QuestionDescriptionOption":"UseText",
-                           "LabelPosition":"BELOW"},
-          "QuestionDescription":prompt[:95],
-          "Choices":ch,"ChoiceOrder":order,
-          "Validation":{"Settings":{"ForceResponse":"ON","ForceResponseType":"ON",
-                                    "Type":"None"}},
-          "GradingData":[],"Language":[],"NextChoiceId":len(choices)+1,
-          "NextAnswerId":1,"RecodeValues":recode,
-          "Randomization":{"Advanced":{"TotalRandSubset":len(choices),
-              "QuestionsPerPage":"0","RandomizeAll":order,"RandomSubSet":[],
-              "Undisplayed":[],"FixedOrder":order},
-              "Type":"All","TotalRandSubset":len(choices)}}}
+def db(tag, html):
+    qid[0] += 1; q = f"QID{qid[0]}"
+    el = copy.deepcopy(tpl["TextQuestion"]); el["SurveyID"] = SID
+    el["PrimaryAttribute"] = q; el["SecondaryAttribute"] = tag
+    el["Payload"].update({"QuestionText": html, "DataExportTag": tag,
+                          "QuestionID": q, "QuestionDescription": tag})
     qsf["SurveyElements"].append(el)
     return q
 
-def db_question(tag, html):
-    q=new_qid()
-    el=copy.deepcopy(text_tpl); el["SurveyID"]="SV_HuangSnedekerRep"
-    el["PrimaryAttribute"]=q; el["SecondaryAttribute"]=tag
-    el["Payload"].update({"QuestionText":html,"DataExportTag":tag,"QuestionID":q,
-                          "QuestionDescription":tag})
-    qsf["SurveyElements"].append(el)
-    return q
+def block(bid, desc, qids, typ="Standard"):
+    be = []
+    for i, q in enumerate(qids):
+        if i: be.append({"Type": "Page Break"})
+        be.append({"Type": "Question", "QuestionID": q})
+    return {"Type": typ, "SubType": "", "Description": desc, "ID": bid,
+            "BlockElements": be, "Options": None}
 
-def block(bid, desc, qids, typ="Standard", randomize=True):
-    b={"Type":typ,"SubType":"","Description":desc,"ID":bid,"BlockElements":[]}
-    for i,q in enumerate(qids):
-        if i: b["BlockElements"].append({"Type":"Page Break"})
-        b["BlockElements"].append({"Type":"Question","QuestionID":q})
-    b["Options"]={"BlockLocking":"false",
-        "RandomizeQuestions":"Advanced" if randomize else "false"}
-    if randomize:
-        b["Options"]["Randomization"]={"Advanced":{"FixedOrder":[],
-            "RandomizeAll":list(qids),"RandomSubSet":[],"Undisplayed":[],
-            "TotalRandSubset":0,"QuestionsPerPage":"1"},"EvenPresentation":False}
-    return b
+rows = [("question","choice_id","meaning")]
+blocks = [block("BL_intro", "Instructions", [db("Instructions", INSTRUCTIONS)],
+                typ="Default")]
 
-blocks=[]
-blocks.append(block("BL_intro","Instructions",
-                    [db_question("Instructions", INSTRUCTIONS)],
-                    typ="Default", randomize=False))
-fam_qs=[mc_question(t, FAM_PROMPT, boxes) for t,_,boxes in FAM]
-blocks.append(block("BL_fam","Familiarization", fam_qs, randomize=False))
+fam_q = []
+for tag, correct, boxes in FAM:
+    q, _ = mc(tag, FAM_PROMPT, boxes)
+    fam_q.append(q)
+    rows += [(tag,"1","star-visible box"),(tag,"2","other open box"),(tag,"3","covered")]
+    rows.append((tag,"correct",correct))
+blocks.append(block("BL_fam", "Familiarization", fam_q))
 
-for term, trials in (("scalar", scalar_trials()), ("number", number_trials())):
-    crit=[mc_question(tag,p,ch) for kind,tag,p,ch in trials if kind=="crit"]
-    ctrl=[mc_question(tag,p,ch) for kind,tag,p,ch in trials if kind=="ctrl"]
-    blocks.append(block(f"BL_{term}_crit", f"{term} — critical trials", crit))
-    blocks.append(block(f"BL_{term}_ctrl", f"{term} — control trials", ctrl))
+TR = trials()
+for term in ("scalar", "number"):
+    crit = [t for t in TR if t[0]==term and t[1]=="critical"]
+    ctrl = [t for t in TR if t[0]==term and t[1]!="critical"]
+    qs = []
+    for tm, kind, s, p, boxes, meanings in crit + ctrl:     # critical first
+        tag = f"{tm}_{kind}_s{s}"
+        q, _ = mc(tag, p, boxes)
+        qs.append(q)
+        rows += [(tag,"1",meanings[0]),(tag,"2",meanings[1]),(tag,"3","covered")]
+    blocks.append(block(f"BL_{term}", f"{term} — critical trials then controls", qs))
 blocks.append({"Type":"Trash","Description":"Trash / Unused Questions","ID":"BL_trash"})
 
-qsf["SurveyElements"].append({"SurveyID":"SV_HuangSnedekerRep","Element":"BL",
-                              "PrimaryAttribute":"Survey Blocks",
-                              "SecondaryAttribute":None,"TertiaryAttribute":None,
-                              "Payload":blocks})
+qsf["SurveyElements"].append({"SurveyID":SID,"Element":"BL",
+    "PrimaryAttribute":"Survey Blocks","SecondaryAttribute":None,
+    "TertiaryAttribute":None,"Payload":blocks})
 
-def std(bid, fid): return {"Type":"Standard","ID":bid,"FlowID":fid,"Autofill":[]}
-flow={"Type":"Root","FlowID":"FL_1","Flow":[
-  std("BL_intro","FL_2"), std("BL_fam","FL_3"),
-  {"Type":"BlockRandomizer","FlowID":"FL_4","SubSet":1,"EvenPresentation":True,
-   "Flow":[
-     {"Type":"Group","FlowID":"FL_5","Description":"scalar term","Flow":[
-        std("BL_scalar_crit","FL_6"), std("BL_scalar_ctrl","FL_7")]},
-     {"Type":"Group","FlowID":"FL_8","Description":"number term","Flow":[
-        std("BL_number_crit","FL_9"), std("BL_number_ctrl","FL_10")]}]}],
-  "Properties":{"Count":12}}
-qsf["SurveyElements"].append({"SurveyID":"SV_HuangSnedekerRep","Element":"FL",
-                              "PrimaryAttribute":"Survey Flow",
-                              "SecondaryAttribute":None,"TertiaryAttribute":None,
-                              "Payload":flow})
+flow = {"FlowID":"FL_1","Type":"Root","Flow":[
+   {"ID":"BL_intro","Type":"Block","FlowID":"FL_2"},
+   {"ID":"BL_fam","Type":"Block","FlowID":"FL_3"},
+   {"Type":"BlockRandomizer","FlowID":"FL_4","SubSet":1,"EvenPresentation":True,
+    "Flow":[{"ID":"BL_scalar","Type":"Block","FlowID":"FL_5"},
+            {"ID":"BL_number","Type":"Block","FlowID":"FL_6"}]}],
+   "Properties":{"Count":7}}
+qsf["SurveyElements"].append({"SurveyID":SID,"Element":"FL",
+    "PrimaryAttribute":"Survey Flow","SecondaryAttribute":None,
+    "TertiaryAttribute":None,"Payload":flow})
 
 json.dump(qsf, open(OUT,"w"), indent=2)
-qs=[e for e in qsf["SurveyElements"] if e.get("Element")=="SQ"]
-print(f"wrote {OUT}: {len(qs)} questions, {len(blocks)} blocks")
-for b in blocks:
-    if b.get("BlockElements"):
-        print(f"   {b['Description']:32s} {sum(1 for x in b['BlockElements'] if x['Type']=='Question')} questions")
-missing=[]
-for e in qs:
-    for c in (e["Payload"].get("Choices") or {}).values():
-        for tok in c["Display"].split('src="')[1:]:
-            f=tok.split('"')[0].split("/")[-1]
-            if not os.path.exists(f"stimuli/{f}"): missing.append(f)
-print("missing stimulus files:", sorted(set(missing)) or "none")
-
-# column manifest, in survey order, so the fake-data generator cannot drift
-tags=[e["Payload"]["DataExportTag"] for e in qs
-      if e["Payload"]["QuestionType"]=="MC"]
+with open("choice-map.csv","w",newline="") as fh: csv.writer(fh).writerows(rows)
+mcq = [e for e in qsf["SurveyElements"] if e.get("Element")=="SQ"
+       and e["Payload"]["QuestionType"]=="MC"]
 with open("columns.txt","w") as fh:
-    fh.write("\n".join(tags)+"\n")
-print("wrote columns.txt:", len(tags), "response columns")
+    fh.write("\n".join(e["Payload"]["DataExportTag"] for e in mcq)+"\n")
+print(f"wrote {OUT}: {len(mcq)} trials, {len(blocks)} blocks")
+print("wrote columns.txt and choice-map.csv")
