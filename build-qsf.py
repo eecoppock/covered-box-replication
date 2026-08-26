@@ -106,7 +106,8 @@ else:
         qs=[]
         for t in design.all_trials():
             if t["term"] != term: continue
-            tag=f"{term}_{t['kind']}_s{t['set']}"
+            tag=(f"{term}_{t['kind']}" if t["set"] == 0
+                 else f"{term}_{t['kind']}_s{t['set']}")
             qs.append(mc(tag, t["prompt"], t["boxes"]))
             rows += [(tag,"1",t["meaning"][0]),(tag,"2",t["meaning"][1]),
                      (tag,"3","covered")]

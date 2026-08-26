@@ -216,6 +216,8 @@ if __name__ == "__main__":
 
     # only the boxes the design actually calls for
     for t in design.all_trials():
+        if t["kind"] in design.SHAPE_FILLERS:
+            continue                      # shape panels are emitted below
         i   = t["set"]-1
         obj = DRAW[design.OBJECTS[i][0]]
         for box in t["boxes"]:
@@ -230,7 +232,8 @@ if __name__ == "__main__":
             n+=1
 
     SH = {"star":shape_star, "tri":shape_tri, "sq":shape_sq, "hex":shape_hex}
-    for name, shapes in design.FAM_SHAPES.items():
+    panels = {**design.FAM_SHAPES, **design.SHAPE_PANELS}
+    for name, shapes in panels.items():
         familiar_box([SH[x] for x in shapes]).save(f"{OUT}/{name}.png"); n+=1
     print(f"wrote {n} box images to {OUT}/")
 

@@ -93,152 +93,38 @@ entirely — otherwise it is 22 questions × 3 choices of manual insertion.
   infer the design by comparing trial types; at class scale that would mean six
   cells of five. Critical-first preserves naïvety where it matters, at the cost
   of a fixed order. Say so in the report.
-- **Fifteen screens per participant**: four familiarization, then Huang et al.'s
-  three test conditions in full, our added `criticalOneSet` condition, an anchor,
-  two probes, two fillers. This is their design plus additions, not a subset of
-  it. Order per participant:
+- **Eighteen screens per participant**: four familiarization, then fourteen test
+  trials. This is Huang et al.'s design plus additions, never a subset of it.
+  The order is written out in `design.py` as `SEQUENCE`, because by now what
+  comes before what does as much work as how many of each there are:
 
   | | | |
   |---|---|---|
-  | 1 | `allVis` | *…has **all** of the cookies* — anchors the domain |
-  | 2 | `probeEarly` | *…has **none** of the apples* — covered box; breaks the *all*/*some* adjacency |
-  | 3–4 | `critical` ×2 | Huang et al.'s critical trials |
-  | 5–6 | `criticalOneSet` ×2 | ours: the domain loophole closed |
-  | 7 | `matchVsMore` | H&S |
-  | 8 | `matchVsLess` | H&S |
-  | 9–10 | fillers | *none*, *all* |
-  | 11 | `probe` | covered box again, under maximum extinction pressure | Each has its own object and characters,
-  so every prompt in the survey is distinct.
+  | 1 | `anchorAll` | *…has **all** of the cookies* — fixes the domain |
+  | 2 | `probeEarly` | *…has **none** of the apples* → **covered** |
+  | 3 | `criticalOneSet` | **ours** — domain loophole closed |
+  | 4 | `shape1` | find the green triangle |
+  | 5 | `criticalOneSet` | |
+  | 6 | `shape2` | find the purple hexagon → **covered** |
+  | 7 | `critical` | Huang et al.'s |
+  | 8 | `shape3` | find the orange square |
+  | 9 | `critical` | |
+  | 10–11 | `matchVsMore`, `matchVsLess` | Huang et al.'s |
+  | 12–13 | fillers | *none*, *all* |
+  | 14 | `probe` | **covered**, under maximum extinction pressure |
 
-  Why so few, and why this split. Simulated power for the critical contrast is
-  **1.00 even at eight participants per term giving one critical trial each** —
-  an 87-point effect needs no replication inside a participant. Extra trials buy
-  item generality and a graded per-participant rate, so they go where the
-  argument is. `N_TRIALS` at the top of `design.py` sets the allocation.
+  **Ours comes before theirs.** The first *some* judgment anyone makes is then
+  one the global reading cannot reach, which settles the domain further before
+  Huang et al.'s trials run — the same argument as putting *all* first, but
+  acting directly on the measure.
 
-  | role | trials | what it does |
-  |---|---|---|
-  | **anchor** — an *all* trial, **first** | 1 | fixes the domain, see below |
-  | **critical** — (NONE,ALL) / (1, 3∨5) | 2 | the headline: no match visible, so anyone insisting on one must take the covered box. 13% vs 100%. |
-  | **matchVsMore** — (SOME,ALL) / (2, 3∨5) | 1 | *not* a comprehension check. Both a subset and a total set are visible and adults take the subset 90% of the time — Huang et al. call this "a robust ability to calculate the scalar implicature". It is what makes the critical result strange: the implicature is computed when it picks something out and abandoned when it does not. |
-  | **criticalOneSet** — (EMPTY,ALL), scalar only | 2 | **ours.** The same question with the domain loophole closed — see below |
-  | **matchVsLess** — (NONE,SOME) / (1, 2) | 1 | the comprehension check: *some* is not *none*, *two* is not *one*. At ceiling in the original. |
-  | **otherQuant** — *none*/*all*, *three*/*five* | 2 | balance, see below |
-  | **probe** | 1 | see further below |
+  **Shape fillers sit between the critical trials.** Four critical trials in a
+  row is punishingly repetitive, and repetition is not neutral here: a
+  participant who has answered the same question three times starts answering
+  the pattern. The fillers are familiarization-style — find a coloured shape —
+  so they contain **no quantifier at all** and reset attention without priming
+  *some*, *all* or *none*. One of the three needs the covered box.
 
-  The names describe which two open boxes are shown, relative to the **match** —
-  the box satisfying the description on the strengthened reading (a proper
-  subset / exactly two). `critical` shows neither a match nor anything like one;
-  `matchVsMore` pairs the match with a larger set; `matchVsLess` pairs it with a
-  smaller one.
-
-### The added condition: `criticalOneSet`
-
-Huang et al.'s critical display leaves the global reading available. One box has
-the target with none of four objects, the other has the target with all four, so
-eight are on screen — and the target holding four of eight *is* "some but not
-all" globally. A participant can take that box with the exclusive reading of
-*some* intact.
-
-Ours closes it. One open box holds **every object on screen** and the other holds
-**none**, so the global set and the box-internal set coincide:
-
-| | reading | answer |
-|---|---|---|
-| Huang et al. | exclusive *some*, box-internal | covered |
-| | exclusive *some*, **global** | **the full box** ← loophole |
-| ours | exclusive *some*, either domain | covered |
-| | lower-bounded *some*, either domain | the full box |
-
-So the two conditions differ **only** in whether the global reading is available,
-and the gap between their covered-box rates measures how much of the standard
-result that reading was buying. If they agree, it was buying nothing. The
-analysis prints them side by side.
-
-**Scalar only.** *The box with two birds* has no partitive and so no domain
-ambiguity — it counts within a box by construction. Giving the number term an
-equivalent would just be the standard critical with a `0` where the `1` goes:
-no loophole closed, and a blank white box that reads as an image that failed to
-load rather than as a box containing nothing. The number term gets four critical
-trials instead, and no empty boxes.
-
-The scalar EMPTY panel has no such problem, because it still shows both
-characters — just with nothing above them.
-
-### The anchor, and the domain of "the apples"
-
-*Give me the box where Zip has some of the apples* leaves open what **the
-apples** ranges over. The apples in the box under consideration, or the apples
-anywhere on screen?
-
-It matters, because the global reading is a **complete alternative account of
-the headline**. On a critical trial the ALL box shows the target with four of
-the eight apples visible. Read globally that *is* "some but not all" — so a
-participant can take the ALL box with the exclusive reading of *some* entirely
-intact, and 87% choosing it would say nothing about whether the implicature was
-computed.
-
-The first trial therefore asks for the box where the target has **all** of the
-objects, which separates the readings:
-
-| domain | correct answer |
-|---|---|
-| box-internal | the **ALL** box — the target has all four in that box |
-| global | the **covered** box — no box has all eight |
-
-Putting it first settles the question before any *some* trial is seen, and
-because the task presupposes an answer exists, meeting *all* first pushes toward
-the only construal on which one does. The response is also **recorded**:
-`coveredbox-rep.R` reports how many read the domain box-internally, warns if
-scalar participants fall below 85%, and splits the critical rate by it.
-
-The cost is that a trial with a visible answer now precedes the critical ones,
-which cuts against critical-first. Familiarization already shows two
-visible-answer trials and two requiring the covered box, so this adds little —
-and the domain confound explains the whole finding away, where extinction only
-biases it in a direction the probe measures.
-
-The number term has no partitive and so no domain ambiguity: *the box with two
-fish* counts within a box by construction. Its anchor is there to keep the two
-versions the same length and shape.
-
-### Fillers in another quantifier
-
-Without them the scalar term says **some** on five screens out of six and
-*none* on one. That is an odd thing to put in front of someone you are asking to
-interpret quantifiers: the recurring word invites theorising about it. The
-number term had the same problem with *two*.
-
-Two fillers per term restore the balance — *none* and *all* for scalar, *three*
-and *five* for number — and cost nothing, because the answer is always a visible
-box. They double as a check that participants are tracking the quantifier rather
-than the display: `noneVis` and `noneSome` use the very same pair of boxes and
-have opposite correct answers.
-
-Quantifier counts per participant are **some 3 / none 2 / all 1** and
-**two 3 / three 1 / five 2**, against 5/1/0 before the fillers existed.
-
-**On priming.** Putting *all* in front of a participant should if anything
-*increase* implicature computation, since activated alternatives are what drive
-*some* → *not all*. That pushes toward the covered box — **against** the finding
-that adults accept the total set as a match for *some*. So the manipulation is
-conservative: if the lower-bounded reading survives with *all* made salient,
-that is stronger evidence, not weaker. The fillers sit after the critical trials
-in any case.
-
-The number fillers name the **larger** visible count, never the smaller. *Three*
-against boxes of 1 and 3 has one right answer on any semantics; *three* against
-1 and 5 would let a lower-bounded participant answer with the 5.
-
-  Object sets are *nested* in trial type, not crossed with it.
-
-  Crossing them was the first attempt and it was wrong. Huang et al. could
-  cross safely because trial type was between subjects, so a participant met one
-  trial type with three different objects. Run within subjects and crossing puts
-  the same object under the same prompt three times — and two of those three
-  show the very same box, so they read as duplicates. `design.py` holds the
-  assignment, and both the stimulus generator and the QSF builder import it, so
-  they cannot drift.
 - **Familiarization**: four trials, each naming a **different** shape — red star,
   green triangle, purple hexagon, orange square — visible twice, hidden twice.
   Huang et al. ran theirs **twice**, eight trials with feedback on the first

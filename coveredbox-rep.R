@@ -92,14 +92,19 @@ dat <- complete |>
   select(ResponseId, matches("^(scalar|number)_")) |>
   pivot_longer(-ResponseId, names_to = "q", values_to = "resp") |>
   filter(!is.na(resp), resp != "") |>
-  separate_wider_delim(q, "_", names = c("term", "trial_type", "set")) |>
+  # shape fillers carry no object set, so their tag has two parts not three
+  separate_wider_delim(q, "_", names = c("term", "trial_type", "set"),
+                       too_few = "align_start") |>
+  mutate(set = replace_na(set, "s0")) |>
   mutate(participant = ResponseId,
          term      = factor(term, levels = c("scalar", "number")),
          critical  = trial_type %in% c("critical", "criticalOneSet"),
          probe     = trial_type %in% c("probe", "probeEarly"),
          resp      = as.integer(resp),
          covered   = resp == 3,
-         question  = paste0(term, "_", trial_type, "_", set)) |>
+         # shape fillers have no object set, so their tag has no _sN part
+         question  = if_else(set == "s0", paste0(term, "_", trial_type),
+                             paste0(term, "_", trial_type, "_", set))) |>
   left_join(cmap, by = c("question", "resp" = "choice_id")) |>
   mutate(match_box = meaning == "match") |>
   select(participant, term, trial_type, set, resp, meaning, critical, probe,
@@ -129,7 +134,7 @@ print(count(distinct(dat, participant, term), term))
 # globally, so it can be chosen with the exclusive reading of "some" intact.
 # A participant who takes the covered box here was reading globally, and their
 # critical responses mean something different.
-anchor <- dat |> filter(trial_type %in% c("allVis", "fiveVis")) |>
+anchor <- dat |> filter(trial_type %in% c("anchorAll", "anchorFive")) |>
   group_by(term) |>
   summarise(box_internal = mean(match_box), n = n(), .groups = "drop")
 cat("\nAnchor trial — read the domain box-internally (scalar term):\n")
@@ -149,9 +154,19 @@ print(dat |> filter(trial_type %in% HS_CONTROLS) |>
 # scalar term says "some" on nearly every screen, which invites theorising
 # about the recurring word. The answer is always a visible box, so these also
 # double as a check that participants track the quantifier and not the display.
+cat("\nShape fillers between the critical trials — proportion correct.\n",
+    "No quantifier in these at all: they reset attention without priming\n",
+    "some, all or none. shape2 needs the covered box:\n", sep = "")
+print(dat |> filter(grepl("^shape", trial_type)) |>
+        group_by(term, trial_type) |>
+        summarise(correct = mean(if_else(trial_type == "shape2",
+                                         covered, match_box)),
+                  n = n(), .groups = "drop"))
+
 cat("\nAdded fillers in another quantifier — proportion correct:\n")
 print(dat |> filter(!critical, !probe, !trial_type %in% HS_CONTROLS,
-                    !trial_type %in% c("allVis","fiveVis")) |>
+                    !grepl("^shape", trial_type),
+                    !trial_type %in% c("anchorAll","anchorFive")) |>
         group_by(term, trial_type) |>
         summarise(correct = mean(match_box), n = n(), .groups = "drop"))
 
@@ -202,7 +217,7 @@ print(crit |> group_by(term) |>
 cat("Published: scalar .13, number 1.00\n")
 
 # the headline, split by how the participant read the domain
-dom <- dat |> filter(trial_type %in% c("allVis","fiveVis")) |>
+dom <- dat |> filter(trial_type %in% c("anchorAll","anchorFive")) |>
   select(participant, box_internal = match_box)
 cat("\nCritical rate split by the anchor response:\n")
 print(crit |> left_join(dom, by = "participant") |>

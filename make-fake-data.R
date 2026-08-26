@@ -55,7 +55,18 @@ for (i in seq_len(n_participants)) {
   p_cov <- if (is_scalar) p_scalar_crit_covered else p_number_crit_covered
   mine <- grep(paste0("^", term[i], "_"), cols, value = TRUE)
   for (cn in mine) {
-    if (grepl("_probeEarly_", cn)) {
+    if (grepl("_anchor", cn)) {
+      # the anchor's answer is the visible full box, choice 2
+      resp[[cn]][i] <- as.character(
+        if (runif(1) < p_control_correct) 2 else sample(c(1,3), 1))
+    } else if (grepl("_shape2$", cn)) {
+      # the one shape filler whose answer is the covered box
+      resp[[cn]][i] <- as.character(
+        if (runif(1) < p_probe_correct) 3 else sample(1:2, 1))
+    } else if (grepl("_shape", cn)) {
+      resp[[cn]][i] <- as.character(
+        if (runif(1) < p_control_correct) 1 else sample(2:3, 1))
+    } else if (grepl("_probeEarly_", cn)) {
       resp[[cn]][i] <- as.character(
         if (runif(1) < p_probe_correct) 3 else sample(1:2, 1))
     } else if (grepl("_criticalOneSet_", cn)) {
