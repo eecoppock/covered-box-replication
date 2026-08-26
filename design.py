@@ -79,8 +79,23 @@ and every prompt in the survey is unique.
 # plus additions. Their token counts were three of one condition per participant,
 # since condition was between subjects for them; here everyone sees all three, so
 # the counts differ while the design does not.
-N_TRIALS = {"anchor": 1, "critical": 2, "criticalOneSet": 2, "matchVsMore": 1,
-            "matchVsLess": 1, "otherQuant": 2, "probe": 1}
+#   probeEarly  a covered-box "none" trial, wedged between the anchor and the
+#               first critical trial. Two jobs.
+#
+#               Without it the anchor asks who has ALL of the cookies -- answer,
+#               the full box -- and the very next screen asks who has SOME, where
+#               the lower-bounded answer is again the full box. Choosing the same
+#               configuration for "all" and then for "some" on consecutive
+#               screens all but demonstrates the equivalence under test.
+#
+#               It also re-establishes the covered box immediately before the
+#               critical trials, where the earlier worry about extinction
+#               actually bites. Priming the covered box pushes toward implicature
+#               computation and so AGAINST the finding that adults accept the
+#               total set as "some", which makes it conservative, the same shape
+#               of argument as for putting "all" first.
+N_TRIALS = {"anchor": 1, "probeEarly": 1, "critical": 2, "criticalOneSet": 2,
+            "matchVsMore": 1, "matchVsLess": 1, "otherQuant": 2, "probe": 1}
 
 # ---- the domain of "the apples", and why an "all" trial goes first ----------
 # "Give me the box where Zip has some of the apples" leaves the domain of "the
@@ -126,10 +141,11 @@ N_TRIALS = {"anchor": 1, "critical": 2, "criticalOneSet": 2, "matchVsMore": 1,
 OBJECTS = [("cookie","cookies"), ("apple","apples"), ("balloon","balloons"),
            ("fish","fish"),      ("bird","birds"),   ("flower","flowers"),
            ("star","stars"),     ("heart","hearts"), ("leaf","leaves"),
-           ("carrot","carrots")]
+           ("carrot","carrots"), ("mushroom","mushrooms")]
 
 NAMES = [("Zip","Nub"), ("Mo","Pim"), ("Dax","Wug"), ("Tev","Lom"), ("Bix","Rud"),
-         ("Kel","Sap"), ("Jom","Nid"), ("Vex","Pol"), ("Gub","Tam"), ("Ral","Fen")]
+         ("Kel","Sap"), ("Jom","Nid"), ("Vex","Pol"), ("Gub","Tam"), ("Ral","Fen"),
+         ("Sib","Yon")]
 
 # trial types, in presentation order: critical first, then the two controls
 # "probe" is not in Huang et al. In no trial type of theirs is the covered box
@@ -142,16 +158,16 @@ NAMES = [("Zip","Nub"), ("Mo","Pim"), ("Dax","Wug"), ("Tev","Lom"), ("Bix","Rud"
 # is correct whatever anyone's semantics. It sits AFTER the critical trials, so
 # it cannot prime them, and it turns the worry into a measurement: if scalar
 # participants pass the probe, their low critical rate is not extinction.
-ORDER  = ["anchor", "critical", "criticalOneSet", "matchVsMore", "matchVsLess",
-          "otherQuant", "probe"]
-SCALAR = {"anchor":"allVis", "critical":"critical",
+ORDER  = ["anchor", "probeEarly", "critical", "criticalOneSet", "matchVsMore",
+          "matchVsLess", "otherQuant", "probe"]
+SCALAR = {"anchor":"allVis", "probeEarly":"probeEarly", "critical":"critical",
           "criticalOneSet":"criticalOneSet", "matchVsLess":"noneSome",
           "matchVsMore":"someAll", "otherQuant":["noneVis","allVis"],
           "probe":"probe"}
 # the number term has no partitive and so no domain ambiguity -- "the box with
 # two fish" counts within a box by construction. Its anchor is there to keep the
 # two versions the same length and shape.
-NUMBER = {"anchor":"fiveVis", "critical":"critical",
+NUMBER = {"anchor":"fiveVis", "probeEarly":"probeEarly", "critical":"critical",
           "criticalOneSet":"criticalOneSet", "matchVsLess":"oneTwo",
           "matchVsMore":"twoMore", "otherQuant":["threeVis","fiveVis"],
           "probe":"probe"}
@@ -161,6 +177,7 @@ SCALAR_BOXES = {"critical": ("NONE","ALL"),   # no subset match -> covered box
                 "noneSome": ("NONE","SOME"),
                 "someAll":  ("SOME","ALL"),
                 "probe":    ("SOME","ALL"),   # neither shows the target with none
+                "probeEarly": ("SOME","ALL"),
                 "criticalOneSet": ("EMPTY","ALL"), # every object is in one box
                 "noneVis":  ("NONE","SOME"),  # the NONE panel is the answer
                 "allVis":   ("SOME","ALL")}   # the ALL panel is the answer
@@ -168,6 +185,7 @@ NUMBER_BOXES = {"critical": (1,"more"),        # no exact match -> covered box
                 "oneTwo":   (1,2),
                 "twoMore":  (2,"more"),
                 "probe":    (1,2),             # neither has five or more
+                "probeEarly": (1,2),
                 "criticalOneSet": (0,"more"),  # every object is in one box
                 "threeVis": (1,3),             # the 3 box; unambiguous, 1 < 3
                 "fiveVis":  (2,5)}             # the 5 box; unambiguous, 2 < 5
@@ -176,13 +194,15 @@ NUMBER_BOXES = {"critical": (1,"more"),        # no exact match -> covered box
 SCALAR_MEANING = {"critical": ("none","all"), "noneSome": ("none","match"),
                   "someAll":  ("match","all"), "probe": ("absent","absent"),
                   "criticalOneSet": ("empty","all"),
+                  "probeEarly": ("absent","absent"),
                   "noneVis":  ("match","other"), "allVis": ("other","match")}
 NUMBER_MEANING = {"critical": ("one","more"), "oneTwo": ("one","match"),
                   "twoMore":  ("match","more"), "probe": ("absent","absent"),
                   "criticalOneSet": ("empty","more"),
+                  "probeEarly": ("absent","absent"),
                   "threeVis": ("other","match"), "fiveVis": ("other","match")}
 
-MORE = [3, 5, 3, 5, 3, 5, 3, 5, 3, 5]  # the "more than two" count, per set
+MORE = [3, 5, 3, 5, 3, 5, 3, 5, 3, 5, 3]  # the "more than two" count, per set
 
 # ---- the probe, and the presupposition it must not violate -----------------
 # The probe needs a configuration that is absent from both open boxes, so that
@@ -224,7 +244,8 @@ def scalar_trials():
     for i,kind in enumerate(_plan(SCALAR)):
         target, other = NAMES[i]
         _, plural = OBJECTS[i]
-        quant = {"probe":"none", "noneVis":"none", "allVis":"all"}.get(kind, "some")
+        quant = {"probe":"none", "probeEarly":"none",
+                 "noneVis":"none", "allVis":"all"}.get(kind, "some")
         yield dict(term="scalar", kind=kind, set=i+1,
                    prompt=f"Give me the box where {target} has {quant} of the {plural}.",
                    boxes=[f"scalar_s{i+1}_{b}" for b in SCALAR_BOXES[kind]],
@@ -234,7 +255,8 @@ def number_trials():
     for i,kind in enumerate(_plan(NUMBER)):
         _, plural = OBJECTS[i]
         counts = [MORE[i] if b == "more" else b for b in NUMBER_BOXES[kind]]
-        want = {"probe":PROBE_COUNT, "threeVis":"three", "fiveVis":"five"}.get(kind, "two")
+        want = {"probe":PROBE_COUNT, "probeEarly":PROBE_COUNT,
+                "threeVis":"three", "fiveVis":"five"}.get(kind, "two")
         yield dict(term="number", kind=kind, set=i+1,
                    prompt=f"Give me the box with {want} {plural}.",
                    boxes=[f"number_s{i+1}_{c}" for c in counts],

@@ -96,7 +96,7 @@ dat <- complete |>
   mutate(participant = ResponseId,
          term      = factor(term, levels = c("scalar", "number")),
          critical  = trial_type %in% c("critical", "criticalOneSet"),
-         probe     = trial_type == "probe",
+         probe     = trial_type %in% c("probe", "probeEarly"),
          resp      = as.integer(resp),
          covered   = resp == 3,
          question  = paste0(term, "_", trial_type, "_", set)) |>
@@ -158,12 +158,16 @@ print(dat |> filter(!critical, !probe, !trial_type %in% HS_CONTROLS,
 # ---- the critical comparison ---------------------------------------------
 # ---- the probe: was the covered box still a live option? -----------------
 probe <- dat |> filter(probe) |>
-  group_by(term) |>
+  mutate(when = if_else(trial_type == "probeEarly",
+                        "1 before the critical trials",
+                        "2 after everything")) |>
+  group_by(term, when) |>
   summarise(passed = mean(covered), n = n(), .groups = "drop")
-cat("\nProbe trial — the covered box, checked again at the very END.\n",
-    "By this point every earlier trial has had a visible answer, so extinction\n",
-    "pressure is at its highest. Passing here is therefore stronger evidence\n",
-    "that it was live during the critical trials:\n", sep = "")
+cat("\nProbe trials — is the covered box a live option? Asked twice, once\n",
+    "immediately BEFORE the critical trials and once AFTER everything. The\n",
+    "second is the harder test: by then every intervening trial has had a\n",
+    "visible answer. Together they bracket the critical trials with real\n",
+    "covered-box demands rather than relying on familiarization alone:\n", sep = "")
 print(probe)
 if (any(probe$passed < .8))
   cat("!! Under 80% on the probe. The covered box may have stopped being a live\n",

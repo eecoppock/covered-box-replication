@@ -55,7 +55,10 @@ for (i in seq_len(n_participants)) {
   p_cov <- if (is_scalar) p_scalar_crit_covered else p_number_crit_covered
   mine <- grep(paste0("^", term[i], "_"), cols, value = TRUE)
   for (cn in mine) {
-    if (grepl("_criticalOneSet_", cn)) {
+    if (grepl("_probeEarly_", cn)) {
+      resp[[cn]][i] <- as.character(
+        if (runif(1) < p_probe_correct) 3 else sample(1:2, 1))
+    } else if (grepl("_criticalOneSet_", cn)) {
       # same question as critical, with the domain loophole closed
       resp[[cn]][i] <- as.character(if (runif(1) < p_cov) 3 else 2)
     } else if (grepl("_probe_", cn)) {

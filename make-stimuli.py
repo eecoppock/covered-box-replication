@@ -93,6 +93,16 @@ def flower(d,x,y,s=1.0):
     rr=int(6*s)
     d.ellipse([x-rr,y-rr,x+rr,y+rr], fill=(244,206,74), outline=(150,110,30), width=2)
 
+def mushroom(d,x,y,s=1.0):
+    w,h=int(17*s),int(10*s)
+    d.rectangle([x-int(5*s),y-2,x+int(5*s),y+int(13*s)],
+                fill=(242,232,208), outline=(150,140,116))
+    d.pieslice([x-w,y-h-int(8*s),x+w,y+h+int(2*s)], 180, 360,
+               fill=(206,72,64), outline=(130,36,32))
+    for dx,dy in ((-.45,-.25),(.4,-.35),(0,-.55)):
+        r=int(3.2*s)
+        d.ellipse([x+dx*w-r,y+dy*h-r-4,x+dx*w+r,y+dy*h+r-4], fill=(250,244,236))
+
 def carrot(d,x,y,s=1.0):
     h,w=int(19*s),int(8*s)
     d.polygon([(x,y+h),(x-w,y-h//2),(x+w,y-h//2)],
@@ -195,7 +205,7 @@ import design
 
 DRAW = {"cookie":cookie, "apple":apple, "balloon":balloon, "fish":fish,
         "bird":bird, "flower":flower, "star":star, "heart":heart, "leaf":leaf,
-        "carrot":carrot}
+        "carrot":carrot, "mushroom":mushroom}
 
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)

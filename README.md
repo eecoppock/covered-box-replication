@@ -93,10 +93,21 @@ entirely — otherwise it is 22 questions × 3 choices of manual insertion.
   infer the design by comparing trial types; at class scale that would mean six
   cells of five. Critical-first preserves naïvety where it matters, at the cost
   of a fixed order. Say so in the report.
-- **Fourteen screens per participant**: four familiarization, then Huang et al.'s
+- **Fifteen screens per participant**: four familiarization, then Huang et al.'s
   three test conditions in full, our added `criticalOneSet` condition, an anchor,
-  two fillers and a probe. This is their design plus additions, not a subset of
-  it. Each has its own object and characters,
+  two probes, two fillers. This is their design plus additions, not a subset of
+  it. Order per participant:
+
+  | | | |
+  |---|---|---|
+  | 1 | `allVis` | *…has **all** of the cookies* — anchors the domain |
+  | 2 | `probeEarly` | *…has **none** of the apples* — covered box; breaks the *all*/*some* adjacency |
+  | 3–4 | `critical` ×2 | Huang et al.'s critical trials |
+  | 5–6 | `criticalOneSet` ×2 | ours: the domain loophole closed |
+  | 7 | `matchVsMore` | H&S |
+  | 8 | `matchVsLess` | H&S |
+  | 9–10 | fillers | *none*, *all* |
+  | 11 | `probe` | covered box again, under maximum extinction pressure | Each has its own object and characters,
   so every prompt in the survey is distinct.
 
   Why so few, and why this split. Simulated power for the critical contrast is
@@ -265,9 +276,21 @@ with the visible 5, since 5 ≥ 3 — and the lower-bounded participants are exa
 the ones whose covered box we doubt. A probe they can satisfy with an open box
 is no probe. Five against 1 and 2 is absent on either semantics.
 
-**The critical trials are bracketed.** Familiarization trials 3 and 4 require
-the covered box *before* any test trial; the probe requires it *after* all of
-them. So the question "was it live while it mattered?" is answered on both
+**The critical trials are bracketed by real covered-box demands**, not just by
+familiarization. `probeEarly` sits immediately before them and `probe` after
+everything; familiarization trials 3 and 4 come earlier still.
+
+`probeEarly` earns its slot twice over. Without it the anchor asks who has
+**all** of the cookies — answer, the full box — and the very next screen asks who
+has **some**, where the lower-bounded answer is again the full box. Choosing the
+same configuration for *all* and then *some* on consecutive screens all but
+demonstrates the equivalence under test. It also re-establishes the covered box
+at the point where extinction would actually bite, which is before the critical
+trials rather than after them.
+
+Priming the covered box pushes toward implicature computation and therefore
+*against* the finding that adults accept the total set as *some* — conservative,
+the same shape of argument as for putting *all* first. So the question "was it live while it mattered?" is answered on both
 sides.
 
 The probe is deliberately last rather than immediately after the critical
