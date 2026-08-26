@@ -85,6 +85,26 @@ def flower(d,x,y,s=1.0):
         d.ellipse([px-r,py-r,px+r,py+r], fill=(226,110,150), outline=(150,60,96), width=2)
     d.ellipse([x-8,y-8,x+8,y+8], fill=(244,206,74), outline=(150,110,30), width=2)
 
+def star(d,x,y,s=1.0):
+    import math
+    pts=[]
+    for i in range(10):
+        ang=math.radians(i*36-90); rr=(17 if i%2==0 else 7)*s
+        pts.append((x+math.cos(ang)*rr, y+math.sin(ang)*rr))
+    d.polygon(pts, fill=(244,196,58), outline=(150,116,20))
+
+def heart(d,x,y,s=1.0):
+    r=int(9*s)
+    d.ellipse([x-2*r,y-r-2,x,y+r-2], fill=(216,74,102), outline=(140,40,62))
+    d.ellipse([x,y-r-2,x+2*r,y+r-2], fill=(216,74,102), outline=(140,40,62))
+    d.polygon([(x-2*r+1,y+1),(x+2*r-1,y+1),(x,y+int(18*s))],
+              fill=(216,74,102), outline=(140,40,62))
+
+def leaf(d,x,y,s=1.0):
+    d.polygon([(x,y-int(17*s)),(x+int(13*s),y),(x,y+int(17*s)),(x-int(13*s),y)],
+              fill=(104,166,86), outline=(56,104,50))
+    d.line([x,y-int(15*s),x,y+int(15*s)], fill=(56,104,50), width=2)
+
 def shape_star(d,x,y,col=(214,60,60),s=1.0):
     import math
     pts=[]
@@ -153,10 +173,10 @@ def familiar_box(shapes):
     return img
 
 # ------------------------------------------------------------------ emit
-SCALAR_SETS = [("cookies", cookie, ("Zip","Nub")),
-               ("apples",  apple,  ("Mo","Pim")),
-               ("balloons",balloon,("Dax","Wug"))]
-NUMBER_SETS = [("fish", fish), ("birds", bird), ("flowers", flower)]
+import design
+
+DRAW = {"cookie":cookie, "apple":apple, "balloon":balloon, "fish":fish,
+        "bird":bird, "flower":flower, "star":star, "heart":heart, "leaf":leaf}
 
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
@@ -164,18 +184,22 @@ if __name__ == "__main__":
         if f.endswith(".png"): os.remove(os.path.join(OUT,f))
     n=0
     blank(covered=True)[0].save(f"{OUT}/covered.png"); n+=1
-    for i,(label,obj,names) in enumerate(SCALAR_SETS,1):
-        for tag,(a,b) in {"NONE":(0,4), "SOME":(2,2), "ALL":(4,0)}.items():
-            scalar_box(a,b,obj,names).save(f"{OUT}/scalar_s{i}_{tag}.png"); n+=1
-    for i,(label,obj) in enumerate(NUMBER_SETS,1):
-        for k in (1,2,3,5):
-            number_box(k,obj).save(f"{OUT}/number_s{i}_{k}.png"); n+=1
-    # familiarization: "Give me the box with the red star."
-    fam = {"fam1_yes":[shape_star,shape_tri], "fam1_no":[shape_sq,shape_hex],
-           "fam2_yes":[shape_tri,shape_star,shape_sq], "fam2_no":[shape_hex,shape_tri],
-           "fam3_no_a":[shape_sq,shape_tri], "fam3_no_b":[shape_hex,shape_sq],
-           "fam4_yes":[shape_star], "fam4_no":[shape_tri,shape_hex]}
-    for name,shapes in fam.items():
-        familiar_box(shapes).save(f"{OUT}/{name}.png"); n+=1
+
+    # only the boxes the design actually calls for
+    for t in design.all_trials():
+        i   = t["set"]-1
+        obj = DRAW[design.OBJECTS[i][0]]
+        for box in t["boxes"]:
+            tag = box.rsplit("_",1)[1]
+            if t["term"]=="scalar":
+                names = design.NAMES[i]
+                counts = {"NONE":(0,4), "SOME":(2,2), "ALL":(4,0)}[tag]
+                scalar_box(counts[0], counts[1], obj, names).save(f"{OUT}/{box}.png")
+            else:
+                number_box(int(tag), obj).save(f"{OUT}/{box}.png")
+            n+=1
+
+    SH = {"star":shape_star, "tri":shape_tri, "sq":shape_sq, "hex":shape_hex}
+    for name, shapes in design.FAM_SHAPES.items():
+        familiar_box([SH[x] for x in shapes]).save(f"{OUT}/{name}.png"); n+=1
     print(f"wrote {n} box images to {OUT}/")
-    print("scalar/number sets:", len(SCALAR_SETS), len(NUMBER_SETS))

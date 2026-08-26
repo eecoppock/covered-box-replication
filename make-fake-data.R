@@ -39,7 +39,10 @@ term <- rep(c("scalar", "number"), length.out = n_participants)
 term <- sample(term)
 
 # ---- familiarization: everyone attentive gets these right -----------------
-correct_fam <- c(fam1 = 1, fam2 = 1, fam3 = 3, fam4 = 3)
+# correct answers come from choice-map.csv, written by build-qsf.py
+cmap <- read.csv("choice-map.csv", stringsAsFactors = FALSE)
+correct_fam <- setNames(as.integer(cmap$meaning[cmap$choice_id == "correct"]),
+                        cmap$question[cmap$choice_id == "correct"])
 for (f in names(correct_fam))
   resp[[f]] <- as.character(ifelse(runif(n_participants) < .995,
                                    correct_fam[[f]], sample(c(1,2,3), 1)))
@@ -48,17 +51,13 @@ for (f in names(correct_fam))
 for (i in seq_len(n_participants)) {
   is_scalar <- term[i] == "scalar"
   p_cov <- if (is_scalar) p_scalar_crit_covered else p_number_crit_covered
-  for (s in 1:3) {
-    crit <- if (is_scalar) paste0("scalar_critical_s", s) else paste0("number_critical_s", s)
-    # covered box (3), else the "more" open box (2) -- nobody picks the "less" one
-    resp[[crit]][i] <- as.character(if (runif(1) < p_cov) 3 else 2)
-    ctrl <- if (is_scalar)
-              c(paste0("scalar_noneSome_s", s), paste0("scalar_someAll_s", s))
-            else
-              c(paste0("number_oneTwo_s", s),  paste0("number_twoMore_s", s))
-    # on control trials the match is choice 2 for noneSome/oneTwo and
-    # choice 1 for someAll/twoMore -- see choice-map.csv
-    for (cn in ctrl) {
+  mine <- grep(paste0("^", term[i], "_"), cols, value = TRUE)
+  for (cn in mine) {
+    if (grepl("_critical_", cn)) {
+      # no match is visible: covered box (3), else the "more" open box (2)
+      resp[[cn]][i] <- as.character(if (runif(1) < p_cov) 3 else 2)
+    } else {
+      # the match is choice 2 for noneSome/oneTwo, choice 1 for someAll/twoMore
       match_id <- if (grepl("noneSome|oneTwo", cn)) 2 else 1
       resp[[cn]][i] <- as.character(
         if (runif(1) < p_control_correct) match_id else sample(setdiff(1:3, match_id), 1))

@@ -39,32 +39,8 @@ def bid(seed):
     alnum = "".join(c for c in h if c.isalnum())[:15]
     return "BL_" + alnum
 
-SCALAR_SETS = [(1,"Zip","cookies"), (2,"Mo","apples"), (3,"Dax","balloons")]
-NUMBER_SETS = [(1,"fish",3), (2,"birds",5), (3,"flowers",3)]
+import design
 
-def trials(term):
-    out=[]
-    if term=="scalar":
-        for s,who,obj in SCALAR_SETS:
-            p=f"Give me the box where {who} has some of the {obj}."
-            out.append(("critical",s,p,[f"scalar_s{s}_NONE",f"scalar_s{s}_ALL"],["none","all"]))
-        for s,who,obj in SCALAR_SETS:
-            p=f"Give me the box where {who} has some of the {obj}."
-            out.append(("noneSome",s,p,[f"scalar_s{s}_NONE",f"scalar_s{s}_SOME"],["none","match"]))
-            out.append(("someAll",s,p,[f"scalar_s{s}_SOME",f"scalar_s{s}_ALL"],["match","all"]))
-    else:
-        for s,obj,more in NUMBER_SETS:
-            p=f"Give me the box with two {obj}."
-            out.append(("critical",s,p,[f"number_s{s}_1",f"number_s{s}_{more}"],["one","more"]))
-        for s,obj,more in NUMBER_SETS:
-            p=f"Give me the box with two {obj}."
-            out.append(("oneTwo",s,p,[f"number_s{s}_1",f"number_s{s}_2"],["one","match"]))
-            out.append(("twoMore",s,p,[f"number_s{s}_2",f"number_s{s}_{more}"],["match","more"]))
-    return out
-
-FAM = [("fam1","1",["fam1_yes","fam1_no"]), ("fam2","1",["fam2_yes","fam2_no"]),
-       ("fam3","3",["fam3_no_a","fam3_no_b"]), ("fam4","3",["fam4_no","fam1_no"])]
-FAM_PROMPT = "Give me the box with the red star."
 PREAMBLE = (
  "<p>On each screen you will see three boxes. Two are open, so you can see what "
  "is inside. The third is closed, so you cannot.</p><p>Each time, choose the box "
@@ -113,25 +89,27 @@ rows=[("question","choice_id","meaning")]
 blocks=[]
 
 if TEST:
-    qs=[mc("t1", FAM_PROMPT, ["fam1_yes","fam1_no"], PREAMBLE),
-        mc("t2", "Give me the box with two fish.", ["number_s1_1","number_s1_3"])]
+    qs=[mc("t1", design.FAM[0][1], design.FAM[0][2], PREAMBLE),
+        mc("t2", design.all_trials()[9]["prompt"], design.all_trials()[9]["boxes"])]
     blocks.append(block("test","Default Question Block",qs,typ="Default"))
     flow_inner=[{"ID":blocks[0]["ID"],"Type":"Block","FlowID":"FL_2"}]
     count=3
 else:
     fam=[]
-    for i,(tag,correct,boxes) in enumerate(FAM):
-        fam.append(mc(tag, FAM_PROMPT, boxes, PREAMBLE if i==0 else ""))
-        rows += [(tag,"1","star-visible box"),(tag,"2","other open box"),
+    for i,(tag,prompt,boxes,correct) in enumerate(design.FAM):
+        fam.append(mc(tag, prompt, boxes, PREAMBLE if i==0 else ""))
+        rows += [(tag,"1","first open box"),(tag,"2","second open box"),
                  (tag,"3","covered"),(tag,"correct",correct)]
     blocks.append(block("fam","Familiarization",fam,typ="Default"))
     term_ids=[]
     for term in ("scalar","number"):
         qs=[]
-        for kind,s,p,boxes,meanings in trials(term):
-            tag=f"{term}_{kind}_s{s}"
-            qs.append(mc(tag,p,boxes))
-            rows += [(tag,"1",meanings[0]),(tag,"2",meanings[1]),(tag,"3","covered")]
+        for t in design.all_trials():
+            if t["term"] != term: continue
+            tag=f"{term}_{t['kind']}_s{t['set']}"
+            qs.append(mc(tag, t["prompt"], t["boxes"]))
+            rows += [(tag,"1",t["meaning"][0]),(tag,"2",t["meaning"][1]),
+                     (tag,"3","covered")]
         b=block(term,f"{term} — critical trials then controls",qs)
         blocks.append(b); term_ids.append(b["ID"])
     flow_inner=[{"ID":blocks[0]["ID"],"Type":"Block","FlowID":"FL_2"},

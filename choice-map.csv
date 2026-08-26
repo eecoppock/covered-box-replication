@@ -1,18 +1,18 @@
 question,choice_id,meaning
-fam1,1,star-visible box
-fam1,2,other open box
+fam1,1,first open box
+fam1,2,second open box
 fam1,3,covered
 fam1,correct,1
-fam2,1,star-visible box
-fam2,2,other open box
+fam2,1,first open box
+fam2,2,second open box
 fam2,3,covered
 fam2,correct,1
-fam3,1,star-visible box
-fam3,2,other open box
+fam3,1,first open box
+fam3,2,second open box
 fam3,3,covered
 fam3,correct,3
-fam4,1,star-visible box
-fam4,2,other open box
+fam4,1,first open box
+fam4,2,second open box
 fam4,3,covered
 fam4,correct,3
 scalar_critical_s1,1,none
@@ -24,24 +24,24 @@ scalar_critical_s2,3,covered
 scalar_critical_s3,1,none
 scalar_critical_s3,2,all
 scalar_critical_s3,3,covered
-scalar_noneSome_s1,1,none
-scalar_noneSome_s1,2,match
-scalar_noneSome_s1,3,covered
-scalar_someAll_s1,1,match
-scalar_someAll_s1,2,all
-scalar_someAll_s1,3,covered
-scalar_noneSome_s2,1,none
-scalar_noneSome_s2,2,match
-scalar_noneSome_s2,3,covered
-scalar_someAll_s2,1,match
-scalar_someAll_s2,2,all
-scalar_someAll_s2,3,covered
-scalar_noneSome_s3,1,none
-scalar_noneSome_s3,2,match
-scalar_noneSome_s3,3,covered
-scalar_someAll_s3,1,match
-scalar_someAll_s3,2,all
-scalar_someAll_s3,3,covered
+scalar_noneSome_s4,1,none
+scalar_noneSome_s4,2,match
+scalar_noneSome_s4,3,covered
+scalar_noneSome_s5,1,none
+scalar_noneSome_s5,2,match
+scalar_noneSome_s5,3,covered
+scalar_noneSome_s6,1,none
+scalar_noneSome_s6,2,match
+scalar_noneSome_s6,3,covered
+scalar_someAll_s7,1,match
+scalar_someAll_s7,2,all
+scalar_someAll_s7,3,covered
+scalar_someAll_s8,1,match
+scalar_someAll_s8,2,all
+scalar_someAll_s8,3,covered
+scalar_someAll_s9,1,match
+scalar_someAll_s9,2,all
+scalar_someAll_s9,3,covered
 number_critical_s1,1,one
 number_critical_s1,2,more
 number_critical_s1,3,covered
@@ -51,21 +51,21 @@ number_critical_s2,3,covered
 number_critical_s3,1,one
 number_critical_s3,2,more
 number_critical_s3,3,covered
-number_oneTwo_s1,1,one
-number_oneTwo_s1,2,match
-number_oneTwo_s1,3,covered
-number_twoMore_s1,1,match
-number_twoMore_s1,2,more
-number_twoMore_s1,3,covered
-number_oneTwo_s2,1,one
-number_oneTwo_s2,2,match
-number_oneTwo_s2,3,covered
-number_twoMore_s2,1,match
-number_twoMore_s2,2,more
-number_twoMore_s2,3,covered
-number_oneTwo_s3,1,one
-number_oneTwo_s3,2,match
-number_oneTwo_s3,3,covered
-number_twoMore_s3,1,match
-number_twoMore_s3,2,more
-number_twoMore_s3,3,covered
+number_oneTwo_s4,1,one
+number_oneTwo_s4,2,match
+number_oneTwo_s4,3,covered
+number_oneTwo_s5,1,one
+number_oneTwo_s5,2,match
+number_oneTwo_s5,3,covered
+number_oneTwo_s6,1,one
+number_oneTwo_s6,2,match
+number_oneTwo_s6,3,covered
+number_twoMore_s7,1,match
+number_twoMore_s7,2,more
+number_twoMore_s7,3,covered
+number_twoMore_s8,1,match
+number_twoMore_s8,2,more
+number_twoMore_s8,3,covered
+number_twoMore_s9,1,match
+number_twoMore_s9,2,more
+number_twoMore_s9,3,covered

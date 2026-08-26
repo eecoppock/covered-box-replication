@@ -31,7 +31,8 @@ of meaning, in a population that computes scalar implicatures robustly elsewhere
 
 | | |
 |---|---|
-| `make-stimuli.py` | writes 30 box images to `stimuli/` — one image per box |
+| `design.py` | the trial assignment, imported by both generators |
+| `make-stimuli.py` | writes 44 box images to `stimuli/` — one image per box |
 | `build-qsf.py` | writes `HuangSnedeker_replication.qsf` and `columns.txt` |
 | `qsf-template.json` | Qualtrics boilerplate, vendored so the build has no outside dependencies |
 | `make-fake-data.R` | writes `coveredbox-fake-data.csv` in real-export shape |
@@ -84,10 +85,19 @@ entirely — otherwise it is 22 questions × 3 choices of manual insertion.
   infer the design by comparing trial types; at class scale that would mean six
   cells of five. Critical-first preserves naïvety where it matters, at the cost
   of a fixed order. Say so in the report.
-- Three tokens per trial type, with different characters and objects (cookies,
-  apples, balloons; fish, birds, flowers).
-- **Familiarization**: four trials, *Give me the box with the red star* — visible
-  twice, hidden twice. Huang et al. gave feedback on the first pass; Qualtrics
+- Three tokens per trial type, each with **its own object and characters**.
+  Object sets are *nested* in trial type, not crossed with it: nine per term,
+  three per trial type, so **all 18 prompts in the survey are distinct**.
+
+  Crossing them was the first attempt and it was wrong. Huang et al. could
+  cross safely because trial type was between subjects, so a participant met one
+  trial type with three different objects. Run within subjects and crossing puts
+  the same object under the same prompt three times — and two of those three
+  show the very same box, so they read as duplicates. `design.py` holds the
+  assignment, and both the stimulus generator and the QSF builder import it, so
+  they cannot drift.
+- **Familiarization**: four trials, each naming a **different** shape — red star,
+  green triangle, purple hexagon, orange square — visible twice, hidden twice. Huang et al. gave feedback on the first pass; Qualtrics
   cannot easily, so instead these serve as the exclusion criterion. Current rule
   is all four correct; 3/4 is defensible if recruitment is tight.
 
