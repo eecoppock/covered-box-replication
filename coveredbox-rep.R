@@ -118,10 +118,20 @@ print(count(distinct(dat, participant, term), term))
 
 # ---- control trials: did the task work at all? ----------------------------
 # When the subset/exact match IS visible, everyone should take it.
-cat("\nControl trials — proportion choosing the subset/exact match:\n")
-print(dat |> filter(!critical, !probe) |>
+HS_CONTROLS <- c("noneSome","someAll","oneTwo","twoMore")
+cat("\nControl trials, Huang et al.'s — proportion taking the subset/exact match:\n")
+print(dat |> filter(trial_type %in% HS_CONTROLS) |>
         group_by(term, trial_type) |>
         summarise(match = mean(match_box), n = n(), .groups = "drop"))
+
+# Fillers in another quantifier, ours rather than theirs. Without them the
+# scalar term says "some" on nearly every screen, which invites theorising
+# about the recurring word. The answer is always a visible box, so these also
+# double as a check that participants track the quantifier and not the display.
+cat("\nAdded fillers in another quantifier — proportion correct:\n")
+print(dat |> filter(!critical, !probe, !trial_type %in% HS_CONTROLS) |>
+        group_by(term, trial_type) |>
+        summarise(correct = mean(match_box), n = n(), .groups = "drop"))
 
 # ---- the critical comparison ---------------------------------------------
 # ---- the probe: was the covered box still a live option? -----------------
@@ -129,10 +139,9 @@ probe <- dat |> filter(probe) |>
   group_by(term) |>
   summarise(passed = mean(covered), n = n(), .groups = "drop")
 cat("\nProbe trial — the covered box, checked again at the very END.\n",
-    "By this point five trials have gone by in which no covered answer was\n",
-    "ever correct, so extinction pressure is at its highest. Passing here is\n",
-    "therefore strong evidence it was still live during the critical trials,\n",
-    "which came earlier under less pressure:\n", sep = "")
+    "By this point every earlier trial has had a visible answer, so extinction\n",
+    "pressure is at its highest. Passing here is therefore stronger evidence\n",
+    "that it was live during the critical trials, which came first:\n", sep = "")
 print(probe)
 if (any(probe$passed < .8))
   cat("!! Under 80% on the probe. The covered box may have stopped being a live\n",

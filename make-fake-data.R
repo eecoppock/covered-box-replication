@@ -63,8 +63,9 @@ for (i in seq_len(n_participants)) {
       # no match is visible: covered box (3), else the "more" open box (2)
       resp[[cn]][i] <- as.character(if (runif(1) < p_cov) 3 else 2)
     } else {
-      # the match is choice 2 for noneSome/oneTwo, choice 1 for someAll/twoMore
-      match_id <- if (grepl("noneSome|oneTwo", cn)) 2 else 1
+      # which choice is the correct visible box, straight from choice-map.csv
+      m <- cmap$choice_id[cmap$question == cn & cmap$meaning == "match"]
+      match_id <- as.integer(m[1])
       resp[[cn]][i] <- as.character(
         if (runif(1) < p_control_correct) match_id else sample(setdiff(1:3, match_id), 1))
     }

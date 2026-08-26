@@ -37,7 +37,23 @@ and every prompt in the survey is unique.
 # contrast is 1.00 at eight participants per term with one trial each. Extra
 # trials buy item generality and a graded per-participant rate, so they go where
 # the argument is.
-N_TRIALS = {"critical": 2, "weak": 1, "strong": 2, "probe": 1}
+#   altquant   a filler in a DIFFERENT quantifier, whose answer is visible.
+#              Without these the scalar term says "some" on five screens out of
+#              six and "none" on one, which is an odd thing to put in front of
+#              someone you are asking to interpret quantifiers -- the recurring
+#              word invites theorising about it. Same for "two" in the number
+#              term. These restore the balance and cost nothing: the answer is
+#              always an open box.
+#
+#              One is "none"/"three", the other "all"/"five". Making *all*
+#              salient should if anything INCREASE implicature computation,
+#              since activated alternatives are what drive some -> not all. That
+#              pushes toward the covered box, i.e. AGAINST the finding that
+#              adults accept the total set as a match for "some". So the
+#              manipulation is conservative: if the lower-bounded reading
+#              survives with "all" primed, that is stronger evidence. They sit
+#              after the critical trials in any case.
+N_TRIALS = {"critical": 2, "strong": 2, "weak": 1, "altquant": 2, "probe": 1}
 
 # nine objects, each with its plural for the number prompt
 OBJECTS = [("cookie","cookies"), ("apple","apples"), ("balloon","balloons"),
@@ -58,25 +74,33 @@ NAMES = [("Zip","Nub"), ("Mo","Pim"), ("Dax","Wug"), ("Tev","Lom"), ("Bix","Rud"
 # is correct whatever anyone's semantics. It sits AFTER the critical trials, so
 # it cannot prime them, and it turns the worry into a measurement: if scalar
 # participants pass the probe, their low critical rate is not extinction.
-ORDER  = ["critical", "strong", "weak", "probe"]   # critical first, probe last
-SCALAR = {"critical":"critical", "weak":"noneSome", "strong":"someAll", "probe":"probe"}
-NUMBER = {"critical":"critical", "weak":"oneTwo",   "strong":"twoMore",  "probe":"probe"}
+ORDER  = ["critical", "strong", "weak", "altquant", "probe"]
+SCALAR = {"critical":"critical", "weak":"noneSome", "strong":"someAll",
+          "altquant":["noneVis","allVis"], "probe":"probe"}
+NUMBER = {"critical":"critical", "weak":"oneTwo",   "strong":"twoMore",
+          "altquant":["threeVis","fiveVis"], "probe":"probe"}
 
 # which two open boxes each trial type shows (choice 1, choice 2)
 SCALAR_BOXES = {"critical": ("NONE","ALL"),   # no subset match -> covered box
                 "noneSome": ("NONE","SOME"),
                 "someAll":  ("SOME","ALL"),
-                "probe":    ("SOME","ALL")}   # neither shows the target with none
+                "probe":    ("SOME","ALL"),   # neither shows the target with none
+                "noneVis":  ("NONE","SOME"),  # the NONE panel is the answer
+                "allVis":   ("SOME","ALL")}   # the ALL panel is the answer
 NUMBER_BOXES = {"critical": (1,"more"),        # no exact match -> covered box
                 "oneTwo":   (1,2),
                 "twoMore":  (2,"more"),
-                "probe":    (1,2)}             # neither has five or more
+                "probe":    (1,2),             # neither has five or more
+                "threeVis": (1,3),             # the 3 box; unambiguous, 1 < 3
+                "fiveVis":  (2,5)}             # the 5 box; unambiguous, 2 < 5
 
 # what choices 1 and 2 mean, for choice-map.csv
 SCALAR_MEANING = {"critical": ("none","all"), "noneSome": ("none","match"),
-                  "someAll":  ("match","all"), "probe": ("wrong","wrong")}
+                  "someAll":  ("match","all"), "probe": ("absent","absent"),
+                  "noneVis":  ("match","other"), "allVis": ("other","match")}
 NUMBER_MEANING = {"critical": ("one","more"), "oneTwo": ("one","match"),
-                  "twoMore":  ("match","more"), "probe": ("wrong","wrong")}
+                  "twoMore":  ("match","more"), "probe": ("absent","absent"),
+                  "threeVis": ("other","match"), "fiveVis": ("other","match")}
 
 MORE = [3, 5, 3, 5, 3, 5, 3, 5, 3]     # the "more than two" count, per set
 
@@ -107,27 +131,30 @@ MORE = [3, 5, 3, 5, 3, 5, 3, 5, 3]     # the "more than two" count, per set
 #           ones, and a probe they could answer with a visible box is no probe.
 PROBE_COUNT = "five"
 
-def _plan():
-    """roles in presentation order, repeated N_TRIALS times each"""
-    return [role for role in ORDER for _ in range(N_TRIALS[role])]
+def _plan(mapping):
+    """concrete trial kinds in presentation order"""
+    out=[]
+    for role in ORDER:
+        k = mapping[role]
+        for n in range(N_TRIALS[role]):
+            out.append(k[n % len(k)] if isinstance(k, list) else k)
+    return out
 
 def scalar_trials():
-    for i,role in enumerate(_plan()):
-        kind = SCALAR[role]
+    for i,kind in enumerate(_plan(SCALAR)):
         target, other = NAMES[i]
         _, plural = OBJECTS[i]
-        quant = "none" if kind == "probe" else "some"
+        quant = {"probe":"none", "noneVis":"none", "allVis":"all"}.get(kind, "some")
         yield dict(term="scalar", kind=kind, set=i+1,
                    prompt=f"Give me the box where {target} has {quant} of the {plural}.",
                    boxes=[f"scalar_s{i+1}_{b}" for b in SCALAR_BOXES[kind]],
                    meaning=SCALAR_MEANING[kind])
 
 def number_trials():
-    for i,role in enumerate(_plan()):
-        kind = NUMBER[role]
+    for i,kind in enumerate(_plan(NUMBER)):
         _, plural = OBJECTS[i]
         counts = [MORE[i] if b == "more" else b for b in NUMBER_BOXES[kind]]
-        want = PROBE_COUNT if kind == "probe" else "two"
+        want = {"probe":PROBE_COUNT, "threeVis":"three", "fiveVis":"five"}.get(kind, "two")
         yield dict(term="number", kind=kind, set=i+1,
                    prompt=f"Give me the box with {want} {plural}.",
                    boxes=[f"number_s{i+1}_{c}" for c in counts],

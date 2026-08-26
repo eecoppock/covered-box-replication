@@ -100,7 +100,36 @@ entirely — otherwise it is 22 questions × 3 choices of manual insertion.
   | **critical** — (NONE,ALL) / (1, 3∨5) | 2 | the headline: no match visible, so anyone insisting on one must take the covered box. 13% vs 100%. |
   | **strong** — (SOME,ALL) / (2, 3∨5) | 2 | *not* a comprehension check. Both a subset and a total set are visible and adults take the subset 90% of the time — Huang et al. call this "a robust ability to calculate the scalar implicature". It is what makes the critical result strange: the implicature is computed when it picks something out and abandoned when it does not. |
   | **weak** — (NONE,SOME) / (1, 2) | 1 | this one really is a comprehension check: *some* is not *none*, *two* is not *one*. |
-  | **probe** | 1 | see below |
+  | **altquant** — *none*/*all*, *three*/*five* | 2 | balance, see below |
+  | **probe** | 1 | see further below |
+
+### Fillers in another quantifier
+
+Without them the scalar term says **some** on five screens out of six and
+*none* on one. That is an odd thing to put in front of someone you are asking to
+interpret quantifiers: the recurring word invites theorising about it. The
+number term had the same problem with *two*.
+
+Two fillers per term restore the balance — *none* and *all* for scalar, *three*
+and *five* for number — and cost nothing, because the answer is always a visible
+box. They double as a check that participants are tracking the quantifier rather
+than the display: `noneVis` and `noneSome` use the very same pair of boxes and
+have opposite correct answers.
+
+Quantifier counts per participant are now **some 5 / none 2 / all 1** and
+**two 5 / three 1 / five 2**, against 5/1/0 before.
+
+**On priming.** Putting *all* in front of a participant should if anything
+*increase* implicature computation, since activated alternatives are what drive
+*some* → *not all*. That pushes toward the covered box — **against** the finding
+that adults accept the total set as a match for *some*. So the manipulation is
+conservative: if the lower-bounded reading survives with *all* made salient,
+that is stronger evidence, not weaker. The fillers sit after the critical trials
+in any case.
+
+The number fillers name the **larger** visible count, never the smaller. *Three*
+against boxes of 1 and 3 has one right answer on any semantics; *three* against
+1 and 5 would let a lower-bounded participant answer with the 5.
 
   Object sets are *nested* in trial type, not crossed with it.
 
