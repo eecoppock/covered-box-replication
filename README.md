@@ -89,13 +89,18 @@ entirely — otherwise it is 22 questions × 3 choices of manual insertion.
   one of each control type, and one probe (below). Each has its own object and characters,
   so every prompt in the survey is distinct.
 
-  Why so few. Simulated power to detect the published 13%-vs-100% contrast is
+  Why so few, and why this split. Simulated power for the critical contrast is
   **1.00 even at eight participants per term giving one critical trial each** —
-  an 87-point effect does not need replication inside a participant. The three
-  critical trials are kept for item generality and because a 0/3–3/3 rate reads
-  better than a bare yes/no; the controls are comprehension checks that one
-  trial each demonstrates, on top of four familiarization trials. `N_CRITICAL`
-  and `N_CONTROL` at the top of `design.py` change this.
+  an 87-point effect needs no replication inside a participant. Extra trials buy
+  item generality and a graded per-participant rate, so they go where the
+  argument is. `N_TRIALS` at the top of `design.py` sets the allocation.
+
+  | role | trials | what it does |
+  |---|---|---|
+  | **critical** — (NONE,ALL) / (1, 3∨5) | 2 | the headline: no match visible, so anyone insisting on one must take the covered box. 13% vs 100%. |
+  | **strong** — (SOME,ALL) / (2, 3∨5) | 2 | *not* a comprehension check. Both a subset and a total set are visible and adults take the subset 90% of the time — Huang et al. call this "a robust ability to calculate the scalar implicature". It is what makes the critical result strange: the implicature is computed when it picks something out and abandoned when it does not. |
+  | **weak** — (NONE,SOME) / (1, 2) | 1 | this one really is a comprehension check: *some* is not *none*, *two* is not *one*. |
+  | **probe** | 1 | see below |
 
   Object sets are *nested* in trial type, not crossed with it.
 
