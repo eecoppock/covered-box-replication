@@ -235,6 +235,14 @@ print(crit |> left_join(dom, by = "participant") |>
         group_by(term, box_internal) |>
         summarise(covered = mean(covered), n = n(), .groups = "drop"))
 
+# Every critical trial used a different object. If the effect lives in one
+# picture rather than in the words, it shows here.
+cat("\nCritical trials by item:\n")
+print(dat |> filter(critical) |>
+        group_by(term, set) |>
+        summarise(covered = mean(covered), n = n(), .groups = "drop") |>
+        arrange(term, set))
+
 cat("\nLanguage background (optional question, asked last):\n")
 print(count(lang, first_language))
 cat("Huang et al. recruited English-speaking undergraduates, so this is what\n",
