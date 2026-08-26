@@ -36,7 +36,8 @@ of meaning, in a population that computes scalar implicatures robustly elsewhere
 | `build-qsf.py` | writes `HuangSnedeker_replication.qsf` and `columns.txt` |
 | `qsf-template.json` | Qualtrics boilerplate, vendored so the build has no outside dependencies |
 | `make-fake-data.R` | writes `coveredbox-fake-data.csv` in real-export shape |
-| `coveredbox-rep.R` | the analysis; runs on fake or real data |
+| `coveredbox-analysis.Rmd` | **the class analysis** — narrated, knit it and work through it together |
+| `coveredbox-rep.R` | the same analysis as a plain script, for quick reruns |
 | `columns.txt` | response columns in survey order — the contract between the two |
 
 Everything is generated. Change the constants at the top of `make-stimuli.py`
@@ -257,6 +258,23 @@ It is too large.
 
 On the fake data the Mann–Whitney (Huang et al.'s own test) gives
 p ≈ 4 × 10⁻⁸ with 19 and 17 participants.
+
+## Analysing the data in class
+
+`coveredbox-analysis.Rmd` is the teaching version: the same analysis as the
+script, with the reasoning written out and discussion questions at the section
+breaks. Knit it with `rmarkdown::render("coveredbox-analysis.Rmd")`, or open it
+in RStudio and run the chunks one at a time.
+
+It runs on `coveredbox-fake-data.csv` until you change `data_file` in the second
+chunk, so the whole session can be rehearsed before any real data exist — and
+the class can see what the result is *supposed* to look like before seeing what
+it does look like.
+
+Its structure follows the argument rather than the data-frame: does the task
+work at all → does the measure mean what we think → what is the result → is it
+real → what goes in which section of the report. Four sets of checks come before
+any critical rate is printed, which is the habit worth teaching.
 
 ## Still to do
 

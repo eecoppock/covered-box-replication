@@ -3,3 +3,7 @@
 .RData
 Rplots.pdf
 __pycache__/
+
+# knitted output — regenerate with rmarkdown::render()
+coveredbox-analysis.html
+coveredbox-analysis_files/
