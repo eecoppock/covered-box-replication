@@ -32,7 +32,7 @@ of meaning, in a population that computes scalar implicatures robustly elsewhere
 | | |
 |---|---|
 | `design.py` | the trial assignment, imported by both generators |
-| `make-stimuli.py` | writes 44 box images to `stimuli/` — one image per box |
+| `make-stimuli.py` | writes the box images to `stimuli/` — one image per box |
 | `build-qsf.py` | writes `HuangSnedeker_replication.qsf` and `columns.txt` |
 | `qsf-template.json` | Qualtrics boilerplate, vendored so the build has no outside dependencies |
 | `make-fake-data.R` | writes `coveredbox-fake-data.csv` in real-export shape |
@@ -85,9 +85,19 @@ entirely — otherwise it is 22 questions × 3 choices of manual insertion.
   infer the design by comparing trial types; at class scale that would mean six
   cells of five. Critical-first preserves naïvety where it matters, at the cost
   of a fixed order. Say so in the report.
-- Three tokens per trial type, each with **its own object and characters**.
-  Object sets are *nested* in trial type, not crossed with it: nine per term,
-  three per trial type, so **all 18 prompts in the survey are distinct**.
+- **Nine screens per participant**: four familiarization, then three critical
+  trials, then one of each control type. Each has its own object and characters,
+  so every prompt in the survey is distinct.
+
+  Why so few. Simulated power to detect the published 13%-vs-100% contrast is
+  **1.00 even at eight participants per term giving one critical trial each** —
+  an 87-point effect does not need replication inside a participant. The three
+  critical trials are kept for item generality and because a 0/3–3/3 rate reads
+  better than a bare yes/no; the controls are comprehension checks that one
+  trial each demonstrates, on top of four familiarization trials. `N_CRITICAL`
+  and `N_CONTROL` at the top of `design.py` change this.
+
+  Object sets are *nested* in trial type, not crossed with it.
 
   Crossing them was the first attempt and it was wrong. Huang et al. could
   cross safely because trial type was between subjects, so a participant met one

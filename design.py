@@ -11,6 +11,18 @@ So object sets are NESTED in trial type: nine per term, three per trial type,
 and every prompt in the survey is unique.
 """
 
+# ---- how many trials of each kind ------------------------------------------
+# The published effect is 13% vs 100% covered-box choices, between subjects.
+# Simulated power to detect it is 1.00 even with eight participants per term
+# giving ONE critical trial each, so observations per cell buy nothing
+# statistically. Three critical trials are kept only for item generality --
+# does it hold across objects? -- and because a 0/3..3/3 per-participant rate
+# reads better than a bare yes/no. The controls exist to show the task works,
+# which one trial each demonstrates and the four familiarization trials mostly
+# establish already.
+N_CRITICAL = 3
+N_CONTROL  = 1          # per control trial type
+
 # nine objects, each with its plural for the number prompt
 OBJECTS = [("cookie","cookies"), ("apple","apples"), ("balloon","balloons"),
            ("fish","fish"),      ("bird","birds"),   ("flower","flowers"),
@@ -39,10 +51,16 @@ NUMBER_MEANING = {"critical": ("one","more"), "oneTwo": ("one","match"),
 
 MORE = [3, 5, 3, 5, 3, 5, 3, 5, 3]     # the "more than two" count, per set
 
+def _plan():
+    """[(trial type, index within it)], critical first"""
+    out=[]
+    for j,k in enumerate([N_CRITICAL, N_CONTROL, N_CONTROL]):
+        out += [(j, n) for n in range(k)]
+    return out
+
 def scalar_trials():
-    """nine trials: sets 0-2 critical, 3-5 noneSome, 6-8 someAll"""
-    for i in range(9):
-        kind = SCALAR_TYPES[i // 3]
+    for i,(t,_) in enumerate(_plan()):
+        kind = SCALAR_TYPES[t]
         target, other = NAMES[i]
         _, plural = OBJECTS[i]
         yield dict(term="scalar", kind=kind, set=i+1,
@@ -51,9 +69,8 @@ def scalar_trials():
                    meaning=SCALAR_MEANING[kind])
 
 def number_trials():
-    """nine trials: sets 0-2 critical, 3-5 oneTwo, 6-8 twoMore"""
-    for i in range(9):
-        kind = NUMBER_TYPES[i // 3]
+    for i,(t,_) in enumerate(_plan()):
+        kind = NUMBER_TYPES[t]
         _, plural = OBJECTS[i]
         counts = [MORE[i] if b == "more" else b for b in NUMBER_BOXES[kind]]
         yield dict(term="number", kind=kind, set=i+1,

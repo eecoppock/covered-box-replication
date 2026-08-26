@@ -81,12 +81,13 @@ dat <- complete |>
          covered, match_box)
 
 # ---- checks ---------------------------------------------------------------
+n_expected <- length(unique(cmap$question[grepl("^scalar_", cmap$question)]))
 chk <- dat |> group_by(participant) |>
   summarise(n = n(), terms = n_distinct(term), .groups = "drop")
-if (any(chk$n != 9 | chk$terms != 1)) {
-  warning("Some participants do not have exactly 9 trials in one term:")
-  print(filter(chk, n != 9 | terms != 1))
-} else cat("\nOK:", nrow(chk), "participants, 9 trials each, one term each.\n")
+if (any(chk$n != n_expected | chk$terms != 1)) {
+  warning("Some participants do not have the expected ", n_expected, " trials:")
+  print(filter(chk, n != n_expected | terms != 1))
+} else cat("\nOK:", nrow(chk), "participants,", n_expected, "trials each, one term each.\n")
 cat("\nTerm assignment:\n")
 print(count(distinct(dat, participant, term), term))
 
