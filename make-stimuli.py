@@ -93,6 +93,14 @@ def flower(d,x,y,s=1.0):
     rr=int(6*s)
     d.ellipse([x-rr,y-rr,x+rr,y+rr], fill=(244,206,74), outline=(150,110,30), width=2)
 
+def carrot(d,x,y,s=1.0):
+    h,w=int(19*s),int(8*s)
+    d.polygon([(x,y+h),(x-w,y-h//2),(x+w,y-h//2)],
+              fill=(232,132,44), outline=(160,84,20))
+    for dx in (-1,1):
+        d.polygon([(x+dx*2,y-h//2),(x+dx*w,y-h),(x-dx*1,y-h//2+2)],
+                  fill=(96,158,74), outline=(52,100,44))
+
 def star(d,x,y,s=1.0):
     import math
     pts=[]
@@ -170,7 +178,7 @@ def scalar_box(n_target, n_other, obj, names, total=4):
 def number_box(n, obj):
     img,d = blank()
     cx,cy = BOX_W//2, BOX_H//2
-    pos={1:[(0,0)],2:[(-70,0),(70,0)],3:[(-76,-58),(76,-58),(0,58)],
+    pos={0:[],1:[(0,0)],2:[(-70,0),(70,0)],3:[(-76,-58),(76,-58),(0,58)],
          5:[(-92,-68),(92,-68),(0,0),(-92,68),(92,68)]}[n]
     for dx,dy in pos: obj(d, cx+dx, cy+dy, 1.7)
     return img
@@ -186,7 +194,8 @@ def familiar_box(shapes):
 import design
 
 DRAW = {"cookie":cookie, "apple":apple, "balloon":balloon, "fish":fish,
-        "bird":bird, "flower":flower, "star":star, "heart":heart, "leaf":leaf}
+        "bird":bird, "flower":flower, "star":star, "heart":heart, "leaf":leaf,
+        "carrot":carrot}
 
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
@@ -203,7 +212,8 @@ if __name__ == "__main__":
             tag = box.rsplit("_",1)[1]
             if t["term"]=="scalar":
                 names = design.NAMES[i]
-                counts = {"NONE":(0,4), "SOME":(2,2), "ALL":(4,0)}[tag]
+                counts = {"NONE":(0,4), "SOME":(2,2), "ALL":(4,0),
+                          "EMPTY":(0,0)}[tag]
                 scalar_box(counts[0], counts[1], obj, names).save(f"{OUT}/{box}.png")
             else:
                 number_box(int(tag), obj).save(f"{OUT}/{box}.png")

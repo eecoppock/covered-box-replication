@@ -95,7 +95,7 @@ dat <- complete |>
   separate_wider_delim(q, "_", names = c("term", "trial_type", "set")) |>
   mutate(participant = ResponseId,
          term      = factor(term, levels = c("scalar", "number")),
-         critical  = trial_type == "critical",
+         critical  = trial_type %in% c("critical", "criticalOneSet"),
          probe     = trial_type == "probe",
          resp      = as.integer(resp),
          covered   = resp == 3,
@@ -174,7 +174,22 @@ crit <- dat |> filter(critical) |>
   group_by(participant, term) |>
   summarise(covered = mean(covered), .groups = "drop")
 
-cat("\nCritical trials — proportion choosing the COVERED box:\n")
+# Huang et al.'s critical trials and ours, side by side. The comparison IS the
+# domain test: their display leaves the global reading available (the target has
+# four of the eight objects on screen, which globally is "some but not all"),
+# ours does not (every object is in one box, so the two domains coincide). If the
+# rates agree, the global reading was not buying anything.
+cat("\nCritical trials by kind — proportion choosing the COVERED box:\n")
+print(dat |> filter(critical) |>
+        group_by(participant, term, trial_type) |>
+        summarise(covered = mean(covered), .groups = "drop") |>
+        group_by(term, trial_type) |>
+        summarise(covered = mean(covered), n = n(), .groups = "drop") |>
+        mutate(design = if_else(trial_type == "critical",
+                                "Huang et al. — global reading available",
+                                "ours — domains coincide")))
+
+cat("\nCritical trials pooled — proportion choosing the COVERED box:\n")
 print(crit |> group_by(term) |>
         summarise(mean = mean(covered), sd = sd(covered), n = n(),
                   se = sd/sqrt(n),

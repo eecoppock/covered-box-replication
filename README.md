@@ -93,8 +93,10 @@ entirely — otherwise it is 22 questions × 3 choices of manual insertion.
   infer the design by comparing trial types; at class scale that would mean six
   cells of five. Critical-first preserves naïvety where it matters, at the cost
   of a fixed order. Say so in the report.
-- **Ten screens per participant**: four familiarization, then two critical
-  trials, one control, two fillers and a probe. Each has its own object and characters,
+- **Fourteen screens per participant**: four familiarization, then Huang et al.'s
+  three test conditions in full, our added `criticalOneSet` condition, an anchor,
+  two fillers and a probe. This is their design plus additions, not a subset of
+  it. Each has its own object and characters,
   so every prompt in the survey is distinct.
 
   Why so few, and why this split. Simulated power for the critical contrast is
@@ -108,7 +110,8 @@ entirely — otherwise it is 22 questions × 3 choices of manual insertion.
   | **anchor** — an *all* trial, **first** | 1 | fixes the domain, see below |
   | **critical** — (NONE,ALL) / (1, 3∨5) | 2 | the headline: no match visible, so anyone insisting on one must take the covered box. 13% vs 100%. |
   | **matchVsMore** — (SOME,ALL) / (2, 3∨5) | 1 | *not* a comprehension check. Both a subset and a total set are visible and adults take the subset 90% of the time — Huang et al. call this "a robust ability to calculate the scalar implicature". It is what makes the critical result strange: the implicature is computed when it picks something out and abandoned when it does not. |
-  | **matchVsLess** — (NONE,SOME) / (1, 2) | **0** | dropped, see below |
+  | **criticalOneSet** — (EMPTY,ALL) / (0, 3∨5) | 2 | **ours.** The same question with the domain loophole closed — see below |
+  | **matchVsLess** — (NONE,SOME) / (1, 2) | 1 | the comprehension check: *some* is not *none*, *two* is not *one*. At ceiling in the original. |
   | **otherQuant** — *none*/*all*, *three*/*five* | 2 | balance, see below |
   | **probe** | 1 | see further below |
 
@@ -118,16 +121,28 @@ entirely — otherwise it is 22 questions × 3 choices of manual insertion.
   `matchVsMore` pairs the match with a larger set; `matchVsLess` pairs it with a
   smaller one.
 
-  Two critical against four others is already lopsided for a study whose point
-  lives in the critical trials; six non-critical, as an earlier version had, was
-  worse. **`matchVsLess` is set to 0**: it is the one pure comprehension check here, it
-  sits at ceiling in the original (100%), and four familiarization trials plus
-  two fillers already do that work. It was also the trial most inflating *some*.
+### The added condition: `criticalOneSet`
 
-  The cost is real and belongs in the report — Some(NONE,SOME) is one of Huang
-  et al.'s three test conditions, so this does not cover their full design. Its
-  display is still seen, since `noneVis` uses the same pair of boxes, but under
-  *none* rather than *some*. `N_TRIALS["matchVsLess"] = 1` restores it.
+Huang et al.'s critical display leaves the global reading available. One box has
+the target with none of four objects, the other has the target with all four, so
+eight are on screen — and the target holding four of eight *is* "some but not
+all" globally. A participant can take that box with the exclusive reading of
+*some* intact.
+
+Ours closes it. One open box holds **every object on screen** and the other holds
+**none**, so the global set and the box-internal set coincide:
+
+| | reading | answer |
+|---|---|---|
+| Huang et al. | exclusive *some*, box-internal | covered |
+| | exclusive *some*, **global** | **the full box** ← loophole |
+| ours | exclusive *some*, either domain | covered |
+| | lower-bounded *some*, either domain | the full box |
+
+So the two conditions differ **only** in whether the global reading is available,
+and the gap between their covered-box rates measures how much of the standard
+result that reading was buying. If they agree, it was buying nothing. The
+analysis prints them side by side.
 
 ### The anchor, and the domain of "the apples"
 

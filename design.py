@@ -61,9 +61,26 @@ and every prompt in the survey is unique.
 #              manipulation is conservative: if the lower-bounded reading
 #              survives with "all" primed, that is stronger evidence. They sit
 #              after the critical trials in any case.
-#   anchor     an "all" trial, FIRST. See the note on domain below.
-N_TRIALS = {"anchor": 1, "critical": 2, "matchVsMore": 1, "matchVsLess": 0,
-            "otherQuant": 1, "probe": 1}
+#   anchor        an "all" trial, FIRST. See the note on domain below.
+#
+#   criticalOneSet the same question as "critical", with the domain loophole
+#                  closed. One open box holds every object on screen and the
+#                  other holds none, so the global set and the box-internal set
+#                  COINCIDE and the two readings cannot come apart:
+#
+#                    boxes  [nobody has any]  [target has all four]
+#                    exclusive "some", either domain -> no match -> covered box
+#                    lower-bounded "some", either    -> the full box
+#
+#                  Its rate against "critical" is the measure of how much of the
+#                  standard result the global reading was buying: if they agree,
+#                  the confound is not operating.
+# This is Huang et al.'s design in full -- all three of their test conditions --
+# plus additions. Their token counts were three of one condition per participant,
+# since condition was between subjects for them; here everyone sees all three, so
+# the counts differ while the design does not.
+N_TRIALS = {"anchor": 1, "critical": 2, "criticalOneSet": 2, "matchVsMore": 1,
+            "matchVsLess": 1, "otherQuant": 2, "probe": 1}
 
 # ---- the domain of "the apples", and why an "all" trial goes first ----------
 # "Give me the box where Zip has some of the apples" leaves the domain of "the
@@ -95,7 +112,7 @@ N_TRIALS = {"anchor": 1, "critical": 2, "matchVsMore": 1, "matchVsLess": 0,
 # adds little; and the domain confound explains away the whole finding, where
 # extinction only biases it in a direction the probe measures.
 
-# "matchVsLess" is set to 0. It is the one trial type here that is a pure comprehension
+# "matchVsLess" was briefly set to 0. It is the one trial type here that is a pure comprehension
 # check, it sits at ceiling in the original (100%), and four familiarization
 # trials plus two fillers already do that job. It was also the trial inflating
 # "some": dropping it moves the scalar balance from 5/2/1 to 3/2/1.
@@ -108,10 +125,11 @@ N_TRIALS = {"anchor": 1, "critical": 2, "matchVsMore": 1, "matchVsLess": 0,
 # nine objects, each with its plural for the number prompt
 OBJECTS = [("cookie","cookies"), ("apple","apples"), ("balloon","balloons"),
            ("fish","fish"),      ("bird","birds"),   ("flower","flowers"),
-           ("star","stars"),     ("heart","hearts"), ("leaf","leaves")]
+           ("star","stars"),     ("heart","hearts"), ("leaf","leaves"),
+           ("carrot","carrots")]
 
 NAMES = [("Zip","Nub"), ("Mo","Pim"), ("Dax","Wug"), ("Tev","Lom"), ("Bix","Rud"),
-         ("Kel","Sap"), ("Jom","Nid"), ("Vex","Pol"), ("Gub","Tam")]
+         ("Kel","Sap"), ("Jom","Nid"), ("Vex","Pol"), ("Gub","Tam"), ("Ral","Fen")]
 
 # trial types, in presentation order: critical first, then the two controls
 # "probe" is not in Huang et al. In no trial type of theirs is the covered box
@@ -124,38 +142,47 @@ NAMES = [("Zip","Nub"), ("Mo","Pim"), ("Dax","Wug"), ("Tev","Lom"), ("Bix","Rud"
 # is correct whatever anyone's semantics. It sits AFTER the critical trials, so
 # it cannot prime them, and it turns the worry into a measurement: if scalar
 # participants pass the probe, their low critical rate is not extinction.
-ORDER  = ["anchor", "critical", "matchVsMore", "matchVsLess", "otherQuant", "probe"]
-SCALAR = {"anchor":"allVis", "critical":"critical", "matchVsLess":"noneSome",
-          "matchVsMore":"someAll", "otherQuant":["noneVis"], "probe":"probe"}
+ORDER  = ["anchor", "critical", "criticalOneSet", "matchVsMore", "matchVsLess",
+          "otherQuant", "probe"]
+SCALAR = {"anchor":"allVis", "critical":"critical",
+          "criticalOneSet":"criticalOneSet", "matchVsLess":"noneSome",
+          "matchVsMore":"someAll", "otherQuant":["noneVis","allVis"],
+          "probe":"probe"}
 # the number term has no partitive and so no domain ambiguity -- "the box with
 # two fish" counts within a box by construction. Its anchor is there to keep the
 # two versions the same length and shape.
-NUMBER = {"anchor":"fiveVis", "critical":"critical", "matchVsLess":"oneTwo",
-          "matchVsMore":"twoMore", "otherQuant":["threeVis"], "probe":"probe"}
+NUMBER = {"anchor":"fiveVis", "critical":"critical",
+          "criticalOneSet":"criticalOneSet", "matchVsLess":"oneTwo",
+          "matchVsMore":"twoMore", "otherQuant":["threeVis","fiveVis"],
+          "probe":"probe"}
 
 # which two open boxes each trial type shows (choice 1, choice 2)
 SCALAR_BOXES = {"critical": ("NONE","ALL"),   # no subset match -> covered box
                 "noneSome": ("NONE","SOME"),
                 "someAll":  ("SOME","ALL"),
                 "probe":    ("SOME","ALL"),   # neither shows the target with none
+                "criticalOneSet": ("EMPTY","ALL"), # every object is in one box
                 "noneVis":  ("NONE","SOME"),  # the NONE panel is the answer
                 "allVis":   ("SOME","ALL")}   # the ALL panel is the answer
 NUMBER_BOXES = {"critical": (1,"more"),        # no exact match -> covered box
                 "oneTwo":   (1,2),
                 "twoMore":  (2,"more"),
                 "probe":    (1,2),             # neither has five or more
+                "criticalOneSet": (0,"more"),  # every object is in one box
                 "threeVis": (1,3),             # the 3 box; unambiguous, 1 < 3
                 "fiveVis":  (2,5)}             # the 5 box; unambiguous, 2 < 5
 
 # what choices 1 and 2 mean, for choice-map.csv
 SCALAR_MEANING = {"critical": ("none","all"), "noneSome": ("none","match"),
                   "someAll":  ("match","all"), "probe": ("absent","absent"),
+                  "criticalOneSet": ("empty","all"),
                   "noneVis":  ("match","other"), "allVis": ("other","match")}
 NUMBER_MEANING = {"critical": ("one","more"), "oneTwo": ("one","match"),
                   "twoMore":  ("match","more"), "probe": ("absent","absent"),
+                  "criticalOneSet": ("empty","more"),
                   "threeVis": ("other","match"), "fiveVis": ("other","match")}
 
-MORE = [3, 5, 3, 5, 3, 5, 3, 5, 3]     # the "more than two" count, per set
+MORE = [3, 5, 3, 5, 3, 5, 3, 5, 3, 5]  # the "more than two" count, per set
 
 # ---- the probe, and the presupposition it must not violate -----------------
 # The probe needs a configuration that is absent from both open boxes, so that
