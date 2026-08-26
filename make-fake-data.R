@@ -89,10 +89,18 @@ for (i in seq_len(n_participants)) {
   }
 }
 
+# ---- language background (optional, asked last) ---------------------------
+# roughly a quarter non-native, a few declining to say, a few skipping
+if ("first_language" %in% cols)
+  resp$first_language <- sapply(seq_len(n_participants), function(i) {
+    r <- runif(1)
+    if (r < .68) "1" else if (r < .90) "2" else if (r < .96) "3" else ""
+  })
+
 # ---- careless responders: uniform clicking everywhere ---------------------
 careless <- rep(FALSE, n_participants)
 if (n_careless > 0) careless[sample(n_participants, n_careless)] <- TRUE
-for (nm in cols) {
+for (nm in setdiff(cols, "first_language")) {
   hit <- careless & resp[[nm]] != ""
   if (any(hit)) resp[[nm]][hit] <- as.character(sample(1:3, sum(hit), TRUE))
 }

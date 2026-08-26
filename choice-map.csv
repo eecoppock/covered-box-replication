@@ -99,3 +99,6 @@ number_fiveVis_s10,3,covered
 number_probe_s11,1,absent
 number_probe_s11,2,absent
 number_probe_s11,3,covered
+first_language,1,Yes
+first_language,2,No
+first_language,3,Prefer not to say

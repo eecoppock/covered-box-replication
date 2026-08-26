@@ -87,6 +87,17 @@ front <- complete |>
 cat("  covered-box trials (fam3, fam4), all completed responses:",
     sprintf("%.0f%% correct", 100 * front$chose_covered), "\n")
 
+# language background, asked last and optional. Reported in aggregate: this is
+# classroom data from identifiable people, and in a group of thirty a rare
+# answer plus a response pattern can identify someone.
+lang <- complete |>
+  filter(ResponseId %in% fam$ResponseId[fam$passed]) |>
+  transmute(participant = ResponseId,
+            first_language = case_when(first_language == "1" ~ "English",
+                                       first_language == "2" ~ "another language",
+                                       first_language == "3" ~ "declined",
+                                       TRUE ~ "no answer"))
+
 dat <- complete |>
   filter(ResponseId %in% fam$ResponseId[fam$passed]) |>
   select(ResponseId, matches("^(scalar|number)_")) |>
@@ -223,6 +234,17 @@ cat("\nCritical rate split by the anchor response:\n")
 print(crit |> left_join(dom, by = "participant") |>
         group_by(term, box_internal) |>
         summarise(covered = mean(covered), n = n(), .groups = "drop"))
+
+cat("\nLanguage background (optional question, asked last):\n")
+print(count(lang, first_language))
+cat("Huang et al. recruited English-speaking undergraduates, so this is what\n",
+    "makes the comparison to their rate a check rather than an assumption.\n", sep = "")
+
+by_lang <- crit |> left_join(lang, by = "participant") |>
+  group_by(term, first_language) |>
+  summarise(covered = mean(covered), n = n(), .groups = "drop")
+cat("\nCritical rate by language background — small cells, read with care:\n")
+print(by_lang)
 
 cat("\nBetween-subjects comparison (Huang et al. used Mann-Whitney):\n")
 print(wilcox.test(covered ~ term, data = crit))

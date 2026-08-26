@@ -93,8 +93,8 @@ entirely — otherwise it is 22 questions × 3 choices of manual insertion.
   infer the design by comparing trial types; at class scale that would mean six
   cells of five. Critical-first preserves naïvety where it matters, at the cost
   of a fixed order. Say so in the report.
-- **Eighteen screens per participant**: four familiarization, then fourteen test
-  trials. This is Huang et al.'s design plus additions, never a subset of it.
+- **Nineteen screens per participant**: four familiarization, fourteen test
+  trials, one optional question at the end. This is Huang et al.'s design plus additions, never a subset of it.
   The order is written out in `design.py` as `SEQUENCE`, because by now what
   comes before what does as much work as how many of each there are:
 
@@ -112,6 +112,7 @@ entirely — otherwise it is 22 questions × 3 choices of manual insertion.
   | 10–11 | `matchVsMore`, `matchVsLess` | Huang et al.'s |
   | 12–13 | fillers | *none*, *all* |
   | 14 | `probe` | **covered**, under maximum extinction pressure |
+  | 15 | `first_language` | optional, text — see below |
 
   **Ours comes before theirs.** The first *some* judgment anyone makes is then
   one the global reading cannot reach, which settles the domain further before

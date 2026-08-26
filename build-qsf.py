@@ -78,6 +78,26 @@ def mc(tag, prompt, boxes, preamble=""):
     qsf["SurveyElements"].append(el)
     return q
 
+def text_mc(tag, prompt, options):
+    """A plain text multiple choice. Same payload as the graphic questions but
+    vertical and without LabelPosition, which matches the other QSF here known
+    to import (Emotion_words.qsf, SAVR with text choices)."""
+    qid[0]+=1; q=f"QID{qid[0]}"
+    el = copy.deepcopy(mc_tpl)
+    el["PrimaryAttribute"]=q; el["SecondaryAttribute"]=prompt[:95]
+    p = el["Payload"]
+    p["QuestionText"] = f'<span style="font-size:18px;">{prompt}</span>'
+    p["DataExportTag"]=tag; p["QuestionID"]=q
+    p["QuestionDescription"]=prompt[:95]
+    p["Selector"]="SAVR"
+    p["Configuration"]={"QuestionDescriptionOption":"UseText"}
+    p["Choices"]={str(i+1): {"Display": o} for i,o in enumerate(options)}
+    p["ChoiceOrder"]=[str(i+1) for i in range(len(options))]
+    p["Validation"]["Settings"]["ForceResponse"]="OFF"
+    p["NextChoiceId"]=len(options)+1
+    qsf["SurveyElements"].append(el)
+    return q
+
 def block(seed, desc, qids, typ="Standard"):
     be=[]
     for i,q in enumerate(qids):
@@ -117,7 +137,15 @@ else:
       {"Type":"BlockRandomizer","FlowID":"FL_3","SubSet":1,"EvenPresentation":True,
        "Flow":[{"ID":term_ids[0],"Type":"Block","FlowID":"FL_4"},
                {"ID":term_ids[1],"Type":"Block","FlowID":"FL_5"}]}]
-    count=6
+    count=8
+
+if not TEST:
+    lang_q = text_mc("first_language", design.LANGUAGE_Q[0], design.LANGUAGE_Q[1])
+    lang_b = block("lang", "Language background", [lang_q])
+    blocks.append(lang_b)
+    flow_inner.append({"ID": lang_b["ID"], "Type": "Block", "FlowID": "FL_7"})
+    for i, o in enumerate(design.LANGUAGE_Q[1], start=1):
+        rows.append(("first_language", str(i), o))
 
 blocks.append({"Type":"Trash","Description":"Trash / Unused Questions",
                "ID":bid("trash")})

@@ -122,6 +122,28 @@ SEQUENCE = ["anchor", "probeEarly",
             "critical", "shape", "critical",
             "matchVsMore", "matchVsLess", "otherQuant", "otherQuant", "probe"]
 
+# ---- language background ---------------------------------------------------
+# Asked LAST, so it cannot colour any response, and OPTIONAL.
+#
+# Huang et al. recruited "English-speaking undergraduates", so without this the
+# report cannot state its own participant characteristics and comparability with
+# the published rate is an assumption rather than a check. It may also not be a
+# nuisance variable: there is a literature on second-language speakers computing
+# scalar implicatures differently, so in a class where a quarter of the sample is
+# non-native this could be the most interesting thing in the data.
+#
+# Optional and coarse on purpose. This is classroom data from identifiable
+# people, and in a group of thirty that the instructor knows, a rare answer plus
+# a response pattern can identify someone. "Prefer not to say" is a real option,
+# not politeness. Reporting should be in aggregate.
+#
+# The wording avoids "native speaker", which is a contested construct and worth
+# fifteen minutes of the ethics session on its own -- what exactly would we be
+# measuring, and would a better question be about age of acquisition, or about
+# which languages were spoken at home?
+LANGUAGE_Q = ("Is English your first language? <em>(optional)</em>",
+              ["Yes", "No", "Prefer not to say"])
+
 # ---- shape fillers ---------------------------------------------------------
 SHAPE_PANELS = {"fill_a1":["tri","hex"],  "fill_a2":["sq","star"],
                 "fill_b1":["star","sq"],  "fill_b2":["tri","star"],
