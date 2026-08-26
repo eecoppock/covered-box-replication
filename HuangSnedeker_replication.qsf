@@ -563,10 +563,10 @@
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
       "PrimaryAttribute": "QID10",
-      "SecondaryAttribute": "Give me the box where Kel has some of the leaves.",
+      "SecondaryAttribute": "Give me the box where Kel has some of the hearts.",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<span style=\"font-size:19px;\">Give me the box where Kel has some of the leaves.</span>",
+        "QuestionText": "<span style=\"font-size:19px;\">Give me the box where Kel has some of the hearts.</span>",
         "DataExportTag": "scalar_probe_s6",
         "QuestionType": "MC",
         "Selector": "SAHR",
@@ -579,7 +579,7 @@
           "QuestionDescriptionOption": "UseText",
           "LabelPosition": "BELOW"
         },
-        "QuestionDescription": "Give me the box where Kel has some of the leaves.",
+        "QuestionDescription": "Give me the box where Kel has some of the hearts.",
         "Choices": {
           "1": {
             "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s6_NONE.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
@@ -857,10 +857,10 @@
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
       "PrimaryAttribute": "QID16",
-      "SecondaryAttribute": "Give me the box with two leaves.",
+      "SecondaryAttribute": "Give me the box with two hearts.",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<span style=\"font-size:19px;\">Give me the box with two leaves.</span>",
+        "QuestionText": "<span style=\"font-size:19px;\">Give me the box with two hearts.</span>",
         "DataExportTag": "number_probe_s6",
         "QuestionType": "MC",
         "Selector": "SAHR",
@@ -873,7 +873,7 @@
           "QuestionDescriptionOption": "UseText",
           "LabelPosition": "BELOW"
         },
-        "QuestionDescription": "Give me the box with two leaves.",
+        "QuestionDescription": "Give me the box with two hearts.",
         "Choices": {
           "1": {
             "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s6_1.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"

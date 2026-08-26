@@ -130,8 +130,16 @@ two apart. Weakening familiarization to a single pass, as above, makes this more
 likely rather than less.
 
 The probe trial names an object that is in **neither** open box — boxes of
-flowers, a prompt about leaves — so the covered box is correct whatever anyone's
-semantics. It converts the worry into a measurement:
+flowers, a prompt about **hearts** — so the covered box is correct whatever
+anyone's semantics.
+
+The named object is written down in `design.py` as `PROBE_NAMED`, not derived.
+An earlier version picked it by arithmetic offset and landed on *leaves* against
+boxes of *flowers*: both plant parts, so "absent" stopped being obvious, and a
+participant entitled to wonder whether those pink things counted as leaves is a
+participant whose probe response means nothing. It has to be unmistakably
+absent, which is stronger than merely being a different word. Hearts appear
+nowhere else in the study. It converts the worry into a measurement:
 
 - scalar participants **pass** the probe → their low critical rate is real
 - scalar participants **fail** it → the paradigm degraded, and that is the finding

@@ -80,6 +80,15 @@ NUMBER_MEANING = {"critical": ("one","more"), "oneTwo": ("one","match"),
 
 MORE = [3, 5, 3, 5, 3, 5, 3, 5, 3]     # the "more than two" count, per set
 
+# The object the PROBE asks for. It must be unmistakably absent from the boxes,
+# which is a stronger requirement than merely being a different word: picking it
+# by offset once landed on "leaves" while the boxes showed flowers, and a
+# participant entitled to wonder whether those pink things count as leaves is a
+# participant whose probe response means nothing. So it is named here, chosen to
+# be as far from any object drawn as the inventory allows, and it is deliberately
+# something no box in the study ever contains.
+PROBE_NAMED = "hearts"
+
 def _plan():
     """roles in presentation order, repeated N_TRIALS times each"""
     return [role for role in ORDER for _ in range(N_TRIALS[role])]
@@ -89,8 +98,8 @@ def scalar_trials():
         kind = SCALAR[role]
         target, other = NAMES[i]
         _, plural = OBJECTS[i]
-        if kind == "probe":                       # ask for an absent object
-            plural = OBJECTS[(i+3) % len(OBJECTS)][1]
+        if kind == "probe":
+            plural = PROBE_NAMED
         yield dict(term="scalar", kind=kind, set=i+1,
                    prompt=f"Give me the box where {target} has some of the {plural}.",
                    boxes=[f"scalar_s{i+1}_{b}" for b in SCALAR_BOXES[kind]],
@@ -100,8 +109,8 @@ def number_trials():
     for i,role in enumerate(_plan()):
         kind = NUMBER[role]
         _, plural = OBJECTS[i]
-        if kind == "probe":                       # ask for an absent object
-            plural = OBJECTS[(i+3) % len(OBJECTS)][1]
+        if kind == "probe":
+            plural = PROBE_NAMED
         counts = [MORE[i] if b == "more" else b for b in NUMBER_BOXES[kind]]
         yield dict(term="number", kind=kind, set=i+1,
                    prompt=f"Give me the box with two {plural}.",
