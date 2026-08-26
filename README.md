@@ -49,16 +49,27 @@ covered box's position for free, and the export records *which box* was chosen
 rather than which position. That is why the stimuli are one-image-per-box rather
 than one composite per trial.
 
-**This is already done.** The stimuli are served by GitHub Pages from this
-repository, and `HuangSnedeker_replication.qsf` points at them:
+**This is already done.** The stimuli are served from this repository, and
+`HuangSnedeker_replication.qsf` points at them, so the survey works the moment
+it is imported — nothing to upload to the Qualtrics graphics library, no
+placeholders to swap. All 26 referenced URLs were checked and resolve.
 
-> https://eecoppock.github.io/covered-box-replication/stimuli/
+The base URL currently in the QSF is **raw.githubusercontent**:
 
-So the survey works the moment it is imported — no uploading to the Qualtrics
-graphics library, no swapping placeholders. A contact sheet of all 30 images is
-at the [Pages root](https://eecoppock.github.io/covered-box-replication/).
+> `https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli`
 
-To point it somewhere else, pass a base URL:
+GitHub Pages is also enabled and `index.html` is a contact sheet of all 30
+images, but the Pages build has not gone green. If it does, switch with
+
+```
+python3 build-qsf.py https://eecoppock.github.io/covered-box-replication/stimuli
+```
+
+Either host is fine at this scale: about 1,500 image requests for a class of 40,
+cached after the first participant. Raw URLs are pinned to the `main` branch, so
+renaming the branch would break them.
+
+To point somewhere else entirely, pass any base URL:
 `python3 build-qsf.py https://your.url/stimuli`.
 
 The reason this matters: a QSF cannot reference images in a Qualtrics library,

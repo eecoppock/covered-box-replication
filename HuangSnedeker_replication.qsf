@@ -210,13 +210,13 @@
         "QuestionDescription": "Give me the box with the red star.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/fam1_yes.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/fam1_yes.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/fam1_no.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/fam1_no.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
@@ -287,13 +287,13 @@
         "QuestionDescription": "Give me the box with the red star.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/fam2_yes.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/fam2_yes.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/fam2_no.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/fam2_no.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
@@ -364,13 +364,13 @@
         "QuestionDescription": "Give me the box with the red star.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/fam3_no_a.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/fam3_no_a.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/fam3_no_b.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/fam3_no_b.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
@@ -441,13 +441,13 @@
         "QuestionDescription": "Give me the box with the red star.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/fam4_no.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/fam4_no.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/fam1_no.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/fam1_no.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
@@ -518,13 +518,13 @@
         "QuestionDescription": "Give me the box where Zip has some of the cookies.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/scalar_s1_NONE.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s1_NONE.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/scalar_s1_ALL.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s1_ALL.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
@@ -595,13 +595,13 @@
         "QuestionDescription": "Give me the box where Mo has some of the apples.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/scalar_s2_NONE.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s2_NONE.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/scalar_s2_ALL.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s2_ALL.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
@@ -672,13 +672,13 @@
         "QuestionDescription": "Give me the box where Dax has some of the balloons.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/scalar_s3_NONE.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s3_NONE.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/scalar_s3_ALL.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s3_ALL.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
@@ -749,13 +749,13 @@
         "QuestionDescription": "Give me the box where Zip has some of the cookies.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/scalar_s1_NONE.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s1_NONE.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/scalar_s1_SOME.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s1_SOME.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
@@ -826,13 +826,13 @@
         "QuestionDescription": "Give me the box where Zip has some of the cookies.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/scalar_s1_SOME.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s1_SOME.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/scalar_s1_ALL.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s1_ALL.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
@@ -903,13 +903,13 @@
         "QuestionDescription": "Give me the box where Mo has some of the apples.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/scalar_s2_NONE.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s2_NONE.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/scalar_s2_SOME.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s2_SOME.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
@@ -980,13 +980,13 @@
         "QuestionDescription": "Give me the box where Mo has some of the apples.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/scalar_s2_SOME.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s2_SOME.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/scalar_s2_ALL.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s2_ALL.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
@@ -1057,13 +1057,13 @@
         "QuestionDescription": "Give me the box where Dax has some of the balloons.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/scalar_s3_NONE.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s3_NONE.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/scalar_s3_SOME.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s3_SOME.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
@@ -1134,13 +1134,13 @@
         "QuestionDescription": "Give me the box where Dax has some of the balloons.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/scalar_s3_SOME.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s3_SOME.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/scalar_s3_ALL.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s3_ALL.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
@@ -1211,13 +1211,13 @@
         "QuestionDescription": "Give me the box with two fish.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/number_s1_1.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s1_1.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/number_s1_3.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s1_3.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
@@ -1288,13 +1288,13 @@
         "QuestionDescription": "Give me the box with two birds.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/number_s2_1.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s2_1.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/number_s2_5.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s2_5.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
@@ -1365,13 +1365,13 @@
         "QuestionDescription": "Give me the box with two flowers.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/number_s3_1.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s3_1.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/number_s3_3.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s3_3.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
@@ -1442,13 +1442,13 @@
         "QuestionDescription": "Give me the box with two fish.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/number_s1_1.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s1_1.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/number_s1_2.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s1_2.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
@@ -1519,13 +1519,13 @@
         "QuestionDescription": "Give me the box with two fish.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/number_s1_2.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s1_2.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/number_s1_3.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s1_3.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
@@ -1596,13 +1596,13 @@
         "QuestionDescription": "Give me the box with two birds.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/number_s2_1.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s2_1.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/number_s2_2.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s2_2.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
@@ -1673,13 +1673,13 @@
         "QuestionDescription": "Give me the box with two birds.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/number_s2_2.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s2_2.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/number_s2_5.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s2_5.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
@@ -1750,13 +1750,13 @@
         "QuestionDescription": "Give me the box with two flowers.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/number_s3_1.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s3_1.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/number_s3_2.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s3_2.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
@@ -1827,13 +1827,13 @@
         "QuestionDescription": "Give me the box with two flowers.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/number_s3_2.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s3_2.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/number_s3_3.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/number_s3_3.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           },
           "3": {
-            "Display": "<img src=\"https://eecoppock.github.io/covered-box-replication/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:300px;height:auto;\" alt=\"\">"
           }
         },
         "ChoiceOrder": [
