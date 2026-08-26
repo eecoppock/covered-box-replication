@@ -15,11 +15,17 @@ and every prompt in the survey is unique.
 # Not all three test trial types are doing the same job, so they do not get the
 # same number of trials.
 #
-#   critical   (NONE,ALL) / (1, 3v5)   the headline. No match is visible, so a
+# Every test trial shows two open boxes. What distinguishes the types is which
+# two, relative to the MATCH -- the box that satisfies the description on the
+# strengthened reading (the target has a proper subset / exactly two).
+#
+#   critical    less + more, NO match   (NONE,ALL) / (1, 3v5)
+#                                      the headline. The match is absent, so a
 #                                      participant who insists on one must take
 #                                      the covered box. 13% vs 100%.
 #
-#   strong     (SOME,ALL) / (2, 3v5)   NOT a comprehension check. A subset match
+#   matchVsMore match + more            (SOME,ALL) / (2, 3v5)
+#                                      NOT a comprehension check. A subset match
 #                                      and a total-set match are both visible and
 #                                      adults take the subset 90% of the time --
 #                                      Huang et al. call this "a robust ability
@@ -29,15 +35,17 @@ and every prompt in the survey is unique.
 #                                      something out, and abandoned when it does
 #                                      not. Half the argument lives here.
 #
-#   weak       (NONE,SOME) / (1, 2)    this one really is a comprehension check:
+#   matchVsLess less + match            (NONE,SOME) / (1, 2)
+#                                      this one really is a comprehension check:
 #                                      it shows only that "some" is not "none"
-#                                      and "two" is not "one".
+#                                      and "two" is not "one". 100% in the
+#                                      original.
 #
 # Statistically none of it needs replication -- simulated power for the critical
 # contrast is 1.00 at eight participants per term with one trial each. Extra
 # trials buy item generality and a graded per-participant rate, so they go where
 # the argument is.
-#   altquant   a filler in a DIFFERENT quantifier, whose answer is visible.
+#   otherQuant a filler in a DIFFERENT quantifier, whose answer is visible.
 #              Without these the scalar term says "some" on five screens out of
 #              six and "none" on one, which is an odd thing to put in front of
 #              someone you are asking to interpret quantifiers -- the recurring
@@ -53,9 +61,10 @@ and every prompt in the survey is unique.
 #              manipulation is conservative: if the lower-bounded reading
 #              survives with "all" primed, that is stronger evidence. They sit
 #              after the critical trials in any case.
-N_TRIALS = {"critical": 2, "strong": 1, "weak": 0, "altquant": 2, "probe": 1}
+N_TRIALS = {"critical": 2, "matchVsMore": 1, "matchVsLess": 0,
+            "otherQuant": 2, "probe": 1}
 
-# "weak" is set to 0. It is the one trial type here that is a pure comprehension
+# "matchVsLess" is set to 0. It is the one trial type here that is a pure comprehension
 # check, it sits at ceiling in the original (100%), and four familiarization
 # trials plus two fillers already do that job. It was also the trial inflating
 # "some": dropping it moves the scalar balance from 5/2/1 to 3/2/1.
@@ -63,7 +72,7 @@ N_TRIALS = {"critical": 2, "strong": 1, "weak": 0, "altquant": 2, "probe": 1}
 # The cost is real and belongs in the report: Some(NONE,SOME) is one of Huang et
 # al.'s three test conditions, so this replication does not cover their full
 # design. Its display is still seen -- noneVis uses the same pair of boxes -- but
-# with "none" rather than "some". Setting "weak" back to 1 restores it.
+# with "none" rather than "some". Setting "matchVsLess" back to 1 restores it.
 
 # nine objects, each with its plural for the number prompt
 OBJECTS = [("cookie","cookies"), ("apple","apples"), ("balloon","balloons"),
@@ -84,11 +93,11 @@ NAMES = [("Zip","Nub"), ("Mo","Pim"), ("Dax","Wug"), ("Tev","Lom"), ("Bix","Rud"
 # is correct whatever anyone's semantics. It sits AFTER the critical trials, so
 # it cannot prime them, and it turns the worry into a measurement: if scalar
 # participants pass the probe, their low critical rate is not extinction.
-ORDER  = ["critical", "strong", "weak", "altquant", "probe"]
-SCALAR = {"critical":"critical", "weak":"noneSome", "strong":"someAll",
-          "altquant":["noneVis","allVis"], "probe":"probe"}
-NUMBER = {"critical":"critical", "weak":"oneTwo",   "strong":"twoMore",
-          "altquant":["threeVis","fiveVis"], "probe":"probe"}
+ORDER  = ["critical", "matchVsMore", "matchVsLess", "otherQuant", "probe"]
+SCALAR = {"critical":"critical", "matchVsLess":"noneSome", "matchVsMore":"someAll",
+          "otherQuant":["noneVis","allVis"], "probe":"probe"}
+NUMBER = {"critical":"critical", "matchVsLess":"oneTwo",   "matchVsMore":"twoMore",
+          "otherQuant":["threeVis","fiveVis"], "probe":"probe"}
 
 # which two open boxes each trial type shows (choice 1, choice 2)
 SCALAR_BOXES = {"critical": ("NONE","ALL"),   # no subset match -> covered box

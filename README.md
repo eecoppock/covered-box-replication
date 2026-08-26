@@ -98,21 +98,27 @@ entirely — otherwise it is 22 questions × 3 choices of manual insertion.
   | role | trials | what it does |
   |---|---|---|
   | **critical** — (NONE,ALL) / (1, 3∨5) | 2 | the headline: no match visible, so anyone insisting on one must take the covered box. 13% vs 100%. |
-  | **strong** — (SOME,ALL) / (2, 3∨5) | 1 | *not* a comprehension check. Both a subset and a total set are visible and adults take the subset 90% of the time — Huang et al. call this "a robust ability to calculate the scalar implicature". It is what makes the critical result strange: the implicature is computed when it picks something out and abandoned when it does not. |
-  | **weak** — (NONE,SOME) / (1, 2) | **0** | dropped, see below |
-  | **altquant** — *none*/*all*, *three*/*five* | 2 | balance, see below |
+  | **matchVsMore** — (SOME,ALL) / (2, 3∨5) | 1 | *not* a comprehension check. Both a subset and a total set are visible and adults take the subset 90% of the time — Huang et al. call this "a robust ability to calculate the scalar implicature". It is what makes the critical result strange: the implicature is computed when it picks something out and abandoned when it does not. |
+  | **matchVsLess** — (NONE,SOME) / (1, 2) | **0** | dropped, see below |
+  | **otherQuant** — *none*/*all*, *three*/*five* | 2 | balance, see below |
   | **probe** | 1 | see further below |
+
+  The names describe which two open boxes are shown, relative to the **match** —
+  the box satisfying the description on the strengthened reading (a proper
+  subset / exactly two). `critical` shows neither a match nor anything like one;
+  `matchVsMore` pairs the match with a larger set; `matchVsLess` pairs it with a
+  smaller one.
 
   Two critical against four others is already lopsided for a study whose point
   lives in the critical trials; six non-critical, as an earlier version had, was
-  worse. **`weak` is set to 0**: it is the one pure comprehension check here, it
+  worse. **`matchVsLess` is set to 0**: it is the one pure comprehension check here, it
   sits at ceiling in the original (100%), and four familiarization trials plus
   two fillers already do that work. It was also the trial most inflating *some*.
 
   The cost is real and belongs in the report — Some(NONE,SOME) is one of Huang
   et al.'s three test conditions, so this does not cover their full design. Its
   display is still seen, since `noneVis` uses the same pair of boxes, but under
-  *none* rather than *some*. `N_TRIALS["weak"] = 1` restores it.
+  *none* rather than *some*. `N_TRIALS["matchVsLess"] = 1` restores it.
 
 ### Fillers in another quantifier
 
