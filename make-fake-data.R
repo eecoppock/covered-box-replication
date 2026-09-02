@@ -23,6 +23,13 @@ n_careless     <- 4     # click at random; should fail familiarization
 # Published rates, Huang, Spelke & Snedeker (2013) Exp. 1
 p_scalar_crit_covered <- 0.13   # some(NONE,ALL): adults took ALL as a match
 p_number_crit_covered <- 1.00   # two(1,3v5): adults held out for exactly two
+# Everyone now does BOTH terms, so there is an order to model. Seeing the
+# numerals first should make "some" read more exactly, since the numeral trials
+# teach that the covered box is often the answer. The scalar rate is therefore
+# higher when scalar comes second. Number is at ceiling either way. This is the
+# effect the analysis has to be able to find -- and the reason scalar-FIRST is
+# the cell that replicates Huang et al., not the pooled scalar rate.
+p_scalar_crit_covered_second <- 0.30
 p_control_correct     <- 0.95   # control trials: pick the subset/exact match
 p_probe_correct       <- 0.95   # probe: the named object is in neither open box,
                                 # so the covered box is correct for everyone
@@ -37,8 +44,8 @@ resp <- as.data.frame(matrix("", nrow = n_participants, ncol = length(cols)),
                       stringsAsFactors = FALSE)
 names(resp) <- cols
 
-term <- rep(c("scalar", "number"), length.out = n_participants)
-term <- sample(term)
+# Which term each participant saw FIRST; both terms are answered by everyone.
+first_term <- sample(rep(c("scalar", "number"), length.out = n_participants))
 
 # ---- familiarization: everyone attentive gets these right -----------------
 # correct answers come from choice-map.csv, written by build-qsf.py
@@ -51,9 +58,12 @@ for (f in names(correct_fam))
 
 # ---- test trials ----------------------------------------------------------
 for (i in seq_len(n_participants)) {
-  is_scalar <- term[i] == "scalar"
-  p_cov <- if (is_scalar) p_scalar_crit_covered else p_number_crit_covered
-  mine <- grep(paste0("^", term[i], "_"), cols, value = TRUE)
+ for (term in c("scalar", "number")) {
+  scalar_second <- term == "scalar" && first_term[i] == "number"
+  p_cov <- if (term == "scalar") {
+             if (scalar_second) p_scalar_crit_covered_second else p_scalar_crit_covered
+           } else p_number_crit_covered
+  mine <- grep(paste0("^", term, "_"), cols, value = TRUE)
   for (cn in mine) {
     if (grepl("_anchor", cn)) {
       # the anchor's answer is the visible full box, choice 2
@@ -87,6 +97,8 @@ for (i in seq_len(n_participants)) {
         if (runif(1) < p_control_correct) match_id else sample(setdiff(1:3, match_id), 1))
     }
   }
+ }
+ resp$first_term[i] <- first_term[i]
 }
 
 # ---- language background (optional, asked last) ---------------------------
@@ -100,7 +112,7 @@ if ("first_language" %in% cols)
 # ---- careless responders: uniform clicking everywhere ---------------------
 careless <- rep(FALSE, n_participants)
 if (n_careless > 0) careless[sample(n_participants, n_careless)] <- TRUE
-for (nm in setdiff(cols, "first_language")) {
+for (nm in setdiff(cols, c("first_language", "first_term"))) {
   hit <- careless & resp[[nm]] != ""
   if (any(hit)) resp[[nm]][hit] <- as.character(sample(1:3, sum(hit), TRUE))
 }
@@ -110,6 +122,7 @@ if (n_incomplete > 0) {
   blank <- as.data.frame(matrix("", nrow = n_incomplete, ncol = length(cols)),
                          stringsAsFactors = FALSE)
   names(blank) <- cols
+  blank$first_term <- sample(c("scalar", "number"), n_incomplete, TRUE)
   blank$fam1 <- as.character(sample(1:3, n_incomplete, TRUE))
   resp <- rbind(resp, blank)
 }

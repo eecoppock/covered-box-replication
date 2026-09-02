@@ -117,10 +117,18 @@ and every prompt in the survey is unique.
 #                   the three needs the covered box.
 #   probe           the covered box again, at the end, under the most
 #                   extinction pressure the study can apply.
+# Revised 2 Sept 2026, after taking it: the old order alternated critical/filler
+# in a perfectly learnable rhythm and then blocked all four visible-answer
+# controls at the end, so the covered box was live for a run of trials and dead
+# for a run of trials. Now the controls are interleaved among the critical
+# trials, the gaps between critical trials are uneven (positions 3, 6, 10), and
+# there are three critical trials rather than four -- with a ~90-point effect,
+# four was buying nothing, and the slots are worth more as camouflage. Both
+# terms are now shown to everyone, so length is the binding constraint.
 SEQUENCE = ["anchor", "probeEarly",
-            "criticalOneSet", "shape", "criticalOneSet", "shape",
-            "critical", "shape", "critical",
-            "matchVsMore", "matchVsLess", "otherQuant", "otherQuant", "probe"]
+            "critical", "shape", "matchVsMore",
+            "critical", "shape", "matchVsLess",
+            "otherQuant", "criticalOneSet", "probe"]
 
 # ---- language background ---------------------------------------------------
 # Asked LAST, so it cannot colour any response, and OPTIONAL.

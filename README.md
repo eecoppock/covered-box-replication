@@ -1,4 +1,4 @@
-# Class replication — Huang, Spelke & Snedeker (2013), Experiment 1
+# Covered-box demo — Huang, Spelke & Snedeker (2013), Experiment 1
 
 Huang, Y. T., Spelke, E., & Snedeker, J. (2013). What exactly do numbers mean?
 *Language Learning and Development* 9(2), 105–129.
@@ -6,8 +6,16 @@ Huang, Y. T., Spelke, E., & Snedeker, J. (2013). What exactly do numbers mean?
 [doi:10.1080/15475441.2012.658731](https://doi.org/10.1080/15475441.2012.658731)
 
 Built for LX 433/533/733 Experimental Pragmatics at Boston University, where the
-class runs it on themselves in the first fifteen minutes of the first meeting —
-before anyone has been told what it measures — and then writes it up.
+class runs it on themselves the day the paper is read.
+
+**This is the in-class demonstration, not the graded replication.** The written-up
+replication is Panizza, Chierchia & Clifton (2009) Exp. 1, whose forced choice
+between *exactly two* and *at least two* is the same on every screen and so needs
+no decoding step before the analysis can start. The covered box is here because
+it is the paradigm worth *seeing* — the inference is visible in where your hand
+goes — and because the two studies disagree in an interesting way about whether
+numerals behave like *some*. Running it takes about eight minutes and gives the
+class its own data to argue with while reading the paper.
 
 Everything here is generated from the two scripts. The stimuli are original and
 generic, so nothing in this repository is anyone else's copyright.
@@ -258,9 +266,40 @@ It is too large.
 On the fake data the Mann–Whitney (Huang et al.'s own test) gives
 p ≈ 4 × 10⁻⁸ with 19 and 17 participants.
 
+## Revised 2 Sept 2026 — within subjects, and shorter
+
+Taking it revealed two problems. The critical/filler alternation was perfectly
+regular, so the critical trials were predictable; and all four visible-answer
+controls sat at the end, so the covered box was live for a run of trials and
+then dead for a run of trials. Both are fixed: controls are now interleaved
+among the critical trials, and the gaps between critical trials are uneven
+(positions 3, 6, 10).
+
+**Everyone now sees both terms**, in a randomised order recorded as `first_term`
+embedded data. Blocks are 11 trials instead of 14 — three critical trials rather
+than four, since with a ~90-point effect the fourth bought nothing and the slot
+is worth more as camouflage. 27 questions total.
+
+**The first block is the replication.** The pooled scalar rate is contaminated:
+half the participants met the numerals first, and that exposure should push
+*some* toward an exact reading. `coveredbox-rep.R` reports scalar-FIRST against
+Huang et al.'s .13, then the order effect, then the within-subjects paired test.
+First-block data is also poolable with data collected under the old
+between-subjects version.
+
+The flow uses a randomiser over two **Groups**, each stamping `first_term`
+before running its blocks — not a `Branch`, which has been the fragile part of
+every QSF in this project.
+
 ## Still to do
 
-- Import and check: two blocks per term should appear in the right order, and
-  choice-order randomisation should be on for every trial question.
+- Choice-order randomisation is off on every question and the covered box is
+  always choice 3. Not a threat to the between-condition comparison, since the
+  position is constant across terms, and the covered box is identified by its
+  image rather than its slot. Worth fixing anyway.
+- The shape fillers still announce themselves — different syntax, no character
+  name, a different visual world. Frame-matched fillers (*the box where Dax has
+  the striped balloon*: same frame, same objects, no quantifier) would camouflage
+  properly, but need new images.
 - The bird drawing is passable but not lovely; `make-stimuli.py::bird` is where
   to fix it.

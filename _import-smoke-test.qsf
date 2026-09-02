@@ -171,10 +171,10 @@
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
       "PrimaryAttribute": "QID2",
-      "SecondaryAttribute": "Give me the box where Jom has some of the stars.",
+      "SecondaryAttribute": "Give me the box where Vex has some of the hearts.",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<span style=\"font-size:19px;\">Give me the box where Jom has some of the stars.</span>",
+        "QuestionText": "<span style=\"font-size:19px;\">Give me the box where Vex has some of the hearts.</span>",
         "DataExportTag": "t2",
         "QuestionType": "MC",
         "Selector": "SAHR",
@@ -187,13 +187,13 @@
           "QuestionDescriptionOption": "UseText",
           "LabelPosition": "BELOW"
         },
-        "QuestionDescription": "Give me the box where Jom has some of the stars.",
+        "QuestionDescription": "Give me the box where Vex has some of the hearts.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s7_SOME.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s8_EMPTY.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s7_ALL.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/scalar_s8_ALL.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "3": {
             "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"

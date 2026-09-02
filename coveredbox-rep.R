@@ -3,7 +3,8 @@
 #  Class replication of Huang, Spelke & Snedeker (2013), Experiment 1.
 #
 #  DESIGN
-#    Term (scalar "some" vs. number "two") is BETWEEN subjects. Within a term,
+#    Term (scalar "some" vs. number "two") is WITHIN subjects as of 2 Sept 2026;
+#    order is randomised and recorded in first_term. Within a term,
 #    the three CRITICAL trials come first, then the six control trials, so the
 #    response that carries the argument is given before anyone has seen a trial
 #    type they could compare it against. That is a weakened version of Huang et
@@ -52,12 +53,31 @@ data_file <- "coveredbox-fake-data.csv"     # swap for the real export
 raw <- read_csv(data_file, col_types = cols(.default = col_character())) |>
   slice(-(1:2))                              # drop Qualtrics' two metadata rows
 
-complete <- raw |> filter(Finished %in% c("True","TRUE","true","1"))
+#View(raw)
+
+# Qualtrics exports preview and test runs alongside real ones, so taking the
+# survey yourself to check it lands in the class data unless they are dropped.
+drop_test_runs <- function(d) {
+  if ("Status" %in% names(d))
+    d <- filter(d, !Status %in% c("Survey Preview", "Survey Test", "Spam", "1", "2", "8"))
+  if ("DistributionChannel" %in% names(d))
+    d <- filter(d, !DistributionChannel %in% c("preview", "test"))
+  d
+}
+
+finished <- raw |> filter(Finished %in% c("True","TRUE","true","1"))
+complete <- drop_test_runs(finished)
+if (nrow(finished) > nrow(complete))
+  cat("Dropped", nrow(finished) - nrow(complete), "preview/test response(s).\n\n")
+
+#View(complete)
 
 # what each choice ID means, per question -- written by build-qsf.py
 cmap <- read_csv("choice-map.csv", show_col_types = FALSE) |>
   filter(choice_id != "correct") |>
   mutate(choice_id = as.integer(choice_id))
+
+#View(cmap)
 
 # ---- familiarization ------------------------------------------------------
 # Two trials where the red star is visible, two where it is not. Anyone who
@@ -119,18 +139,29 @@ dat <- complete |>
   left_join(cmap, by = c("question", "resp" = "choice_id")) |>
   mutate(match_box = meaning == "match") |>
   select(participant, term, trial_type, set, resp, meaning, critical, probe,
-         covered, match_box)
+         covered, match_box) |>
+  # first_term is embedded data stamped by the survey flow. Order is what turns
+  # the within-subjects design from "contaminated" into "analysable": meeting the
+  # numerals first should teach that the covered box is often the answer, which
+  # should raise the scalar rate when scalar comes second.
+  left_join(select(complete, ResponseId, first_term),
+            by = c("participant" = "ResponseId")) |>
+  mutate(order = factor(if_else(as.character(term) == first_term,
+                                "first", "second"),
+                        levels = c("first", "second")))
 
 # ---- checks ---------------------------------------------------------------
 n_expected <- length(unique(cmap$question[grepl("^scalar_", cmap$question)]))
 chk <- dat |> group_by(participant) |>
   summarise(n = n(), terms = n_distinct(term), .groups = "drop")
-if (any(chk$n != n_expected | chk$terms != 1)) {
-  warning("Some participants do not have the expected ", n_expected, " trials:")
-  print(filter(chk, n != n_expected | terms != 1))
-} else cat("\nOK:", nrow(chk), "participants,", n_expected, "trials each, one term each.\n")
-cat("\nTerm assignment:\n")
-print(count(distinct(dat, participant, term), term))
+if (any(chk$n != 2 * n_expected | chk$terms != 2)) {
+  warning("Some participants do not have the expected ", 2 * n_expected,
+          " trials across both terms:")
+  print(filter(chk, n != 2 * n_expected | terms != 2))
+} else cat("\nOK:", nrow(chk), "participants,", 2 * n_expected,
+           "trials each, both terms each.\n")
+cat("\nOrder assignment (which term came first):\n")
+print(count(distinct(dat, participant, first_term), first_term))
 
 # ---- control trials: did the task work at all? ----------------------------
 # When the subset/exact match IS visible, everyone should take it.
@@ -201,7 +232,7 @@ if (any(probe$passed < .8))
       sep = "")
 
 crit <- dat |> filter(critical) |>
-  group_by(participant, term) |>
+  group_by(participant, term, order) |>
   summarise(covered = mean(covered), .groups = "drop")
 
 # Huang et al.'s critical trials and ours, side by side. The comparison IS the
@@ -254,8 +285,37 @@ by_lang <- crit |> left_join(lang, by = "participant") |>
 cat("\nCritical rate by language background — small cells, read with care:\n")
 print(by_lang)
 
-cat("\nBetween-subjects comparison (Huang et al. used Mann-Whitney):\n")
-print(wilcox.test(covered ~ term, data = crit))
+# ---- the headline, and why it is the FIRST blocks ---------------------------
+# Everyone now does both terms, so the pooled scalar rate is contaminated: half
+# the participants met the numerals first, and that exposure should push "some"
+# toward an exact reading. The cell that replicates Huang et al. is therefore
+# scalar-FIRST, which is uncontaminated and is exactly their between-subjects
+# design. Report that against .13, not the pooled rate.
+first_only <- filter(crit, order == "first")
+cat("\nFIRST BLOCK ONLY — the clean between-subjects replication:\n")
+print(first_only |> group_by(term) |>
+        summarise(mean = mean(covered), sd = sd(covered), n = n(),
+                  se = sd/sqrt(n), .groups = "drop"))
+cat("Published: scalar .13, number 1.00\n")
+cat("\nMann-Whitney on first blocks only (Huang et al.'s own test):\n")
+print(wilcox.test(covered ~ term, data = first_only))
+
+cat("\nORDER EFFECT — same term, seen first vs second:\n")
+print(crit |> group_by(term, order) |>
+        summarise(covered = mean(covered), n = n(), .groups = "drop"))
+sc <- filter(crit, term == "scalar")
+if (n_distinct(sc$order) == 2) {
+  cat("\nDoes meeting the numerals first change how 'some' is read?\n")
+  print(wilcox.test(covered ~ order, data = sc))
+}
+
+cat("\nWITHIN-SUBJECTS comparison — every participant did both terms:\n")
+paired <- crit |> select(participant, term, covered) |>
+  pivot_wider(names_from = term, values_from = covered) |>
+  filter(!is.na(scalar), !is.na(number))
+cat("  n pairs:", nrow(paired), "  mean difference (number - scalar):",
+    round(mean(paired$number - paired$scalar), 3), "\n")
+print(wilcox.test(paired$number, paired$scalar, paired = TRUE))
 
 # A logistic model will not behave here, and the reason is worth a paragraph in
 # the report. If one condition is at 0% or 100%, the groups are COMPLETELY

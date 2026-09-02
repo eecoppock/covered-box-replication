@@ -131,13 +131,25 @@ else:
             qs.append(mc(tag, t["prompt"], t["boxes"]))
             rows += [(tag,"1",t["meaning"][0]),(tag,"2",t["meaning"][1]),
                      (tag,"3","covered")]
-        b=block(term,f"{term} — critical trials then controls",qs)
+        b=block(term,f"{term} trials",qs)
         blocks.append(b); term_ids.append(b["ID"])
+    # Everyone now sees BOTH terms. The randomiser picks one of two GROUPS, and
+    # each group stamps first_term as embedded data before running its blocks, so
+    # the order is recorded rather than inferred afterwards. A Group wrapper is
+    # used rather than a Branch: branches have been the fragile part of every QSF
+    # in this project, and a randomiser over groups needs no condition logic.
     flow_inner=[{"ID":blocks[0]["ID"],"Type":"Block","FlowID":"FL_2"},
       {"Type":"BlockRandomizer","FlowID":"FL_3","SubSet":1,"EvenPresentation":True,
-       "Flow":[{"ID":term_ids[0],"Type":"Block","FlowID":"FL_4"},
-               {"ID":term_ids[1],"Type":"Block","FlowID":"FL_5"}]}]
-    count=8
+       "Flow":[
+         {"Type":"Group","FlowID":"FL_10","Description":"scalar first","Flow":[
+            {"Type":"EmbeddedData","FlowID":"FL_11","EmbeddedData":[{"Description":"first_term","Type":"Custom","Field":"first_term","VariableType":"String","DataVisibility":[],"AnalyzeText":False,"Value":"scalar"}]},
+            {"ID":term_ids[0],"Type":"Block","FlowID":"FL_12"},
+            {"ID":term_ids[1],"Type":"Block","FlowID":"FL_13"}]},
+         {"Type":"Group","FlowID":"FL_20","Description":"number first","Flow":[
+            {"Type":"EmbeddedData","FlowID":"FL_21","EmbeddedData":[{"Description":"first_term","Type":"Custom","Field":"first_term","VariableType":"String","DataVisibility":[],"AnalyzeText":False,"Value":"number"}]},
+            {"ID":term_ids[1],"Type":"Block","FlowID":"FL_22"},
+            {"ID":term_ids[0],"Type":"Block","FlowID":"FL_23"}]}]}]
+    count=30
 
 if not TEST:
     lang_q = text_mc("first_language", design.LANGUAGE_Q[0], design.LANGUAGE_Q[1])
@@ -164,5 +176,8 @@ print(f"wrote {OUT}: {len(mcq)} questions, {len(blocks)} blocks")
 if not TEST:
     with open("choice-map.csv","w",newline="") as fh: csv.writer(fh).writerows(rows)
     with open("columns.txt","w") as fh:
-        fh.write("\n".join(e["Payload"]["DataExportTag"] for e in mcq)+"\n")
+        # first_term is embedded data set by the flow, and Qualtrics exports it
+        # as a column like any other, so the fake data must carry it too.
+        fh.write("\n".join([e["Payload"]["DataExportTag"] for e in mcq]
+                            + ["first_term"])+"\n")
     print("wrote columns.txt and choice-map.csv")
