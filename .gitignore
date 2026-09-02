@@ -1,5 +1,6 @@
-.DS_Store
-.Rhistory
-.RData
-Rplots.pdf
 __pycache__/
+.DS_Store
+.RData
+.Rhistory
+results/
+Rplots.pdf

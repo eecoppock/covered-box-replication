@@ -47,8 +47,12 @@
 rm(list = ls())
 library(tidyverse)
 
-data_file <- "coveredbox-fake-data.csv"     # swap for the real export
-# data_file <- "CoveredBox_<date>.csv"
+# Take the most recent export in results/, so re-downloading mid-class picks up
+# automatically without editing this line. Falls back to the simulated set.
+exports <- list.files("results", pattern = "\\.csv$", full.names = TRUE)
+data_file <- if (length(exports)) exports[which.max(file.mtime(exports))] else
+             "coveredbox-fake-data.csv"
+cat("Reading:", data_file, "\n")
 
 raw <- read_csv(data_file, col_types = cols(.default = col_character())) |>
   slice(-(1:2))                              # drop Qualtrics' two metadata rows
@@ -297,14 +301,16 @@ print(first_only |> group_by(term) |>
         summarise(mean = mean(covered), sd = sd(covered), n = n(),
                   se = sd/sqrt(n), .groups = "drop"))
 cat("Published: scalar .13, number 1.00\n")
-cat("\nMann-Whitney on first blocks only (Huang et al.'s own test):\n")
-print(wilcox.test(covered ~ term, data = first_only))
+if (n_distinct(first_only$term) == 2) {
+  cat("\nMann-Whitney on first blocks only (Huang et al.'s own test):\n")
+  print(wilcox.test(covered ~ term, data = first_only))
+} else cat("\nMann-Whitney skipped: only one term among the first blocks so far.\n")
 
 cat("\nORDER EFFECT — same term, seen first vs second:\n")
 print(crit |> group_by(term, order) |>
         summarise(covered = mean(covered), n = n(), .groups = "drop"))
 sc <- filter(crit, term == "scalar")
-if (n_distinct(sc$order) == 2) {
+if (n_distinct(sc$order) == 2 && nrow(sc) >= 4) {
   cat("\nDoes meeting the numerals first change how 'some' is read?\n")
   print(wilcox.test(covered ~ order, data = sc))
 }
@@ -315,7 +321,8 @@ paired <- crit |> select(participant, term, covered) |>
   filter(!is.na(scalar), !is.na(number))
 cat("  n pairs:", nrow(paired), "  mean difference (number - scalar):",
     round(mean(paired$number - paired$scalar), 3), "\n")
-print(wilcox.test(paired$number, paired$scalar, paired = TRUE))
+if (nrow(paired) >= 3) print(wilcox.test(paired$number, paired$scalar, paired = TRUE)) else
+  cat("  too few pairs for a test yet.\n")
 
 # A logistic model will not behave here, and the reason is worth a paragraph in
 # the report. If one condition is at 0% or 100%, the groups are COMPLETELY
