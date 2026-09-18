@@ -161,26 +161,50 @@ else:
         rows.append((t2,"correct",correct))
     blocks.append(block("fam","Familiarization",fam,typ="Default"))
 
-    # Test phase. The scalar block is three fillers interleaved with the three
-    # criticals, as in Exp 4, where the three critical tokens "were randomized
-    # with three filler trials that were similar to those used in the
-    # Familiarization phase". The order is fixed rather than randomized: every
-    # critical has a filler before it, and the one filler answered by the
-    # covered box falls late rather than beside the first and most naive
-    # critical. The number block follows, uninterleaved.
-    term_ids=[]
-    for name, trials in (("scalar", design.scalar_block()),
-                         ("number", design.number_block())):
-        qs=[]
-        for tag,prompt,boxes,m1,m2,correct in trials:
-            qs.append(add(tag, prompt, boxes, m1, m2))
-            if correct: rows.append((tag,"correct",correct))
-        b=block(name, f"{name} block", qs)
-        blocks.append(b); term_ids.append(b["ID"])
+    # Test phase, counterbalanced on object set. Version A gives the scalar
+    # trials cookies/apples/balloons, version B gives them fish/birds/flowers,
+    # and the number trials take whichever set is left. A randomiser over two
+    # Groups picks one and stamps `objects` as embedded data, so the assignment
+    # is recorded rather than inferred. A Group wrapper rather than a Branch:
+    # branches have been the fragile part of every QSF in this project, and a
+    # randomiser over groups needs no condition logic.
+    #
+    # The critical tags carry their object set already (scalar_critical_s1 is
+    # cookies, scalar_critical_s4 is fish), so they are unique across versions.
+    # The fillers are identical in both and would collide, so they take a
+    # version suffix.
+    version_ids = {}
+    for v in ("A", "B"):
+        ids = []
+        for name, trials in (("scalar", design.scalar_block(v)),
+                             ("number", design.number_block(v))):
+            qs = []
+            for tag, prompt, boxes, m1, m2, correct in trials:
+                t = tag if tag.startswith(("scalar_", "number_")) else f"{tag}_{v}"
+                qs.append(add(t, prompt, boxes, m1, m2))
+                if correct: rows.append((t, "correct", correct))
+            blk = block(f"{name}{v}", f"{name} block, objects {v}", qs)
+            blocks.append(blk); ids.append(blk["ID"])
+        version_ids[v] = ids
+
+    def _ed(value):
+        return {"Type":"EmbeddedData","FlowID":f"FL_ED{value}","EmbeddedData":[
+            {"Description":"objects","Type":"Custom","Field":"objects",
+             "VariableType":"String","DataVisibility":[],"AnalyzeText":False,
+             "Value":value}]}
+
     flow_inner=[{"ID":blocks[0]["ID"],"Type":"Block","FlowID":"FL_2"},
-                {"ID":term_ids[0],"Type":"Block","FlowID":"FL_3"},
-                {"ID":term_ids[1],"Type":"Block","FlowID":"FL_4"}]
-    count=10
+      {"Type":"BlockRandomizer","FlowID":"FL_3","SubSet":1,"EvenPresentation":True,
+       "Flow":[
+         {"Type":"Group","FlowID":"FL_10","Description":"objects A","Flow":[
+            _ed("A"),
+            {"ID":version_ids["A"][0],"Type":"Block","FlowID":"FL_12"},
+            {"ID":version_ids["A"][1],"Type":"Block","FlowID":"FL_13"}]},
+         {"Type":"Group","FlowID":"FL_20","Description":"objects B","Flow":[
+            _ed("B"),
+            {"ID":version_ids["B"][0],"Type":"Block","FlowID":"FL_22"},
+            {"ID":version_ids["B"][1],"Type":"Block","FlowID":"FL_23"}]}]}]
+    count=30
 
 if not TEST:
     lang_q = text_mc("first_language", design.LANGUAGE_Q[0], design.LANGUAGE_Q[1])
@@ -207,7 +231,9 @@ print(f"wrote {OUT}: {len(mcq)} questions, {len(blocks)} blocks")
 if not TEST:
     with open("choice-map.csv","w",newline="") as fh: csv.writer(fh).writerows(rows)
     with open("columns.txt","w") as fh:
-        # first_term is gone: the terms no longer run in a randomised order,
-        # so there is nothing to record. Scalar is always first.
-        fh.write("\n".join([e["Payload"]["DataExportTag"] for e in mcq])+"\n")
+        # `objects` is embedded data set by the flow and Qualtrics exports it
+        # as a column like any other. Scalar always runs first, so there is no
+        # order variable to record.
+        fh.write("\n".join([e["Payload"]["DataExportTag"] for e in mcq]
+                            + ["objects"])+"\n")
     print("wrote columns.txt and choice-map.csv")

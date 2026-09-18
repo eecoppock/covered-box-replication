@@ -155,7 +155,7 @@ before anyone argues about whether ours replicates.
 | 20 | `two(1,3)` — flowers |
 | 21 | first language, optional |
 
-Twenty-five screens counting the four feedback pages. The number block is interleaved the same way the scalar block is: Exp 4's number condition had its three fillers too, and this block runs last, where extinction pressure is highest and where there would otherwise be no covered-box trial for six screens. Response **3** is the
+Twenty-five screens counting the four feedback pages, of which each participant sees one of the two object assignments. The number block is interleaved the same way the scalar block is: Exp 4's number condition had its three fillers too, and this block runs last, where extinction pressure is highest and where there would otherwise be no covered-box trial for six screens. Response **3** is the
 covered box throughout, and its position rotates across trials.
 
 **Every box in the study is the same display**: two named characters either side
@@ -198,17 +198,44 @@ No practice box shares a configuration with a test trial: the scalar criticals
 use 0 of 4 and 4 of 4, the number criticals 1 of 4 and 3 of 4, and no practice
 character holds more than one of anything.
 
-### The departures that are left
+### Counterbalancing, and what is still confounded
 
-Both terms go to the same participant, which their between-subjects design
-forbids. Scalar runs **first and uncontaminated**, number second, so
-contamination can travel only from scalar to number, and the number cell sits at
-ceiling in their data and ours. It buys the class the *some* against *two*
-contrast and should be stated in any write-up.
+**Object set is counterbalanced against the term.** Half the participants get
+the scalar trials on cookies, apples and balloons and the number trials on fish,
+birds and flowers; the other half get the reverse. A block randomiser picks one
+and stamps `objects` as embedded data, so the assignment is recorded rather than
+inferred. Huang et al. did not need this: Experiment 4 was between subjects and
+used Cookie Monster with cookies in both conditions. We separated the objects so
+that the same participant does not meet the same material twice under two
+different prompts, and that separation would otherwise have left object set
+perfectly confounded with the term. Counterbalancing costs nothing, since every
+participant still does three scalar criticals and the replication comparison
+keeps everyone.
 
-The six test screens are interleaved in a fixed order rather than randomized, so
-that every critical has a filler before it and the covered-box filler falls late
-rather than beside the first and most naive critical. Feedback on the first
+**Order is not counterbalanced, and this is a trade-off rather than an
+oversight.** Scalar always runs first. Counterbalancing would mean half the
+participants meet *two* before *some*, and the scalar cell is the measurement;
+its value depends on those people being naive about the task's quantity
+dimension. We bought a naive scalar cell at the price of an order confound in
+the *some*-against-*two* contrast. The confound runs conservative: the number
+block sits last, where extinction pressure is highest, so any order effect
+should depress the number rate and pull it toward the scalar rate, working
+against the asymmetry rather than for it.
+
+**Two things are going on in this study and they are not the same kind of
+claim.** The *some*-against-*two* contrast is the experiment: same people, same
+session, same displays, one word changed. The comparison of our scalar rate
+against Huang et al.'s 31% is a replication check, not an experiment, because
+everything varies between us and them — population, platform, year, sample size
+— so it isolates no cause. It is what the preregistered rule is about, since
+"did removing the anchor recover their result" is the question, but preregistered
+is not the same as experimental, and a write-up should not blur them.
+
+**Smaller departures.** Both terms go to the same participant, which their
+between-subjects design forbids; it buys the class the contrast and is the
+reason order is confounded at all. The six test screens in each block are
+interleaved in a fixed order rather than randomized, so every critical has a
+filler before it and the covered-box filler falls late. Feedback on the first
 familiarization pass is a screen saying where the target was, since Qualtrics
 cannot let anyone open a box.
 

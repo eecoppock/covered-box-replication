@@ -42,12 +42,18 @@ cat("reading", f, "\n")
 
 raw <- read_csv(f, show_col_types = FALSE) |> slice(-(1:2))   # two header rows
 
-SCALAR <- c("scalar_critical_s1", "scalar_critical_s2", "scalar_critical_s3")
-NUMBER <- c("number_critical_s4", "number_critical_s5", "number_critical_s6")
+# Object set is counterbalanced, so each participant answers only one version's
+# columns and the other version's are blank. The critical tags carry their
+# object set (scalar_critical_s1 is cookies, s4 is fish), so the two versions
+# never collide and the analysis just gathers whatever is filled in.
+SCALAR <- grep("^scalar_critical_", names(raw), value = TRUE)
+NUMBER <- grep("^number_critical_", names(raw), value = TRUE)
 FAM2   <- c("fam1_p2", "fam2_p2", "fam3_p2", "fam4_p2")
 FAM_KEY  <- c(fam1_p2 = "2", fam2_p2 = "1", fam3_p2 = "3", fam4_p2 = "3")
-FILL     <- c(fill1 = "1", fill2 = "1", fill3 = "3",
+FILL_KEY <- c(fill1 = "1", fill2 = "1", fill3 = "3",
               nfill1 = "1", nfill2 = "2", nfill3 = "3")
+FILL     <- setNames(rep(FILL_KEY, each = 2),
+                     paste0(rep(names(FILL_KEY), each = 2), c("_A", "_B")))
 
 dat <- raw |>
   filter(Finished %in% c("True", "1", "TRUE")) |>
@@ -79,9 +85,11 @@ if (length(keep) < nrow(dat))
 # attention held and that the covered box was still live while it mattered.
 # With the probe gone these are the only such check left.
 fill <- dat |>
-  select(participant, all_of(names(FILL))) |>
+  select(participant, any_of(names(FILL))) |>
   pivot_longer(-participant, names_to = "trial", values_to = "resp") |>
-  mutate(ok = resp == FILL[trial])
+  filter(!is.na(resp), resp != "") |>
+  mutate(ok = resp == FILL[trial],
+         trial = sub("_[AB]$", "", trial))
 
 cat("\nFillers — proportion correct:\n")
 print(fill |> group_by(trial) |> summarise(correct = mean(ok), n = n(), .groups = "drop"))
@@ -94,10 +102,26 @@ if (mean(fill$ok[fill$trial %in% covered_fillers]) < .8)
 # ---- the criticals ---------------------------------------------------------
 long <- dat |>
   filter(participant %in% keep) |>
-  select(participant, all_of(c(SCALAR, NUMBER))) |>
-  pivot_longer(-participant, names_to = "trial", values_to = "resp") |>
+  select(participant, objects, all_of(c(SCALAR, NUMBER))) |>
+  pivot_longer(c(-participant, -objects), names_to = "trial", values_to = "resp") |>
+  filter(!is.na(resp), resp != "") |>
   mutate(term    = if_else(str_starts(trial, "scalar"), "scalar", "number"),
          covered = resp == "3")
+
+# ---- the counterbalance ----------------------------------------------------
+# Version A gives the scalar trials cookies, apples and balloons; version B
+# gives them fish, birds and flowers. Without this, object set would move with
+# the term and the some-against-two contrast could not tell the two apart. A
+# large gap between the versions means the materials are doing work of their
+# own, which belongs in the write-up whichever way the headline goes.
+cat("\nObject-set counterbalance:\n")
+print(long |> group_by(objects, term) |>
+        summarise(covered = mean(covered), participants = n_distinct(participant),
+                  .groups = "drop") |>
+        pivot_wider(names_from = term, values_from = covered))
+if (n_distinct(long$objects) < 2)
+  cat("!! Only one version of the object assignment appears. The randomiser\n",
+      "   may not have fired, or everyone landed in the same cell.\n", sep = "")
 
 cat("\nTrial-level covered-box rate, comparable with their M:\n")
 print(long |> group_by(term) |>

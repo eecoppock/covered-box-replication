@@ -196,8 +196,23 @@ ONE_  = lambda i: box(i, 1, 3)
 THREE_= lambda i: box(i, 3, 1)
 
 # ---- object and character assignment ---------------------------------------
-CRIT_SCALAR = [1, 2, 3]       # cookies, apples, balloons
-CRIT_NUMBER = [4, 5, 6]       # fish, birds, flowers
+# Object set is COUNTERBALANCED against scale type. Version A gives the scalar
+# trials cookies/apples/balloons and the number trials fish/birds/flowers;
+# version B swaps them. Huang et al. did not need this, because Exp 4 was
+# between subjects and used Cookie Monster with cookies in both conditions. We
+# separated the objects so the same participant does not meet the same material
+# twice under two different prompts, and that separation would otherwise leave
+# object set perfectly confounded with the term. Counterbalancing costs nothing:
+# every participant still does three scalar criticals, so the replication
+# comparison keeps everyone, and only the some-against-two contrast gains.
+#
+# Order is NOT counterbalanced and cannot be without giving something up: the
+# scalar cell is the measurement and its value depends on those participants
+# being naive about the task's quantity dimension, so scalar always runs first.
+# That is a declared trade-off, not an oversight.
+SETS_A = {"scalar": [1, 2, 3], "number": [4, 5, 6]}   # cookies… / fish…
+SETS_B = {"scalar": [4, 5, 6], "number": [1, 2, 3]}   # fish…    / cookies…
+VERSIONS = {"A": SETS_A, "B": SETS_B}
 SFILL_NAMES = [7, 8, 9]       # Jom/Nid, Vex/Pol, Gub/Tam
 FAM_NAMES   = [10, 11]        # Ral/Fen, Sib/Yon
 NFILL_NAMES = [12, 13, 14]    # Quo/Bev, Hix/Dru, Nal/Pex
@@ -279,18 +294,18 @@ def _number_fillers():
         pbox(c, ["mushroom"], ["carrot","leaf"])], "no star", "no star", "3"),
     ]
 
-def _scalar_criticals():
+def _scalar_criticals(sets):
     out=[]
-    for i in CRIT_SCALAR:
+    for i in sets["scalar"]:
         t=NAMES[i-1][0]; pl=OBJECTS[i-1][1]
         out.append((f"scalar_critical_s{i}",
                     f"Give me the box where {t} has some of the {pl}.",
                     [NONE_(i), ALL_(i)], "none", "all", None))
     return out
 
-def _number_criticals():
+def _number_criticals(sets):
     out=[]
-    for i in CRIT_NUMBER:
+    for i in sets["number"]:
         t=NAMES[i-1][0]; pl=OBJECTS[i-1][1]
         out.append((f"number_critical_s{i}",
                     f"Give me the box where {t} has two of the {pl}.",
@@ -302,25 +317,33 @@ def familiarization():
     two by the covered box, as in Huang et al."""
     return _fam()
 
-def scalar_block():
+def scalar_block(version="A"):
     """Three fillers interleaved with the three criticals, as in Exp 4, where
     the critical tokens "were randomized with three filler trials that were
     similar to those used in the Familiarization phase". Fixed order rather
     than randomized, so every critical has a filler before it and the
     covered-box filler falls late rather than beside the first and most naive
     critical."""
-    f=_scalar_fillers(); c=_scalar_criticals()
+    f=_scalar_fillers(); c=_scalar_criticals(VERSIONS[version])
     return [f[0], c[0], f[1], c[1], f[2], c[2]]
 
-def number_block():
+def number_block(version="A"):
     """Same shape. Exp 4's number condition had its three fillers too, and this
     block runs last, where extinction pressure is highest and where there would
     otherwise be no covered-box trial for six screens."""
-    f=_number_fillers(); c=_number_criticals()
+    f=_number_fillers(); c=_number_criticals(VERSIONS[version])
     return [f[0], c[0], f[1], c[1], f[2], c[2]]
 
 def all_trials():
-    return familiarization() + scalar_block() + number_block()
+    """Every trial in either version, for the stimulus generator."""
+    out = familiarization()
+    for v in VERSIONS:
+        out += scalar_block(v) + number_block(v)
+    seen=set(); uniq=[]
+    for t in out:
+        if t[0] in seen: continue
+        seen.add(t[0]); uniq.append(t)
+    return uniq
 
 def all_boxes():
     """image name -> how to draw it"""
