@@ -1,3 +1,7 @@
+# NOTE (17 Sept 2026): this analyses the OLD instrument and is kept for the
+# archived intro-class data in archive/2026-09-intro-run/. The current design
+# is analysed by coveredbox-critical.R.
+
 # ============================================================
 #  coveredbox-rep.R
 #  Class replication of Huang, Spelke & Snedeker (2013), Experiment 1.
@@ -81,7 +85,7 @@ cmap <- read_csv("choice-map.csv", show_col_types = FALSE) |>
   filter(choice_id != "correct") |>
   mutate(choice_id = as.integer(choice_id))
 
-#View(cmap)
+if (interactive()) View(cmap)
 
 # ---- familiarization ------------------------------------------------------
 # Two trials where the red star is visible, two where it is not. Anyone who
@@ -169,26 +173,51 @@ print(count(distinct(dat, participant, first_term), first_term))
 
 # ---- control trials: did the task work at all? ----------------------------
 # When the subset/exact match IS visible, everyone should take it.
-# ---- the anchor: was the domain read box-internally? ----------------------
-# The first trial asks for the box where the target has ALL of the objects.
-# Read box-internally the ALL box is correct. Read globally -- all the objects
-# anywhere on screen -- no box is, since the target has four of the eight
-# visible, and the participant takes the covered box instead.
+# ---- the anchor ------------------------------------------------------------
+# Until 17 Sept 2026 the scalar anchor asked for ALL and its open-box answer
+# was available only under the box-internal reading of the partitive, so it
+# doubled as a domain diagnostic. It was also training the stronger alternative
+# right before the critical trials; see the note above SCALAR in design.py.
 #
-# This matters because the global reading explains away the headline. On a
-# critical trial the ALL box shows four of eight, which IS "some but not all"
-# globally, so it can be chosen with the exclusive reading of "some" intact.
-# A participant who takes the covered box here was reading globally, and their
-# critical responses mean something different.
-anchor <- dat |> filter(trial_type %in% c("anchorAll", "anchorFive")) |>
-  group_by(term) |>
-  summarise(box_internal = mean(match_box), n = n(), .groups = "drop")
-cat("\nAnchor trial — read the domain box-internally (scalar term):\n")
+# anchorHalf shows 3-1 and 1-3 and asks for HALF, so the covered box is correct
+# and the trial no longer diagnoses anything about the domain. It is now a
+# second covered-box establishment trial and is reported with the probes.
+# The number term keeps anchorFive, an open-box trial, but the number term has
+# no partitive and never had a domain ambiguity to diagnose.
+anchor <- dat |> filter(trial_type %in% c("anchorHalf", "anchorFive")) |>
+  group_by(term, trial_type) |>
+  summarise(correct = mean(if_else(trial_type[1] == "anchorHalf",
+                                   covered, match_box)),
+            n = n(), .groups = "drop")
+cat("\nAnchor trial — proportion correct:\n")
 print(anchor)
-if (any(anchor$box_internal[anchor$term == "scalar"] < .85))
-  cat("!! Some scalar participants may be quantifying over the whole display\n",
-      "   rather than over one box. Their critical responses are not evidence\n",
-      "   about implicature. Consider splitting the critical rate by this.\n", sep = "")
+if (any(anchor$correct[anchor$trial_type == "anchorHalf"] < .8))
+  cat("!! Under 80% on the scalar anchor. Either half is not being read over\n",
+      "   the box, or the covered box was not understood from familiarization.\n",
+      "   Either way the scalar critical rate is hard to interpret.\n", sep = "")
+
+# ---- domain: is anyone quantifying over the whole display? ------------------
+# The diagnostic moved here when the anchor stopped carrying it. Globally read,
+# a critical ALL box shows the target with four of the eight objects on screen,
+# which IS "some but not all", so a whole-display reader takes the open box
+# with the exclusive reading of "some" fully intact -- and the headline looks
+# like a replication for the wrong reason.
+#
+# criticalOneSet puts every object in one box, so the two readings coincide and
+# that loophole is shut. A whole-display reader therefore takes the open box on
+# `critical` but not on `criticalOneSet`, and the gap between the two is the
+# signature. No gap means no whole-display problem to worry about.
+oneset <- dat |> filter(term == "scalar",
+                        trial_type %in% c("critical", "criticalOneSet")) |>
+  group_by(trial_type) |>
+  summarise(covered = mean(covered), n = n(), .groups = "drop")
+cat("\nScalar criticals: the ordinary ones against the closed-domain one:\n")
+print(oneset)
+if (nrow(oneset) == 2 &&
+    abs(diff(oneset$covered)) > .15)
+  cat("!! criticalOneSet differs from the ordinary criticals by more than 15\n",
+      "   points. Some participants may be quantifying over the whole display.\n",
+      "   criticalOneSet is the trial of record; report it separately.\n", sep = "")
 
 HS_CONTROLS <- c("noneSome","someAll","oneTwo","twoMore")
 cat("\nControl trials, Huang et al.'s — proportion taking the subset/exact match:\n")
@@ -212,7 +241,7 @@ print(dat |> filter(grepl("^shape", trial_type)) |>
 cat("\nAdded fillers in another quantifier — proportion correct:\n")
 print(dat |> filter(!critical, !probe, !trial_type %in% HS_CONTROLS,
                     !grepl("^shape", trial_type),
-                    !trial_type %in% c("anchorAll","anchorFive")) |>
+                    !trial_type %in% c("anchorHalf","anchorFive")) |>
         group_by(term, trial_type) |>
         summarise(correct = mean(match_box), n = n(), .groups = "drop"))
 
@@ -262,12 +291,16 @@ print(crit |> group_by(term) |>
                   ci_high = mean + qt(.975, n-1)*se, .groups = "drop"))
 cat("Published: scalar .13, number 1.00\n")
 
-# the headline, split by how the participant read the domain
-dom <- dat |> filter(trial_type %in% c("anchorAll","anchorFive")) |>
-  select(participant, box_internal = match_box)
-cat("\nCritical rate split by the anchor response:\n")
-print(crit |> left_join(dom, by = "participant") |>
-        group_by(term, box_internal) |>
+# The headline used to be split by the anchor response, which read the domain.
+# anchorHalf does not measure that, so the split is by criticalOneSet instead:
+# a participant who takes the covered box there is not exploiting the loophole.
+oneset_p <- dat |> filter(term == "scalar", trial_type == "criticalOneSet") |>
+  group_by(participant) |>
+  summarise(closed_domain = mean(covered) > .5, .groups = "drop")
+cat("\nScalar critical rate split by the closed-domain trial:\n")
+print(crit |> filter(term == "scalar") |>
+        left_join(oneset_p, by = "participant") |>
+        group_by(closed_domain) |>
         summarise(covered = mean(covered), n = n(), .groups = "drop"))
 
 # Every critical trial used a different object. If the effect lives in one
@@ -288,6 +321,38 @@ by_lang <- crit |> left_join(lang, by = "participant") |>
   summarise(covered = mean(covered), n = n(), .groups = "drop")
 cat("\nCritical rate by language background — small cells, read with care:\n")
 print(by_lang)
+
+# ---- screening ------------------------------------------------------------
+# Decide these BEFORE looking at the critical rate. Reported as a sensitivity
+# table rather than applied silently, so it is visible whether the conclusion
+# depends on the rule. Huang et al. recruited English-speaking undergraduates,
+# which is what makes the language screen a comparability check rather than a
+# judgement about anybody.
+native  <- lang$participant[lang$first_language == "English"]
+fam_ok  <- fam$ResponseId[fam$n_correct == 4]
+ctrl <- dat |> filter(trial_type %in% c("someAll","noneSome","oneTwo","twoMore")) |>
+  group_by(participant) |> summarise(ctrl = mean(match_box), .groups = "drop")
+probes <- dat |> filter(probe) |>
+  group_by(participant) |> summarise(prb = mean(covered), .groups = "drop")
+attentive <- ctrl$participant[ctrl$ctrl == 1]
+probe_ok  <- probes$participant[probes$prb == 1]
+
+screens <- list(
+  "all participants"            = unique(crit$participant),
+  "+ native English only"       = native,
+  "+ perfect familiarization"   = fam_ok,
+  "+ every control trial right" = attentive,
+  "+ every probe right"         = probe_ok)
+cat("\nSCREENING — does the conclusion depend on who we keep?\n")
+for (nm in names(screens)) {
+  keep <- Reduce(intersect, screens[seq_len(match(nm, names(screens)))])
+  sub_ <- filter(crit, participant %in% keep)
+  r <- sub_ |> group_by(term) |> summarise(m = mean(covered), .groups = "drop")
+  cat(sprintf("  %-30s n=%2d   scalar %.2f   number %.2f\n", nm,
+              n_distinct(sub_$participant),
+              r$m[r$term == "scalar"], r$m[r$term == "number"]))
+}
+cat("  (published: scalar 0.13, number 1.00)\n")
 
 # ---- the headline, and why it is the FIRST blocks ---------------------------
 # Everyone now does both terms, so the pooled scalar rate is contaminated: half
@@ -342,6 +407,9 @@ if (any(rates$m %in% c(0, 1))) {
   cat("\nMixed logistic:\n"); print(summary(m)$coefficients)
 }
 
+# stash the per-participant critical rates so the report figures can reuse them
+saveRDS(crit, "figures/.crit.rds")
+
 # ---- plots ----------------------------------------------------------------
 theme_set(theme_minimal(base_size = 12))
 pal <- c(scalar = "#4C72B0", number = "#CC0000")
@@ -363,20 +431,66 @@ p_crit <- ggplot(crit, aes(term, covered, colour = term)) +
        subtitle = "Dotted lines are Huang, Spelke & Snedeker's 13% and 100%",
        x = NULL, y = "Chose the covered box")
 
-resp_mix <- dat |>
-  mutate(choice = factor(resp, levels = c(1,2,3,4),
-           labels = c("less","subset / exact","more","covered"))) |>
-  count(term, critical, choice) |>
-  group_by(term, critical) |> mutate(p = n/sum(n)) |> ungroup() |>
-  mutate(panel = if_else(critical, "critical trials", "control trials"))
+p_crit
+
+# Each term on its own, with every participant's own rate, so the two are not
+# forced onto a shared axis and the spread within a condition is visible.
+for (tm in c("scalar", "number")) {
+  d <- filter(crit, term == tm)
+  ref <- if (tm == "scalar") .13 else 1
+  pb <- ggplot(d, aes(order, covered)) +
+    geom_hline(yintercept = ref, linetype = "dotted", colour = "grey55") +
+    geom_jitter(width = .10, height = .015, alpha = .5, size = 2,
+                colour = pal[[tm]]) +
+    stat_summary(fun = mean, geom = "point", size = 3.2, colour = "black") +
+    stat_summary(fun.data = mean_se, geom = "errorbar", width = .12,
+                 colour = "black") +
+    scale_y_continuous(labels = scales::percent, limits = c(-.03, 1.03)) +
+    labs(title = paste0(tm, " block, split by when it was seen"),
+         subtitle = paste0("Dotted line is Huang et al.'s ",
+                           scales::percent(ref, accuracy = 1)),
+         x = NULL, y = "Chose the covered box")
+  ggsave(file.path("figures", paste0("coveredbox-", tm, "-block.png")),
+         pb, width = 5.2, height = 4, dpi = 150)
+}
+
+# There are only THREE choices and choice 3 is ALWAYS the covered box. An
+# earlier version labelled the factor as if there were four, which silently
+# renamed the covered box "more" -- the tall bars on the critical panel were the
+# covered box wearing the wrong label. Label from choice-map.csv instead.
+resp_mix <- dat |> filter(critical) |>
+  mutate(choice = case_when(
+           meaning == "covered"        ~ "covered box",
+           meaning %in% c("all","more")~ "lower-bounded box\n(all / 3 or 5)",
+           TRUE                        ~ "matches neither\n(none / empty / one)"),
+         choice = factor(choice, levels = c("matches neither\n(none / empty / one)",
+                                            "lower-bounded box\n(all / 3 or 5)",
+                                            "covered box"))) |>
+  count(term, choice) |>
+  group_by(term) |> mutate(p = n/sum(n)) |> ungroup()
+
+pub <- tibble(term = factor(c("scalar","number"), levels = c("scalar","number")),
+              choice = factor("covered box",
+                              levels = levels(resp_mix$choice)),
+              p = c(.13, 1.00))
 
 p_mix <- ggplot(resp_mix, aes(choice, p, fill = term)) +
-  geom_col(position = "dodge") +
-  facet_wrap(~panel) +
-  scale_fill_manual(values = pal) +
-  scale_y_continuous(labels = scales::percent) +
-  labs(title = "Where the choices went", x = NULL, y = NULL, fill = NULL) +
-  theme(axis.text.x = element_text(angle = 20, hjust = 1))
+  geom_col(width = .68) +
+  geom_text(aes(label = scales::percent(p, accuracy = 1)), vjust = -.5,
+            size = 3.4, colour = "grey25") +
+  # published covered-box rate, drawn across the covered-box bar only
+  geom_segment(data = pub, aes(x = 2.55, xend = 3.45, y = p, yend = p),
+               linetype = "dashed", linewidth = .6, colour = "black",
+               inherit.aes = FALSE) +
+  geom_text(data = pub, aes(x = 3.45, y = p, label = "Huang et al."),
+            hjust = 1, vjust = -.6, size = 3, colour = "grey30",
+            inherit.aes = FALSE) +
+  facet_wrap(~term) +
+  scale_fill_manual(values = pal, guide = "none") +
+  scale_x_discrete(drop = FALSE) +
+  scale_y_continuous(labels = scales::percent, limits = c(0, 1.15)) +
+  labs(x = NULL, y = NULL) +
+  theme(axis.text.x = element_text(size = 8))
 
 dir.create("figures", showWarnings = FALSE)
 ggsave("figures/coveredbox-critical.png", p_crit, width = 5.5, height = 4.2, dpi = 150)

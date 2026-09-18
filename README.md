@@ -23,17 +23,24 @@ generic, so nothing in this repository is anyone else's copyright.
 ## The question and the result
 
 Three boxes on each trial: two open, one covered. *Give me the box where Zip has
-some of the cookies*, or *Give me the box with two fish*. On **critical** trials
-the subset/exact match is absent, so anyone holding out for it must take the
-covered box.
+some of the cookies*, or *Give me the box where Tev has two of the fish*. On
+**critical** trials the subset or exact match is absent, so anyone holding out
+for it must take the covered box.
 
-| critical trial | covered box chosen |
-|---|---|
-| some(NONE, ALL) — boxes show none and all | **13%** — adults accepted *all* as a match for *some* |
-| two(1, 3∨5) — boxes show one and three | **100%** — adults held out for exactly two |
+This repository targets their **Experiment 4**, the online-adult version; see
+the design section for why. Both experiments are given here because the gap
+between them is itself part of what the class should see.
 
-An 87-point contrast at n = 10 per cell. *Some* and *two* are not the same kind
-of meaning, in a population that computes scalar implicatures robustly elsewhere.
+| critical trial | Exp 4 adults, n = 25/cell | Exp 1 adults, n = 10/cell |
+|---|---|---|
+| some(NONE, ALL) | **31%** took the covered box | **13%** |
+| two(1, 3) / two(1, 3∨5) | **92%** | **100%** |
+
+Either way the contrast is large: *some* and *two* are not the same kind of
+meaning, in a population that computes scalar implicatures robustly elsewhere.
+But their own scalar rate moved eighteen points between two of their own
+designs, which is worth knowing before arguing about whether a class-sized
+replication succeeded.
 
 ## Files
 
@@ -43,9 +50,11 @@ of meaning, in a population that computes scalar implicatures robustly elsewhere
 | `make-stimuli.py` | writes the box images to `stimuli/` — one image per box |
 | `build-qsf.py` | writes `HuangSnedeker_replication.qsf` and `columns.txt` |
 | `qsf-template.json` | Qualtrics boilerplate, vendored so the build has no outside dependencies |
-| `make-fake-data.R` | writes `coveredbox-fake-data.csv` in real-export shape |
-| `coveredbox-rep.R` | the analysis; runs on fake or real data |
+| `coveredbox-critical.R` | **the analysis.** Carries the preregistered rule at the top |
 | `columns.txt` | response columns in survey order — the contract between the two |
+| `archive/` | the designs that have been run or built and dropped, with their data |
+| `coveredbox-rep.R` | superseded. Analyses the pre-17-Sept instrument; kept for the archived intro-class data |
+| `make-fake-data.R` | superseded. Writes the old column shape |
 
 Everything is generated. Change the constants at the top of `make-stimuli.py`
 (counts, colours, names) and rerun; nothing is hand-drawn.
@@ -93,141 +102,133 @@ The reason this matters: a QSF cannot reference images in a Qualtrics library,
 because their IDs do not exist until upload. Hosting them sidesteps that
 entirely — otherwise it is 22 questions × 3 choices of manual insertion.
 
-## Design, and where it departs from the original
+## Design: Huang et al.'s Experiment 4
 
-- **Term** (scalar / number) is **between subjects** — one block randomiser.
-- Within a term, the **three critical trials come first**, then the six control
-  trials. Huang et al. put trial type between subjects too, so that nobody could
-  infer the design by comparing trial types; at class scale that would mean six
-  cells of five. Critical-first preserves naïvety where it matters, at the cost
-  of a fixed order. Say so in the report.
-- **Nineteen screens per participant**: four familiarization, fourteen test
-  trials, one optional question at the end. This is Huang et al.'s design plus additions, never a subset of it.
-  The order is written out in `design.py` as `SEQUENCE`, because by now what
-  comes before what does as much work as how many of each there are:
+Rewritten **17 September 2026**. Everything this repository had added was
+removed, and the instrument now follows their **Experiment 4**, which of their
+four is the closest to what a class can run in Qualtrics.
 
-  | | | |
-  |---|---|---|
-  | 1 | `anchorAll` | *…has **all** of the cookies* — fixes the domain |
-  | 2 | `probeEarly` | *…has **none** of the apples* → **covered** |
-  | 3 | `criticalOneSet` | **ours** — domain loophole closed |
-  | 4 | `shape1` | find the green triangle |
-  | 5 | `criticalOneSet` | |
-  | 6 | `shape2` | find the purple hexagon → **covered** |
-  | 7 | `critical` | Huang et al.'s |
-  | 8 | `shape3` | find the orange square |
-  | 9 | `critical` | |
-  | 10–11 | `matchVsMore`, `matchVsLess` | Huang et al.'s |
-  | 12–13 | fillers | *none*, *all* |
-  | 14 | `probe` | **covered**, under maximum extinction pressure |
-  | 15 | `first_language` | optional, text — see below |
+### Why Experiment 4 and not Experiment 1
 
-  **Ours comes before theirs.** The first *some* judgment anyone makes is then
-  one the global reading cannot reach, which settles the domain further before
-  Huang et al.'s trials run — the same argument as putting *all* first, but
-  acting directly on the measure.
+Experiment 1 put trial type between subjects as well as term: sixty
+undergraduates in six cells of ten, and *"this ensured that adult responses
+reflected a naïve understanding of the sentences rather than any inferences
+about the study that might emerge by comparing different trial types."* A
+participant saw three tokens of one trial type and **no fillers at all**.
 
-  **Shape fillers sit between the critical trials.** Four critical trials in a
-  row is punishingly repetitive, and repetition is not neutral here: a
-  participant who has answered the same question three times starts answering
-  the pattern. The fillers are familiarization-style — find a coloured shape —
-  so they contain **no quantifier at all** and reset attention without priming
-  *some*, *all* or *none*. One of the three needs the covered box.
+Experiment 4 keeps only the critical trial types, so everyone is in the cell
+that matters. It was run on fifty adults over Mechanical Turk rather than in a
+lab, which is far nearer to a survey link. And the three critical tokens *"were
+randomized with three filler trials that were similar to those used in the
+Familiarization phase."*
 
-- **Familiarization**: four trials, each naming a **different** shape — red star,
-  green triangle, purple hexagon, orange square — visible twice, hidden twice.
-  Huang et al. ran theirs **twice**, eight trials with feedback on the first
-  pass; this is a single pass with none, because Qualtrics cannot easily give
-  feedback. That matters — see the probe.
+It also rebuilds the number trials so the two conditions look alike: Cookie
+Monster with 1 of 4 cookies against Cookie Monster with 3 of 4, asked as *give
+me the box where Cookie Monster has two of the cookies*, because *"these
+configurations ensured that the items in each box were matched for complexity
+across the scalar and number conditions."* Their number trials are the same
+two-character possession display as the scalar ones, not a bare count of fish.
 
-### The probe, which is not in the original
+Their adult results there: `some(NONE,ALL)` covered box **31%**, total set 60%;
+`two(1,3)` covered box **92%**, lower-bounded option 7%. Note that 31% against
+the 13% of Experiment 1, on the same trial type. Their own scalar rate moved
+eighteen points between two of their own designs, which is worth showing a class
+before anyone argues about whether ours replicates.
 
-In **none** of Huang et al.'s trial types is the covered box unambiguously
-correct. It is always the diagnostic option. So the only thing establishing that
-it is ever the right answer is familiarization — and a participant who reads
-*some* as lower-bounded then never needs it again for the rest of the study.
+### What runs now
 
-If the covered box goes dead for them, a low covered-box rate on critical trials
-is **extinction, not semantics**, and nothing in the original design can tell the
-two apart. Weakening familiarization to a single pass, as above, makes this more
-likely rather than less.
+| | |
+|---|---|
+| 1–4 | familiarization, pass 1, each followed by a feedback screen |
+| 5–8 | familiarization, pass 2, no feedback |
+| 9 | filler, answered by an open box |
+| 10 | `some(NONE,ALL)` — cookies |
+| 11 | filler, answered by an open box |
+| 12 | `some(NONE,ALL)` — apples |
+| 13 | filler, answered by the **covered** box |
+| 14 | `some(NONE,ALL)` — balloons |
+| 15–17 | `two(1,3)` — fish, birds, flowers |
+| 18 | first language, optional |
 
-The probe puts an absent *configuration* in front of the participant while
-keeping every presupposition satisfied except the one the paradigm runs on.
+Twenty-two screens counting the four feedback pages. Response **3** is the
+covered box throughout, and its position rotates across trials.
 
-| term | boxes | prompt | why the covered box is right |
-|---|---|---|---|
-| scalar | Kel has **some** of the flowers / Kel has **all** of them | *Give me the box where Kel has **none** of the flowers.* | neither shows Kel with none |
-| number | **1** flower / **2** flowers | *Give me the box with **five** flowers.* | absent under exact semantics *and* under lower-bounded |
+**Every box in the study is the same display**: two named characters either side
+of a divider, four objects split between them. Familiarization and fillers
+included. The shape panels are gone. A participant who has practised on floating
+coloured triangles has not practised the task, and with the probe removed the
+familiarization is the only thing establishing that the covered box is ever the
+answer, so it has to be the same shape as the thing it prepares for.
 
-Getting the absence in the right place took two tries, and the failures are
-instructive.
+Familiarization and fillers ask with a **bare indefinite** — *give me the box
+where Ral has a carrot* — so no quantity judgment is involved and no partitive
+presupposition is in play. What varies is which character has the thing, or
+whether the named object is there at all. **Neither ever shows the 4-0
+configuration**, because that box is the dependent variable and nobody should be
+taught how to treat it. The 0-4 box does appear, which is safe: it is rejected
+under every reading of *some*, so it cannot bias between them.
 
-The task already turns on one presupposition failure: *the box with two fish*
-presupposes such a box exists, and when none is visible the inference is that it
-is hidden. That is the paradigm.
+### The departures that are left
 
-An earlier probe asked for *some of the **hearts*** against boxes of flowers.
-That fails a **different** presupposition — the restrictor's. *The hearts*
-presupposes a salient set of hearts and there is none. A failed restrictor
-invites **repair** ("they must mean the flowers") rather than the inference that
-the referent is hidden, so the trial would have measured repair behaviour instead
-of whether the covered box is live. Before that, an offset picked *leaves*
-against flowers, which is not unmistakably absent at all.
+Both terms go to the same participant, which their between-subjects design
+forbids. Scalar runs **first and uncontaminated**, number second, so
+contamination can travel only from scalar to number, and the number cell sits at
+ceiling in their data and ours. It buys the class the *some* against *two*
+contrast and should be stated in any write-up.
 
-The number probe asks for **five** rather than three for a specific reason. Ask
-for three against boxes of 1 and 5 and a lower-bounded participant can answer
-with the visible 5, since 5 ≥ 3 — and the lower-bounded participants are exactly
-the ones whose covered box we doubt. A probe they can satisfy with an open box
-is no probe. Five against 1 and 2 is absent on either semantics.
+The six test screens are interleaved in a fixed order rather than randomized, so
+that every critical has a filler before it and the covered-box filler falls late
+rather than beside the first and most naive critical. Feedback on the first
+familiarization pass is a screen saying where the target was, since Qualtrics
+cannot let anyone open a box.
 
-**The critical trials are bracketed by real covered-box demands**, not just by
-familiarization. `probeEarly` sits immediately before them and `probe` after
-everything; familiarization trials 3 and 4 come earlier still.
+### What was removed, and why
 
-`probeEarly` earns its slot twice over. Without it the anchor asks who has
-**all** of the cookies — answer, the full box — and the very next screen asks who
-has **some**, where the lower-bounded answer is again the full box. Choosing the
-same configuration for *all* and then *some* on consecutive screens all but
-demonstrates the equivalence under test. It also re-establishes the covered box
-at the point where extinction would actually bite, which is before the critical
-trials rather than after them.
+`anchorAll`, `probeEarly`, `probe`, `criticalOneSet`, the shape fillers, and the
+four control trial types. Each was defensible alone; together they put nine
+quantity questions in front of every participant before the block was over,
+which is the comparison across trial types the authors designed against.
 
-Priming the covered box pushes toward implicature computation and therefore
-*against* the finding that adults accept the total set as *some* — conservative,
-the same shape of argument as for putting *all* first. So the question "was it live while it mattered?" is answered on both
-sides.
+The intro-class run of 2–3 September, on that instrument, gave a scalar critical
+rate of **81%**, with familiarization at 35/35 and the probes at 35/35, 35/35,
+35/35 and 34/35. Block order did not explain it, since scalar-first participants
+were at 78%, and the domain did not either, since `criticalOneSet` came out at
+83% like the rest. Design, data and numbers are in `archive/2026-09-intro-run/`.
 
-The probe is deliberately last rather than immediately after the critical
-trials. By then five trials have gone by in which no covered answer was ever
-correct — two critical, where most scalar participants take an open box, then
-three controls where a match is always visible. Extinction pressure is at its
-highest exactly there, so passing the probe at the end is *stronger* evidence
-than passing it earlier would be. It is a conservative test.
+The first suspect was `anchorAll`, whose boxes were `SOME` and `ALL` and whose
+prompt asked for *all*, so the participant had to discriminate the two displays
+and label the fuller one two screens before being asked about *some*. A
+replacement asking for *half* was built and dropped within the hour, because an
+anchor about proportions makes *what proportion does he have* the question under
+discussion, which promotes the very inference the paradigm exists to cancel.
+That version is in `archive/2026-09-anchorhalf-superseded/`.
 
-Putting a probe *before* the critical trials was considered and rejected: a
-participant who has just chosen the covered box is likelier to choose it again
-on the very next screen, which is the one that matters. Familiarization already
-does that job, at a safe distance.
+The rule the episode produced, worth applying to anything added later: **a trial
+whose correct answer is the covered box teaches the covered box and nothing
+else; a trial whose correct answer is an open box teaches a mapping from a
+quantifier word to a picture, and participants generalise it.**
 
-`coveredbox-rep.R` reports the front of the bracket (fam3 and fam4, over **all**
-completed responses — among the included it is 100% by construction and says
-nothing) and the probe pass rate by term, warning below 80%. Whether to exclude
-on the probe is a judgment the report should argue rather than assume. Huang et al. gave feedback on the first pass; Qualtrics
-  cannot easily, so instead these serve as the exclusion criterion. Current rule
-  is all four correct; 3/4 is defensible if recruitment is tight.
+### The preregistered test
 
-Response codes: **1** = first open box · **2** = second open box ·
-**3** = the covered box. Choice IDs are stable whatever order the boxes are
-displayed in; what 1 and 2 mean varies by trial type, so `build-qsf.py` writes
-**`choice-map.csv`** and the analysis reads it instead of hard-coding anything.
-The measure of interest is the rate of **3** on critical trials.
+About twelve participants, all in the scalar critical cell, tested against
+Experiment 4's **.31** with an exact binomial, the participant as the unit:
 
-The covered box's position is counterbalanced **by hand** — across the three
-tokens of each trial type it appears first, second and third. Qualtrics can
-randomise choice order, but no QSF available here demonstrated that structure,
-and an unverified guess costs the whole import. Fully balanced beats randomised
-anyway at three tokens.
+| covered box, of 12 | rate | p vs .31 |
+|---|---|---|
+| 0 | 0% | .023 |
+| 4 | 33% | 1.00 |
+| 6 | 50% | .21 |
+| 7 | 58% | .057 |
+| **8** | **67%** | **.012** |
+| 10 | 83% | .0003 |
+
+**Fewer than eight of twelve and we have not separated from them. Eight or more
+and we have.** Power is 96% against a true rate of .83, which is what the intro
+class produced, 58% against .65 and 30% against .55; the middle of the range is
+out of reach at this sample size, which is a limitation to state rather than
+discover. The rule lives at the top of `coveredbox-critical.R` and should be on
+the board before anyone opens the survey.
+
 
 ### A note on hand-writing QSFs
 
@@ -255,6 +256,8 @@ bulk is wrong".
 
 ## One thing the analysis will hit, and it is worth a paragraph
 
+*(Written for the old instrument. The separation point still holds, but `coveredbox-critical.R` fits no model at all: with one cell and a published benchmark the test is an exact binomial.)*
+
 The number condition sits at or near **100%**, so a logistic model of the
 critical trials is **completely separated**: no finite log-odds describes the
 difference, the estimate runs to infinity, and the standard error with it. R
@@ -267,6 +270,8 @@ On the fake data the Mann–Whitney (Huang et al.'s own test) gives
 p ≈ 4 × 10⁻⁸ with 19 and 17 participants.
 
 ## Revised 2 Sept 2026 — within subjects, and shorter
+
+*(Superseded by the 17 September rewrite above. Kept because the two problems it describes are real and would come back if the trial list ever grows again.)*
 
 Taking it revealed two problems. The critical/filler alternation was perfectly
 regular, so the critical trials were predictable; and all four visible-answer

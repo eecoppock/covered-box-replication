@@ -60,8 +60,6 @@ for e in tpl["SurveyElements"]:
         qsf["SurveyElements"].append(copy.deepcopy(e))
 
 qid=[0]
-rot_i=[0]          # counts only the image questions, so feedback screens
-                   # inserted between them do not shift the rotation
 def mc(tag, prompt, boxes, preamble=""):
     qid[0]+=1; q=f"QID{qid[0]}"
     names = boxes + ["covered"]
@@ -72,33 +70,11 @@ def mc(tag, prompt, boxes, preamble=""):
     p["DataExportTag"]=tag; p["QuestionID"]=q
     p["QuestionDescription"]=prompt[:95]
     p["Choices"] = {str(i+1): {"Display": img(n)} for i,n in enumerate(names)}
-    rot = rot_i[0] % 3; rot_i[0]+=1
+    rot = (qid[0]-1) % 3
     p["ChoiceOrder"] = (["3","1","2"] if rot==0 else
                         ["1","3","2"] if rot==1 else ["1","2","3"])
     p["Validation"]["Settings"]["ForceResponse"]="ON"
     p["NextChoiceId"]=4
-    qsf["SurveyElements"].append(el)
-    return q
-
-def feedback(tag, text):
-    """Huang et al. gave feedback after every trial of the first familiarization
-    pass, and let people open the covered box while searching. Qualtrics can do
-    neither, so the equivalent is a screen that states where the target was.
-    Built on the same MC payload as everything else, with a single Continue
-    option, because introducing a new question type is how a QSF import fails."""
-    qid[0]+=1; q=f"QID{qid[0]}"
-    el = copy.deepcopy(mc_tpl)
-    el["PrimaryAttribute"]=q; el["SecondaryAttribute"]=tag
-    p = el["Payload"]
-    p["QuestionText"] = f'<span style="font-size:18px;">{text}</span>'
-    p["DataExportTag"]=tag; p["QuestionID"]=q
-    p["QuestionDescription"]=tag
-    p["Selector"]="SAVR"
-    p["Configuration"]={"QuestionDescriptionOption":"UseText"}
-    p["Choices"]={"1":{"Display":"Continue"}}
-    p["ChoiceOrder"]=["1"]
-    p["Validation"]["Settings"]["ForceResponse"]="OFF"
-    p["NextChoiceId"]=2
     qsf["SurveyElements"].append(el)
     return q
 
@@ -133,54 +109,47 @@ rows=[("question","choice_id","meaning")]
 blocks=[]
 
 if TEST:
-    f0 = design.familiarization()[0]; c0 = design.scalar_block()[1]
-    qs=[mc("t1", f0[1], f0[2], PREAMBLE), mc("t2", c0[1], c0[2])]
+    qs=[mc("t1", design.FAM[0][1], design.FAM[0][2], PREAMBLE),
+        mc("t2", design.all_trials()[9]["prompt"], design.all_trials()[9]["boxes"])]
     blocks.append(block("test","Default Question Block",qs,typ="Default"))
     flow_inner=[{"ID":blocks[0]["ID"],"Type":"Block","FlowID":"FL_2"}]
     count=3
 else:
-    # Huang et al. ran the four familiarization trials TWICE. On the first
-    # pass adults got feedback after each choice and could open the covered box
-    # while searching; on the second they were told not to open it and got no
-    # feedback. Familiarization here uses the same two-character possession
-    # display as the test trials, asked with a bare indefinite ("has a
-    # carrot"), so the practice is the same shape as the thing practised.
-    def add(tag, prompt, boxes, m1, m2, preamble=""):
-        q = mc(tag, prompt, boxes, preamble)
-        rows.extend([(tag,"1",m1),(tag,"2",m2),(tag,"3","covered")])
-        return q
-
     fam=[]
-    for i,(tag,prompt,boxes,m1,m2,correct) in enumerate(design.familiarization()):
-        fam.append(add(tag, prompt, boxes, m1, m2, PREAMBLE if i==0 else ""))
-        rows.append((tag,"correct",correct))
-        fam.append(feedback(f"{tag}_fb", design.FAM_FEEDBACK[correct]))
-    for i,(tag,prompt,boxes,m1,m2,correct) in enumerate(design.familiarization()):
-        t2=f"{tag}_p2"
-        fam.append(add(t2, prompt, boxes, m1, m2, design.PASS2_NOTE if i==0 else ""))
-        rows.append((t2,"correct",correct))
+    for i,(tag,prompt,boxes,correct) in enumerate(design.FAM):
+        fam.append(mc(tag, prompt, boxes, PREAMBLE if i==0 else ""))
+        rows += [(tag,"1","first open box"),(tag,"2","second open box"),
+                 (tag,"3","covered"),(tag,"correct",correct)]
     blocks.append(block("fam","Familiarization",fam,typ="Default"))
-
-    # Test phase. The scalar block is three fillers interleaved with the three
-    # criticals, as in Exp 4, where the three critical tokens "were randomized
-    # with three filler trials that were similar to those used in the
-    # Familiarization phase". The order is fixed rather than randomized: every
-    # critical has a filler before it, and the one filler answered by the
-    # covered box falls late rather than beside the first and most naive
-    # critical. The number block follows, uninterleaved.
     term_ids=[]
-    for name, trials in (("scalar", design.scalar_block()),
-                         ("number", design.number_block())):
+    for term in ("scalar","number"):
         qs=[]
-        for tag,prompt,boxes,m1,m2,correct in trials:
-            qs.append(add(tag, prompt, boxes, m1, m2))
-            if correct: rows.append((tag,"correct",correct))
-        b=block(name, f"{name} block", qs)
+        for t in design.all_trials():
+            if t["term"] != term: continue
+            tag=(f"{term}_{t['kind']}" if t["set"] == 0
+                 else f"{term}_{t['kind']}_s{t['set']}")
+            qs.append(mc(tag, t["prompt"], t["boxes"]))
+            rows += [(tag,"1",t["meaning"][0]),(tag,"2",t["meaning"][1]),
+                     (tag,"3","covered")]
+        b=block(term,f"{term} trials",qs)
         blocks.append(b); term_ids.append(b["ID"])
+    # Everyone now sees BOTH terms. The randomiser picks one of two GROUPS, and
+    # each group stamps first_term as embedded data before running its blocks, so
+    # the order is recorded rather than inferred afterwards. A Group wrapper is
+    # used rather than a Branch: branches have been the fragile part of every QSF
+    # in this project, and a randomiser over groups needs no condition logic.
     flow_inner=[{"ID":blocks[0]["ID"],"Type":"Block","FlowID":"FL_2"},
-                {"ID":term_ids[0],"Type":"Block","FlowID":"FL_3"},
-                {"ID":term_ids[1],"Type":"Block","FlowID":"FL_4"}]
-    count=10
+      {"Type":"BlockRandomizer","FlowID":"FL_3","SubSet":1,"EvenPresentation":True,
+       "Flow":[
+         {"Type":"Group","FlowID":"FL_10","Description":"scalar first","Flow":[
+            {"Type":"EmbeddedData","FlowID":"FL_11","EmbeddedData":[{"Description":"first_term","Type":"Custom","Field":"first_term","VariableType":"String","DataVisibility":[],"AnalyzeText":False,"Value":"scalar"}]},
+            {"ID":term_ids[0],"Type":"Block","FlowID":"FL_12"},
+            {"ID":term_ids[1],"Type":"Block","FlowID":"FL_13"}]},
+         {"Type":"Group","FlowID":"FL_20","Description":"number first","Flow":[
+            {"Type":"EmbeddedData","FlowID":"FL_21","EmbeddedData":[{"Description":"first_term","Type":"Custom","Field":"first_term","VariableType":"String","DataVisibility":[],"AnalyzeText":False,"Value":"number"}]},
+            {"ID":term_ids[1],"Type":"Block","FlowID":"FL_22"},
+            {"ID":term_ids[0],"Type":"Block","FlowID":"FL_23"}]}]}]
+    count=30
 
 if not TEST:
     lang_q = text_mc("first_language", design.LANGUAGE_Q[0], design.LANGUAGE_Q[1])
@@ -207,7 +176,8 @@ print(f"wrote {OUT}: {len(mcq)} questions, {len(blocks)} blocks")
 if not TEST:
     with open("choice-map.csv","w",newline="") as fh: csv.writer(fh).writerows(rows)
     with open("columns.txt","w") as fh:
-        # first_term is gone: the terms no longer run in a randomised order,
-        # so there is nothing to record. Scalar is always first.
-        fh.write("\n".join([e["Payload"]["DataExportTag"] for e in mcq])+"\n")
+        # first_term is embedded data set by the flow, and Qualtrics exports it
+        # as a column like any other, so the fake data must carry it too.
+        fh.write("\n".join([e["Payload"]["DataExportTag"] for e in mcq]
+                            + ["first_term"])+"\n")
     print("wrote columns.txt and choice-map.csv")

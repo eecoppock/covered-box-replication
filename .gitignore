@@ -4,3 +4,5 @@ __pycache__/
 .Rhistory
 results/
 Rplots.pdf
+archive/*/raw/
+archive/*/*.csv

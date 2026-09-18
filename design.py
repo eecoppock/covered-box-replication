@@ -1,14 +1,9 @@
 """
 The design, in one place, so make-stimuli.py and build-qsf.py cannot drift.
 
-Huang et al. put trial type BETWEEN subjects: a participant saw one trial type,
-three times, with a different object each time. Running trial type within
-subjects instead — which class-sized samples force — must not be done by
-crossing object set with trial type, or every object turns up three times under
-the same prompt and two of the three trials look like duplicates.
-
-So object sets are NESTED in trial type: nine per term, three per trial type,
-and every prompt in the survey is unique.
+Huang, Spelke & Snedeker (2013), Experiment 4, reduced to what a class-sized
+sample allows. See the long note below for what Exp 4 is and why it is the
+target rather than Exp 1.
 """
 
 # ---- how many trials of each kind ------------------------------------------
@@ -117,92 +112,37 @@ and every prompt in the survey is unique.
 #                   the three needs the covered box.
 #   probe           the covered box again, at the end, under the most
 #                   extinction pressure the study can apply.
-# Revised 2 Sept 2026, after taking it: the old order alternated critical/filler
-# in a perfectly learnable rhythm and then blocked all four visible-answer
-# controls at the end, so the covered box was live for a run of trials and dead
-# for a run of trials. Now the controls are interleaved among the critical
-# trials, the gaps between critical trials are uneven (positions 3, 6, 10), and
-# there are three critical trials rather than four -- with a ~90-point effect,
-# four was buying nothing, and the slots are worth more as camouflage. Both
-# terms are now shown to everyone, so length is the binding constraint.
-SEQUENCE = ["anchor", "probeEarly",
-            "critical", "shape", "matchVsMore",
-            "critical", "shape", "matchVsLess",
-            "otherQuant", "criticalOneSet", "probe"]
+# Rewritten 17 September 2026 to follow Huang, Spelke & Snedeker (2013)
+# EXPERIMENT 4, which is the closest of their four to what can be run on a
+# class in Qualtrics.
+#
+# Why Experiment 4 rather than Experiment 1. Exp 1 put trial type between
+# subjects as well as term -- six cells of ten, and a participant saw three
+# tokens of ONE trial type and no fillers whatever. Exp 4 keeps only the
+# critical trial types, so everyone is in the cell that matters; it was run on
+# fifty adults over Mechanical Turk rather than in a lab, which is much nearer
+# to a Qualtrics survey; and, in their words, the three critical tokens "were
+# randomized with three filler trials that were similar to those used in the
+# Familiarization phase".
+#
+# Exp 4 also rebuilds the number trials so that both conditions look alike:
+# Cookie Monster with 1 of 4 cookies against Cookie Monster with 3 of 4, asked
+# as "give me the box where Cookie Monster has two of the cookies", because
+# "these configurations ensured that the items in each box were matched for
+# complexity across the scalar and number conditions". Their number trials are
+# therefore the same two-character possession display as the scalar ones, not a
+# bare count of fish.
+#
+# Their adult results in Exp 4: some(NONE,ALL) covered box 31%, total set 60%;
+# two(1,3) covered box 92%, lower-bounded option 7%. The 31% is the benchmark
+# the preregistered test in coveredbox-critical.R runs against; note it is 18
+# points above the 13% of Exp 1, on the same trial type, which is itself worth
+# showing a class.
+#
+# Everything this repository used to add -- anchorAll, probeEarly, probe,
+# criticalOneSet, shape fillers, the four control trial types -- is gone. See
+# archive/ for those designs, the intro-class data they produced, and why.
 
-# ---- language background ---------------------------------------------------
-# Asked LAST, so it cannot colour any response, and OPTIONAL.
-#
-# Huang et al. recruited "English-speaking undergraduates", so without this the
-# report cannot state its own participant characteristics and comparability with
-# the published rate is an assumption rather than a check. It may also not be a
-# nuisance variable: there is a literature on second-language speakers computing
-# scalar implicatures differently, so in a class where a quarter of the sample is
-# non-native this could be the most interesting thing in the data.
-#
-# Optional and coarse on purpose. This is classroom data from identifiable
-# people, and in a group of thirty that the instructor knows, a rare answer plus
-# a response pattern can identify someone. "Prefer not to say" is a real option,
-# not politeness. Reporting should be in aggregate.
-#
-# The wording avoids "native speaker", which is a contested construct and worth
-# fifteen minutes of the ethics session on its own -- what exactly would we be
-# measuring, and would a better question be about age of acquisition, or about
-# which languages were spoken at home?
-LANGUAGE_Q = ("Is English your first language? <em>(optional)</em>",
-              ["Yes", "No", "Prefer not to say"])
-
-# ---- shape fillers ---------------------------------------------------------
-SHAPE_PANELS = {"fill_a1":["tri","hex"],  "fill_a2":["sq","star"],
-                "fill_b1":["star","sq"],  "fill_b2":["tri","star"],
-                "fill_c1":["sq","hex"],   "fill_c2":["star","tri"]}
-SHAPE_FILLERS = {   # kind: (prompt, [choice-1 box, choice-2 box], correct)
- "shape1": ("Give me the box with the green triangle.", ["fill_a1","fill_a2"], "1"),
- "shape2": ("Give me the box with the purple hexagon.", ["fill_b1","fill_b2"], "3"),
- "shape3": ("Give me the box with the orange square.",  ["fill_c1","fill_c2"], "1"),
-}
-
-# ---- the domain of "the apples", and why an "all" trial goes first ----------
-# "Give me the box where Zip has some of the apples" leaves the domain of "the
-# apples" open. Box-internal -- the apples in the box under consideration -- or
-# global, the apples anywhere on screen?
-#
-# It matters, because the global reading gives a complete alternative account of
-# the headline result. On a critical trial the ALL box shows Zip with four of
-# the eight apples visible. Read globally that IS "some but not all", so a
-# participant can take the ALL box with the exclusive reading of "some" fully
-# intact. Eighty-seven percent choosing it would then say nothing about whether
-# the implicature was computed.
-#
-# The "all" trial separates the readings, and putting it first settles the
-# question before any "some" trial is seen:
-#
-#   box-internal  the ALL box is correct: the target has all four in that box
-#   global        no box is correct -- the target has four of eight on screen --
-#                 so a global reader takes the covered box
-#
-# And because the task presupposes an answer exists, meeting "all" first pushes
-# toward the only construal on which one does. The response is also recorded:
-# a participant who takes the covered box here was reading globally, and their
-# later "some" responses should be read in that light.
-#
-# The cost is that a trial with a visible answer now precedes the critical ones,
-# which cuts against putting critical trials first. Familiarization already
-# shows two visible-answer trials and two requiring the covered box, so this
-# adds little; and the domain confound explains away the whole finding, where
-# extinction only biases it in a direction the probe measures.
-
-# "matchVsLess" was briefly set to 0. It is the one trial type here that is a pure comprehension
-# check, it sits at ceiling in the original (100%), and four familiarization
-# trials plus two fillers already do that job. It was also the trial inflating
-# "some": dropping it moves the scalar balance from 5/2/1 to 3/2/1.
-#
-# The cost is real and belongs in the report: Some(NONE,SOME) is one of Huang et
-# al.'s three test conditions, so this replication does not cover their full
-# design. Its display is still seen -- noneVis uses the same pair of boxes -- but
-# with "none" rather than "some". Setting "matchVsLess" back to 1 restores it.
-
-# nine objects, each with its plural for the number prompt
 OBJECTS = [("cookie","cookies"), ("apple","apples"), ("balloon","balloons"),
            ("fish","fish"),      ("bird","birds"),   ("flower","flowers"),
            ("star","stars"),     ("heart","hearts"), ("leaf","leaves"),
@@ -212,163 +152,127 @@ NAMES = [("Zip","Nub"), ("Mo","Pim"), ("Dax","Wug"), ("Tev","Lom"), ("Bix","Rud"
          ("Kel","Sap"), ("Jom","Nid"), ("Vex","Pol"), ("Gub","Tam"), ("Ral","Fen"),
          ("Sib","Yon")]
 
-# trial types, in presentation order: critical first, then the two controls
-# "probe" is not in Huang et al. In no trial type of theirs is the covered box
-# unambiguously correct -- it is always the diagnostic option -- so the only
-# thing establishing that it is ever right is familiarization. A participant who
-# reads *some* as lower-bounded then never needs it again, and if it goes dead
-# for them, a low covered-box rate is extinction rather than semantics.
-#
-# The probe asks for an object that is in NEITHER open box, so the covered box
-# is correct whatever anyone's semantics. It sits AFTER the critical trials, so
-# it cannot prime them, and it turns the worry into a measurement: if scalar
-# participants pass the probe, their low critical rate is not extinction.
-SCALAR = {"anchor":"anchorAll", "probeEarly":"probeEarly", "critical":"critical",
-          "criticalOneSet":"criticalOneSet", "matchVsLess":"noneSome",
-          "matchVsMore":"someAll", "otherQuant":["noneVis","allVis"],
-          "probe":"probe", "shape":["shape1","shape2","shape3"]}
-# The number term has no partitive and so no domain ambiguity -- "the box with
-# two fish" counts within a box by construction. Its anchor is there to keep the
-# two versions the same length and shape.
-#
-# For the same reason criticalOneSet has no work to do here, and it maps to the
-# ORDINARY critical kind. Giving it an empty box would only make the standard
-# critical with a 0 in place of the 1 -- no loophole closed, and a blank white
-# box that reads as an image that failed to load rather than a box with nothing
-# in it. The number term therefore gets four critical trials and no empty boxes.
-NUMBER = {"anchor":"anchorFive", "probeEarly":"probeEarly", "critical":"critical",
-          "criticalOneSet":"critical", "matchVsLess":"oneTwo",
-          "matchVsMore":"twoMore", "otherQuant":["threeVis","fiveVis"],
-          "probe":"probe", "shape":["shape1","shape2","shape3"]}
+LANGUAGE_Q = ("Is English your first language? <em>(optional)</em>",
+              ["Yes", "No", "Prefer not to say"])
 
-# which two open boxes each trial type shows (choice 1, choice 2)
-SCALAR_BOXES = {"critical": ("NONE","ALL"),   # no subset match -> covered box
-                "noneSome": ("NONE","SOME"),
-                "someAll":  ("SOME","ALL"),
-                "probe":    ("SOME","ALL"),   # neither shows the target with none
-                "probeEarly": ("SOME","ALL"),
-                "criticalOneSet": ("EMPTY","ALL"), # every object is in one box
-                "noneVis":  ("NONE","SOME"),  # the NONE panel is the answer
-                "allVis":   ("SOME","ALL"),   # the ALL panel is the answer
-                "anchorAll":("SOME","ALL")}   # same display, but it goes first
-NUMBER_BOXES = {"critical": (1,"more"),        # no exact match -> covered box
-                "oneTwo":   (1,2),
-                "twoMore":  (2,"more"),
-                "probe":    (1,2),             # neither has five or more
-                "probeEarly": (1,2),
-                "criticalOneSet": (0,"more"),  # every object is in one box
-                "threeVis": (1,3),             # the 3 box; unambiguous, 1 < 3
-                "fiveVis":  (2,5),             # the 5 box; unambiguous, 2 < 5
-                "anchorFive": (2,5)}
+# Feedback after each trial of the FIRST familiarization pass. Huang et al. gave
+# feedback there and let adults open the covered box while searching; the
+# nearest thing Qualtrics allows is a screen saying where the target was.
+FAM_FEEDBACK = {
+ "1": "It was in the box on the left. When you can see what is being asked "
+      "for, choose the box it is in.",
+ "2": "It was in the box on the right. When you can see what is being asked "
+      "for, choose the box it is in.",
+ "3": "Neither open box had one, so it was in the closed box. When you cannot "
+      "see what is being asked for, it is in the closed one.",
+}
 
-# what choices 1 and 2 mean, for choice-map.csv
-SCALAR_MEANING = {"critical": ("none","all"), "noneSome": ("none","match"),
-                  "someAll":  ("match","all"), "probe": ("absent","absent"),
-                  "criticalOneSet": ("empty","all"),
-                  "probeEarly": ("absent","absent"),
-                  "noneVis":  ("match","other"), "allVis": ("other","match"),
-                  "anchorAll": ("other","match")}
-NUMBER_MEANING = {"critical": ("one","more"), "oneTwo": ("one","match"),
-                  "twoMore":  ("match","more"), "probe": ("absent","absent"),
-                  "criticalOneSet": ("empty","more"),
-                  "probeEarly": ("absent","absent"),
-                  "threeVis": ("other","match"), "fiveVis": ("other","match"),
-                  "anchorFive": ("other","match")}
+PASS2_NOTE = ("<p>Now the same four practice screens again. This time there is "
+              "no feedback, and the closed box stays closed.</p><br>")
 
-MORE = [3, 5, 3, 5, 3, 5, 3, 5, 3, 5, 3]  # the "more than two" count, per set
+# ---- boxes ------------------------------------------------------------------
+# Every open box is one image, drawn by make-stimuli.py, and its name carries
+# everything needed to draw it: which object set, how many the TARGET character
+# has, how many the other one has. Four objects per box throughout, as in
+# Huang et al.
+def box(set_i, n_target, n_other):
+    return f"s{set_i}_{n_target}_{n_other}"
 
-# ---- the probe, and the presupposition it must not violate -----------------
-# The probe needs a configuration that is absent from both open boxes, so that
-# the covered box is correct on anyone's semantics. Two earlier attempts got the
-# absence in the wrong place.
+NONE_ = lambda i: box(i, 0, 4)   # target has none, other has all
+ALL_  = lambda i: box(i, 4, 0)   # target has all, other has none
+ONE_  = lambda i: box(i, 1, 3)   # the less-than option in two(1,3)
+THREE_= lambda i: box(i, 3, 1)   # the more-than option in two(1,3), and the
+                                 # "has some of them" box in the fillers
+
+# ---- object and character assignment ---------------------------------------
+# Disjoint across roles so nothing carries over.
+CRIT_SCALAR = [1, 2, 3]    # cookies, apples, balloons
+CRIT_NUMBER = [4, 5, 6]    # fish, birds, flowers
+FILLERS     = [7, 8, 9]    # stars, hearts, leaves
+FAM_SETS    = [10, 11]     # carrots, mushrooms
+
+# ---- the trial list ---------------------------------------------------------
+# A trial is (tag, prompt, [box1, box2], meaning1, meaning2, correct).
+# "correct" is set only where there is a right answer: the familiarization and
+# the fillers. The criticals are the measurement and have none.
 #
-# The paradigm already runs on ONE presupposition failure: "the box with two
-# fish" presupposes such a box exists, and when none is visible, the inference is
-# that it must be hidden. That is the whole task.
-#
-# An earlier probe asked for "some of the hearts" against boxes of flowers. That
-# fails a DIFFERENT presupposition -- the restrictor's. "The hearts" presupposes
-# a salient set of hearts, and there is none. Failed restrictors invite repair
-# ("they must mean the flowers") rather than the inference that the referent is
-# hidden, so the trial would have measured repair behaviour instead of whether
-# the covered box is live.
-#
-# So the probe keeps the restrictor satisfied and puts the absence in the
-# configuration:
-#   scalar  boxes show SOME and ALL of the flowers; asks who has NONE of them.
-#           "The flowers" refers; no box shows the target having none.
-#   number  boxes show 1 and 2 flowers; asks for FIVE. Absent under exact
-#           semantics (no box has exactly five) and under lower-bounded
-#           semantics (none has five or more) -- which matters, since the
-#           participants whose covered box we most doubt are the lower-bounded
-#           ones, and a probe they could answer with a visible box is no probe.
-PROBE_COUNT = "five"
+# Fillers and familiarization use a BARE INDEFINITE -- "has a carrot" -- so no
+# quantity judgment is involved and no partitive presupposition is in play.
+# What varies across the two boxes is which character has the thing, or whether
+# the named object is present at all. Neither ever shows the 4-0 configuration,
+# because that box is the dependent variable and nobody should be taught how to
+# treat it.
 
-def _kinds(mapping):
-    """concrete trial kinds in presentation order, cycling any role that maps
-    to a list so repeats get different material"""
-    out, seen = [], {}
-    for role in SEQUENCE:
-        k = mapping[role]
-        if isinstance(k, list):
-            i = seen.get(role, 0); seen[role] = i + 1
-            out.append(k[i % len(k)])
-        else:
-            out.append(k)
+def _fam():
+    c, m = FAM_SETS                       # carrots, mushrooms
+    cn, mn = NAMES[c-1], NAMES[m-1]
+    return [
+      ("fam1", f"Give me the box where {cn[0]} has a carrot.",
+       [NONE_(c), THREE_(c)], "other has them", "match", "2"),
+      ("fam2", f"Give me the box where {mn[0]} has a mushroom.",
+       [THREE_(m), NONE_(m)], "match", "other has them", "1"),
+      ("fam3", f"Give me the box where {cn[0]} has a mushroom.",
+       [THREE_(c), NONE_(c)], "wrong object", "wrong object", "3"),
+      ("fam4", f"Give me the box where {mn[0]} has a carrot.",
+       [NONE_(m), THREE_(m)], "wrong object", "wrong object", "3"),
+    ]
+
+def _fillers():
+    a, b, c = FILLERS                     # stars, hearts, leaves
+    an, bn, cn = NAMES[a-1], NAMES[b-1], NAMES[c-1]
+    return [
+      ("fill1", f"Give me the box where {an[0]} has a star.",
+       [THREE_(a), NONE_(a)], "match", "other has them", "1"),
+      ("fill2", f"Give me the box where {bn[0]} has a heart.",
+       [NONE_(b), THREE_(b)], "other has them", "match", "2"),
+      # the one filler answered by the covered box, placed late, where
+      # extinction would otherwise start to bite
+      ("fill3", f"Give me the box where {cn[0]} has a carrot.",
+       [THREE_(c), NONE_(c)], "wrong object", "wrong object", "3"),
+    ]
+
+def _scalar_criticals():
+    out = []
+    for n, i in enumerate(CRIT_SCALAR, start=1):
+        target = NAMES[i-1][0]; plural = OBJECTS[i-1][1]
+        out.append((f"scalar_critical_s{i}",
+                    f"Give me the box where {target} has some of the {plural}.",
+                    [NONE_(i), ALL_(i)], "none", "all", None))
     return out
 
-def _trials(term):
-    """Shape fillers use their own panels and consume no object set, so the
-    quantifier trials keep a one-to-one mapping onto OBJECTS and NAMES."""
-    mapping = SCALAR if term == "scalar" else NUMBER
-    obj_i = 0
-    for kind in _kinds(mapping):
-        if kind in SHAPE_FILLERS:
-            prompt, boxes, correct = SHAPE_FILLERS[kind]
-            yield dict(term=term, kind=kind, set=0, prompt=prompt, boxes=boxes,
-                       meaning=(("match","other") if correct == "1"
-                                else ("absent","absent")), correct=correct)
-            continue
-        i = obj_i; obj_i += 1
-        _, plural = OBJECTS[i]
-        if term == "scalar":
-            target, other = NAMES[i]
-            quant = {"probe":"none", "probeEarly":"none",
-                     "noneVis":"none", "allVis":"all",
-                     "anchorAll":"all"}.get(kind, "some")
-            yield dict(term=term, kind=kind, set=i+1,
-                       prompt=f"Give me the box where {target} has {quant} of the {plural}.",
-                       boxes=[f"scalar_s{i+1}_{b}" for b in SCALAR_BOXES[kind]],
-                       meaning=SCALAR_MEANING[kind], correct=None)
-        else:
-            counts = [MORE[i] if b == "more" else b for b in NUMBER_BOXES[kind]]
-            want = {"probe":PROBE_COUNT, "probeEarly":PROBE_COUNT,
-                    "threeVis":"three", "fiveVis":"five",
-                    "anchorFive":"five"}.get(kind, "two")
-            yield dict(term=term, kind=kind, set=i+1,
-                       prompt=f"Give me the box with {want} {plural}.",
-                       boxes=[f"number_s{i+1}_{c}" for c in counts],
-                       meaning=NUMBER_MEANING[kind], correct=None)
+def _number_criticals():
+    out = []
+    for n, i in enumerate(CRIT_NUMBER, start=1):
+        target = NAMES[i-1][0]; plural = OBJECTS[i-1][1]
+        out.append((f"number_critical_s{i}",
+                    f"Give me the box where {target} has two of the {plural}.",
+                    [ONE_(i), THREE_(i)], "one", "three", None))
+    return out
 
-def scalar_trials(): return _trials("scalar")
-def number_trials(): return _trials("number")
+def familiarization():
+    """Four trials, run twice by build-qsf.py. Two answered by an open box,
+    two by the covered box, as in Huang et al."""
+    return _fam()
+
+def scalar_block():
+    """Three fillers interleaved with the three criticals. Huang et al.
+    randomized the six; the order here is fixed, so that every critical has a
+    filler before it and the covered-box filler falls late rather than beside
+    the first and most naive critical."""
+    f = _fillers(); c = _scalar_criticals()
+    return [f[0], c[0], f[1], c[1], f[2], c[2]]
+
+def number_block():
+    return _number_criticals()
 
 def all_trials():
-    return list(scalar_trials()) + list(number_trials())
+    return familiarization() + scalar_block() + number_block()
 
-
-# ---- familiarization -------------------------------------------------------
-# Four practice trials, each naming a different shape, two where it is visible
-# and two where it is not. Same prompt four times would teach the wrong lesson
-# before the test trials even start.
-FAM_SHAPES = {"fam_a1": ["star","tri"],  "fam_a2": ["sq","hex"],
-              "fam_b1": ["tri","sq"],    "fam_b2": ["hex","star"],
-              "fam_c2": ["sq","star"],
-              "fam_d1": ["star","hex"],  "fam_d2": ["tri","star"]}
-
-FAM = [  # (tag, prompt, [choice-1 box, choice-2 box], correct choice)
- ("fam1", "Give me the box with the red star.",       ["fam_a1","fam_a2"], "1"),
- ("fam2", "Give me the box with the green triangle.", ["fam_b1","fam_b2"], "1"),
- ("fam3", "Give me the box with the purple hexagon.", ["fam_a1","fam_c2"], "3"),
- ("fam4", "Give me the box with the orange square.",  ["fam_d1","fam_d2"], "3"),
-]
+def all_boxes():
+    """image name -> (object set, n_target, n_other), for make-stimuli.py"""
+    out = {}
+    for _tag, _p, boxes, _m1, _m2, _c in all_trials():
+        for b in boxes:
+            s_i, nt, no = (int(x) for x in b[1:].split("_"))
+            out[b] = (s_i, nt, no)
+    return out

@@ -1,3 +1,8 @@
+# NOTE (17 Sept 2026): this generator targets the OLD instrument -- both terms,
+# controls, probes, anchor. The design was rewritten to Huang et al.'s critical
+# cells only; see design.py. This file has not been updated and its output will
+# not match the current columns.txt.
+
 # ============================================================
 #  make-fake-data.R  —  covered-box replication
 #  LX 433/533/733 Experimental Pragmatics, Fall 2026

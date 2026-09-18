@@ -214,18 +214,31 @@ if __name__ == "__main__":
     n=0
     blank(covered=True)[0].save(f"{OUT}/covered.png"); n+=1
 
-    # Every open box the design calls for. The image name carries its own
-    # recipe -- s<set>_<target's count>_<other's count> -- so there is no tag
-    # dictionary to fall out of step with design.py. Every box in this design,
-    # familiarization and fillers included, is the same two-character
-    # possession display, which is the point: the practice trials no longer
-    # look nothing like the test trials.
-    for name, (set_i, n_target, n_other) in sorted(design.all_boxes().items()):
-        obj   = DRAW[design.OBJECTS[set_i-1][0]]
-        names = design.NAMES[set_i-1]
-        scalar_box(n_target, n_other, obj, names).save(f"{OUT}/{name}.png")
-        n += 1
+    # only the boxes the design actually calls for
+    for t in design.all_trials():
+        if t["kind"] in design.SHAPE_FILLERS:
+            continue                      # shape panels are emitted below
+        i   = t["set"]-1
+        obj = DRAW[design.OBJECTS[i][0]]
+        for box in t["boxes"]:
+            tag = box.rsplit("_",1)[1]
+            if t["term"]=="scalar":
+                names = design.NAMES[i]
+                counts = {"NONE":(0,4), "SOME":(2,2), "ALL":(4,0),
+                          "EMPTY":(0,0),
+                          # anchorHalf: half of four is two, so neither of
+                          # these shows the target with half and the covered
+                          # box is correct. Mirrored so the pair is balanced.
+                          "THREEONE":(3,1), "ONETHREE":(1,3)}[tag]
+                scalar_box(counts[0], counts[1], obj, names).save(f"{OUT}/{box}.png")
+            else:
+                number_box(int(tag), obj).save(f"{OUT}/{box}.png")
+            n+=1
 
+    SH = {"star":shape_star, "tri":shape_tri, "sq":shape_sq, "hex":shape_hex}
+    panels = {**design.FAM_SHAPES, **design.SHAPE_PANELS}
+    for name, shapes in panels.items():
+        familiar_box([SH[x] for x in shapes]).save(f"{OUT}/{name}.png"); n+=1
     print(f"wrote {n} box images to {OUT}/")
 
     # Regenerate the contact sheet. Every stimulus bug so far -- birds smeared
@@ -233,16 +246,10 @@ if __name__ == "__main__":
     # obvious in one glance at this page, and invisible in the code.
     import html as _html
     files = sorted(f for f in os.listdir(OUT) if f.endswith(".png"))
-    ROLE = {}
-    for tag, _p, boxes, _m1, _m2, _c in design.all_trials():
-        role = ("Familiarization" if tag.startswith("fam") else
-                "Fillers"         if tag.startswith("fill") else
-                "Scalar critical" if tag.startswith("scalar") else
-                "Number critical")
-        for b in boxes: ROLE[b + ".png"] = role
-    groups = {"Covered box": [f for f in files if f == "covered.png"]}
-    for role in ("Familiarization","Fillers","Scalar critical","Number critical"):
-        groups[role] = [f for f in files if ROLE.get(f) == role]
+    groups = {"Familiarization": [f for f in files if f.startswith("fam")],
+              "Covered box":     [f for f in files if f == "covered.png"],
+              "Scalar panels":   [f for f in files if f.startswith("scalar")],
+              "Number panels":   [f for f in files if f.startswith("number")]}
     cards = ""
     for name, fs in groups.items():
         if not fs: continue
