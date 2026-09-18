@@ -147,10 +147,15 @@ before anyone argues about whether ours replicates.
 | 12 | `some(NONE,ALL)` — apples |
 | 13 | filler, answered by the **covered** box |
 | 14 | `some(NONE,ALL)` — balloons |
-| 15–17 | `two(1,3)` — fish, birds, flowers |
-| 18 | first language, optional |
+| 15 | filler, open box |
+| 16 | `two(1,3)` — fish |
+| 17 | filler, open box |
+| 18 | `two(1,3)` — birds |
+| 19 | filler, **covered** box |
+| 20 | `two(1,3)` — flowers |
+| 21 | first language, optional |
 
-Twenty-two screens counting the four feedback pages. Response **3** is the
+Twenty-five screens counting the four feedback pages. The number block is interleaved the same way the scalar block is: Exp 4's number condition had its three fillers too, and this block runs last, where extinction pressure is highest and where there would otherwise be no covered-box trial for six screens. Response **3** is the
 covered box throughout, and its position rotates across trials.
 
 **Every box in the study is the same display**: two named characters either side
@@ -161,27 +166,37 @@ familiarization is the only thing establishing that the covered box is ever the
 answer, so it has to be the same shape as the thing it prepares for.
 
 Familiarization and fillers ask with a **bare indefinite** — *give me the box
-where Ral has a carrot* — and in every practice box **each character holds
-exactly one object**. Quantity is therefore constant across the whole practice
-phase and nothing about number can be learned there. The two boxes differ by
-which of them holds the named object: a carrot is visible in both, in the wrong
-hands in one. So the trial still trains attention to **who** has what, which the
-critical trial needs since it turns on whether Zip or Nub holds the cookies,
-with no quantity contrast anywhere.
+where Ral has a carrot* — and two rules hold across every practice box, both
+asserted by `pbox()` in `design.py`.
 
-Two earlier versions got this wrong and the mistakes are worth not repeating.
-Giving the target **three** carrots against a prompt of *a carrot* made the
-correct box true-but-underinformative, which is the same relation the ALL box
-bears to *some* on the critical trial; and because that box was keyed correct,
-the exclusion rule would have thrown out anyone reading *a carrot* as exactly
-one, meaning the implicature computers, biasing the sample toward the readers
-who make the published result easy to reproduce. Contrasting **one** carrot
-against **none** fixed the informativeness but still left a quantity difference
-in the practice phase. Holding every count at one removes it.
+**Nobody holds two of the same kind.** That is what keeps the indefinite off a
+scale: *a heart* is underinformative against two hearts, not against a heart and
+a leaf. Characters may hold several *different* objects, so the practice
+displays vary in shape and the step up to four objects on a test trial is
+smaller.
 
-No practice box shares a configuration with a test trial either. The scalar
-criticals use 0 of 4 and 4 of 4, the number criticals 1 of 4 and 3 of 4, and the
-practice boxes hold one object each.
+**The two characters hold disjoint kinds**, with one deliberate exception below.
+Hearts on both sides of the divider make a harder discrimination but an
+avoidably confusing display when the question is about one person, and the
+possession swap between the two boxes already forces attention to who has what.
+Note this is one way the practice differs from the criticals, where both
+characters do share a kind.
+
+The exception is `fill2`, *give me the box where both Vex and Pol have a heart*,
+whose near-miss box gives a heart to one of them only. Overlap confuses a
+question about one character and is the content of a question about two. It is
+the only trial that forces a check of both sides and of how the objects are
+distributed, which is what the critical trial demands when Zip has all the
+cookies and Nub has none. *Both* is a maximal quantifier, and the last maximal
+quantifier in a practice trial cost us the experiment, but `anchorAll`
+quantified over **the cookies**, the same domain the critical asks about, while
+this quantifies over the two characters, where there is barely a scale. The
+conjunction phrasing, *where Vex has a heart and Pol has a heart*, is the
+zero-risk version if it ever looks worth taking.
+
+No practice box shares a configuration with a test trial: the scalar criticals
+use 0 of 4 and 4 of 4, the number criticals 1 of 4 and 3 of 4, and no practice
+character holds more than one of anything.
 
 ### The departures that are left
 

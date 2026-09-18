@@ -175,6 +175,32 @@ def cluster(d,cx,top,n,draw):
         r,c=divmod(i,cols)
         draw(d, int(cx+(c-(cols-1)/2)*SX), int(top-(rows-1-r)*SY))
 
+def mixed_cluster(d, cx, top, draws):
+    """Like cluster, but each item can be a DIFFERENT object. Practice trials
+    give a character a heart and a leaf, say, so the displays are not all the
+    same shape; what they never do is give anyone two of the same kind, which
+    is what would put the indefinite in the prompt on a scale."""
+    n = len(draws)
+    if n == 0: return
+    cols = 2 if n > 1 else 1
+    rows = (n + cols - 1) // cols
+    SX, SY = 46, 44
+    for i, draw in enumerate(draws):
+        r, c = divmod(i, cols)
+        draw(d, int(cx + (c - (cols-1)/2) * SX), int(top - (rows-1-r) * SY))
+
+def practice_box(target_draws, other_draws, names):
+    """A practice or filler box: each character holds a handful of distinct
+    objects. Same frame as the test boxes, so the format never changes."""
+    img, d = blank()
+    base = BOX_H - 76
+    d.line([BOX_W//2, PAD+18, BOX_W//2, BOX_H-PAD-18], fill=(222,222,222), width=2)
+    character(d, 112, base, (108,150,220), names[0])
+    character(d, 308, base, (232,178,80), names[1])
+    mixed_cluster(d, 112, base-158, target_draws)
+    mixed_cluster(d, 308, base-158, other_draws)
+    return img
+
 def scalar_box(n_target, n_other, obj, names, total=4, obj_other=None):
     """obj_other lets the two characters hold DIFFERENT objects, which the
     practice trials need: there the two boxes differ by which of them holds the
@@ -224,11 +250,14 @@ if __name__ == "__main__":
     # familiarization and fillers included, is the same two-character
     # possession display, which is the point: the practice trials no longer
     # look nothing like the test trials.
-    for name, (set_i, t_obj, t_n, o_obj, o_n) in sorted(design.all_boxes().items()):
-        names = design.NAMES[set_i-1]
-        scalar_box(t_n, o_n, DRAW[t_obj], names,
-                   obj_other=DRAW[o_obj]).save(f"{OUT}/{name}.png")
-        n += 1
+    for name, spec in sorted(design.all_boxes().items()):
+        names = design.NAMES[spec["set"]-1]
+        if spec["kind"] == "test":
+            img = scalar_box(spec["t_n"], spec["o_n"], DRAW[spec["obj"]], names)
+        else:
+            img = practice_box([DRAW[o] for o in spec["t_objs"]],
+                               [DRAW[o] for o in spec["o_objs"]], names)
+        img.save(f"{OUT}/{name}.png"); n += 1
 
     print(f"wrote {n} box images to {OUT}/")
 

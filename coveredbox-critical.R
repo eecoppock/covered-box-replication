@@ -46,7 +46,8 @@ SCALAR <- c("scalar_critical_s1", "scalar_critical_s2", "scalar_critical_s3")
 NUMBER <- c("number_critical_s4", "number_critical_s5", "number_critical_s6")
 FAM2   <- c("fam1_p2", "fam2_p2", "fam3_p2", "fam4_p2")
 FAM_KEY  <- c(fam1_p2 = "2", fam2_p2 = "1", fam3_p2 = "3", fam4_p2 = "3")
-FILL     <- c(fill1 = "1", fill2 = "2", fill3 = "3")
+FILL     <- c(fill1 = "1", fill2 = "1", fill3 = "3",
+              nfill1 = "1", nfill2 = "2", nfill3 = "3")
 
 dat <- raw |>
   filter(Finished %in% c("True", "1", "TRUE")) |>
@@ -84,8 +85,9 @@ fill <- dat |>
 
 cat("\nFillers — proportion correct:\n")
 print(fill |> group_by(trial) |> summarise(correct = mean(ok), n = n(), .groups = "drop"))
-if (mean(fill$ok[fill$trial == "fill3"]) < .8)
-  cat("!! Under 80% on fill3, the one answered by the covered box. A low\n",
+covered_fillers <- c("fill3", "nfill3")
+if (mean(fill$ok[fill$trial %in% covered_fillers]) < .8)
+  cat("!! Under 80% on the fillers answered by the covered box. A low\n",
       "   critical rate may be the covered box having gone dead rather than\n",
       "   anything about *some*.\n", sep = "")
 

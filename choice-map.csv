@@ -38,10 +38,10 @@ fill1,correct,1
 scalar_critical_s1,1,none
 scalar_critical_s1,2,all
 scalar_critical_s1,3,covered
-fill2,1,other has it
-fill2,2,match
+fill2,1,both have one
+fill2,2,only one of them
 fill2,3,covered
-fill2,correct,2
+fill2,correct,1
 scalar_critical_s2,1,none
 scalar_critical_s2,2,all
 scalar_critical_s2,3,covered
@@ -52,12 +52,24 @@ fill3,correct,3
 scalar_critical_s3,1,none
 scalar_critical_s3,2,all
 scalar_critical_s3,3,covered
+nfill1,1,match
+nfill1,2,other has it
+nfill1,3,covered
+nfill1,correct,1
 number_critical_s4,1,one
 number_critical_s4,2,three
 number_critical_s4,3,covered
+nfill2,1,other has it
+nfill2,2,match
+nfill2,3,covered
+nfill2,correct,2
 number_critical_s5,1,one
 number_critical_s5,2,three
 number_critical_s5,3,covered
+nfill3,1,no star
+nfill3,2,no star
+nfill3,3,covered
+nfill3,correct,3
 number_critical_s6,1,one
 number_critical_s6,2,three
 number_critical_s6,3,covered

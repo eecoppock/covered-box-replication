@@ -150,7 +150,7 @@ OBJECTS = [("cookie","cookies"), ("apple","apples"), ("balloon","balloons"),
 
 NAMES = [("Zip","Nub"), ("Mo","Pim"), ("Dax","Wug"), ("Tev","Lom"), ("Bix","Rud"),
          ("Kel","Sap"), ("Jom","Nid"), ("Vex","Pol"), ("Gub","Tam"), ("Ral","Fen"),
-         ("Sib","Yon")]
+         ("Sib","Yon"), ("Quo","Bev"), ("Hix","Dru"), ("Nal","Pex")]
 
 LANGUAGE_Q = ("Is English your first language? <em>(optional)</em>",
               ["Yes", "No", "Prefer not to say"])
@@ -174,80 +174,109 @@ PASS2_NOTE = ("<p>Now the same four practice screens again. This time there is "
 # Every open box is one image and its name is its recipe, so make-stimuli.py
 # draws straight from the design and there is no tag table to drift.
 #
-# TEST boxes:      s<nameset>_<target's count>_<other's count>, one object type
-# PRACTICE boxes:  p<nameset>_<target obj><n>_<other obj><n>, two object types
+# TEST boxes:      s<nameset>_<target count>_<other count>, one object kind
+# PRACTICE boxes:  p<nameset>_<target's objects>__<other's objects>
 
 def box(set_i, n_target, n_other):
     return f"s{set_i}_{n_target}_{n_other}"
 
-def pbox(set_i, t_obj, o_obj, t_n=1, o_n=1):
-    return f"p{set_i}_{t_obj}{t_n}_{o_obj}{o_n}"
+def pbox(set_i, t_objs, o_objs, shared=False):
+    """shared=True lifts the disjointness rule, and is for the one filler whose
+    prompt is about BOTH characters. Overlap confuses a question about one
+    person and is the content of a question about two."""
+    assert shared or not (set(t_objs) & set(o_objs)), \
+           "characters must hold disjoint kinds unless the prompt asks about both"
+    assert len(set(t_objs)) == len(t_objs) and len(set(o_objs)) == len(o_objs), \
+           "nobody holds two of the same kind"
+    return f"p{set_i}_{'-'.join(t_objs)}__{'-'.join(o_objs)}"
 
-NONE_ = lambda i: box(i, 0, 4)   # target has none, other has all
-ALL_  = lambda i: box(i, 4, 0)   # target has all, other has none
-ONE_  = lambda i: box(i, 1, 3)   # the less-than option in two(1,3)
-THREE_= lambda i: box(i, 3, 1)   # the more-than option in two(1,3)
+NONE_ = lambda i: box(i, 0, 4)
+ALL_  = lambda i: box(i, 4, 0)
+ONE_  = lambda i: box(i, 1, 3)
+THREE_= lambda i: box(i, 3, 1)
 
 # ---- object and character assignment ---------------------------------------
-CRIT_SCALAR = [1, 2, 3]    # cookies, apples, balloons
-CRIT_NUMBER = [4, 5, 6]    # fish, birds, flowers
-FILL_NAMES  = [7, 8, 9]    # Jom/Nid, Vex/Pol, Gub/Tam
-FAM_NAMES   = [10, 11]     # Ral/Fen, Sib/Yon
+CRIT_SCALAR = [1, 2, 3]       # cookies, apples, balloons
+CRIT_NUMBER = [4, 5, 6]       # fish, birds, flowers
+SFILL_NAMES = [7, 8, 9]       # Jom/Nid, Vex/Pol, Gub/Tam
+FAM_NAMES   = [10, 11]        # Ral/Fen, Sib/Yon
+NFILL_NAMES = [12, 13, 14]    # Quo/Bev, Hix/Dru, Nal/Pex
 
 # ---- the trial list ---------------------------------------------------------
 # A trial is (tag, prompt, [box1, box2], meaning1, meaning2, correct).
 # "correct" is set only where there is a right answer: familiarization and the
 # fillers. The criticals are the measurement and have none.
 #
-# In EVERY practice box each character holds EXACTLY ONE object, so quantity is
-# constant across the whole practice phase and nothing about number can be
-# learned there. The two boxes differ by which of them holds the named object:
-# a carrot is visible in both, in the wrong hands in one. That keeps the trial
-# training attention to WHO has what -- which the critical trial needs, since
-# it turns on whether Zip or Nub holds the cookies -- without any quantity
-# contrast at all.
+# Two rules hold across every practice box, and pbox() asserts both.
 #
-# Two earlier versions got this wrong and are worth not repeating. Giving the
-# target THREE carrots against a prompt of "a carrot" made the correct box
-# true-but-underinformative, the same relation the ALL box bears to "some"; and
-# because that box was keyed correct, the exclusion rule would have thrown out
-# anyone who read "a carrot" as exactly one, i.e. the implicature computers.
-# Contrasting one carrot against none fixed the informativeness but still put a
-# quantity difference in the practice phase. This version removes it.
+#   NOBODY HOLDS TWO OF THE SAME KIND. That is what keeps the indefinite in the
+#   prompt off a scale: "a heart" is underinformative against two hearts, not
+#   against a heart and a leaf. An early version gave the target three carrots
+#   and asked for "a carrot", which made the correct box true-but-
+#   underinformative -- the same relation the ALL box bears to "some" -- and,
+#   because that box was keyed correct, would have excluded anyone who read the
+#   indefinite exactly, i.e. the implicature computers.
+#
+#   THE TWO CHARACTERS HOLD DISJOINT KINDS. Hearts on both sides of the divider
+#   are a harder discrimination but an avoidably confusing display, and the
+#   possession swap between the two boxes already forces attention to WHO has
+#   what. Note this is one way the practice differs from the criticals, where
+#   both characters do share a kind; nothing else about the format does.
+#
+# Characters may hold SEVERAL different objects, so the practice displays are
+# not all the same shape and the step up to four objects on a test trial is
+# smaller.
 
 def _fam():
     r, sb = FAM_NAMES
     rn, sn = NAMES[r-1], NAMES[sb-1]
     return [
       ("fam1", f"Give me the box where {rn[0]} has a carrot.",
-       [pbox(r,"mushroom","carrot"), pbox(r,"carrot","mushroom")],
-       "other has it", "match", "2"),
+       [pbox(r, ["mushroom"], ["carrot"]),
+        pbox(r, ["carrot"], ["mushroom"])], "other has it", "match", "2"),
       ("fam2", f"Give me the box where {sn[0]} has a mushroom.",
-       [pbox(sb,"mushroom","carrot"), pbox(sb,"carrot","mushroom")],
-       "match", "other has it", "1"),
+       [pbox(sb, ["mushroom"], ["carrot","leaf"]),
+        pbox(sb, ["leaf"], ["mushroom","carrot"])], "match", "other has it", "1"),
       ("fam3", f"Give me the box where {rn[0]} has a leaf.",
-       [pbox(r,"carrot","mushroom"), pbox(r,"mushroom","carrot")],
-       "no leaf", "no leaf", "3"),
+       [pbox(r, ["carrot"], ["mushroom"]),
+        pbox(r, ["mushroom"], ["carrot"])], "no leaf", "no leaf", "3"),
       ("fam4", f"Give me the box where {sn[0]} has a carrot.",
-       [pbox(sb,"mushroom","leaf"), pbox(sb,"leaf","mushroom")],
-       "no carrot", "no carrot", "3"),
+       [pbox(sb, ["mushroom","leaf"], ["carrot"]),
+        pbox(sb, ["leaf"], ["carrot","mushroom"])], "no carrot", "no carrot", "3"),
     ]
 
-def _fillers():
-    a, b, c = FILL_NAMES
+def _scalar_fillers():
+    a, b, c = SFILL_NAMES
     an, bn, cn = NAMES[a-1], NAMES[b-1], NAMES[c-1]
     return [
       ("fill1", f"Give me the box where {an[0]} has a star.",
-       [pbox(a,"star","heart"), pbox(a,"heart","star")],
-       "match", "other has it", "1"),
-      ("fill2", f"Give me the box where {bn[0]} has a heart.",
-       [pbox(b,"star","heart"), pbox(b,"heart","star")],
-       "other has it", "match", "2"),
-      # the one practice trial answered by the covered box, placed late, where
-      # extinction would otherwise start to bite
+       [pbox(a, ["star"], ["heart"]),
+        pbox(a, ["heart"], ["star"])], "match", "other has it", "1"),
+      # The one prompt about BOTH characters. It forces a check of each side and
+      # of how the objects are distributed, which is what the critical trial
+      # demands when Zip has all the cookies and Nub has none. The near-miss
+      # box gives a heart to one of them only.
+      ("fill2", f"Give me the box where both {bn[0]} and {bn[1]} have a heart.",
+       [pbox(b, ["heart"], ["heart"], shared=True),
+        pbox(b, ["heart"], ["star"])], "both have one", "only one of them", "1"),
       ("fill3", f"Give me the box where {cn[0]} has a carrot.",
-       [pbox(c,"star","heart"), pbox(c,"heart","star")],
-       "no carrot", "no carrot", "3"),
+       [pbox(c, ["star","leaf"], ["heart"]),
+        pbox(c, ["heart"], ["star","leaf"])], "no carrot", "no carrot", "3"),
+    ]
+
+def _number_fillers():
+    a, b, c = NFILL_NAMES
+    an, bn, cn = NAMES[a-1], NAMES[b-1], NAMES[c-1]
+    return [
+      ("nfill1", f"Give me the box where {an[0]} has a mushroom.",
+       [pbox(a, ["mushroom"], ["star"]),
+        pbox(a, ["star"], ["mushroom"])], "match", "other has it", "1"),
+      ("nfill2", f"Give me the box where {bn[0]} has a leaf.",
+       [pbox(b, ["carrot"], ["leaf","heart"]),
+        pbox(b, ["leaf"], ["carrot","heart"])], "other has it", "match", "2"),
+      ("nfill3", f"Give me the box where {cn[0]} has a star.",
+       [pbox(c, ["carrot","leaf"], ["mushroom"]),
+        pbox(c, ["mushroom"], ["carrot","leaf"])], "no star", "no star", "3"),
     ]
 
 def _scalar_criticals():
@@ -269,37 +298,43 @@ def _number_criticals():
     return out
 
 def familiarization():
-    """Four trials, run twice by build-qsf.py. Two answered by an open box,
+    """Four trials, run twice by build-qsf.py. Two answered by an open box and
     two by the covered box, as in Huang et al."""
     return _fam()
 
 def scalar_block():
-    """Three fillers interleaved with the three criticals, as in Exp 4. The
-    order is fixed rather than randomized so that every critical has a filler
-    before it and the covered-box filler falls late rather than beside the
-    first and most naive critical."""
-    f=_fillers(); c=_scalar_criticals()
+    """Three fillers interleaved with the three criticals, as in Exp 4, where
+    the critical tokens "were randomized with three filler trials that were
+    similar to those used in the Familiarization phase". Fixed order rather
+    than randomized, so every critical has a filler before it and the
+    covered-box filler falls late rather than beside the first and most naive
+    critical."""
+    f=_scalar_fillers(); c=_scalar_criticals()
     return [f[0], c[0], f[1], c[1], f[2], c[2]]
 
 def number_block():
-    return _number_criticals()
+    """Same shape. Exp 4's number condition had its three fillers too, and this
+    block runs last, where extinction pressure is highest and where there would
+    otherwise be no covered-box trial for six screens."""
+    f=_number_fillers(); c=_number_criticals()
+    return [f[0], c[0], f[1], c[1], f[2], c[2]]
 
 def all_trials():
     return familiarization() + scalar_block() + number_block()
 
 def all_boxes():
-    """image name -> (name set, target's object, target's count,
-                      other's object, other's count)"""
+    """image name -> how to draw it"""
     import re
     out={}
     for _tag,_p,boxes,_m1,_m2,_c in all_trials():
         for b in boxes:
             if b.startswith("s"):
-                i,nt,no = (int(x) for x in b[1:].split("_"))
-                obj = OBJECTS[i-1][0]
-                out[b] = (i, obj, nt, obj, no)
+                i,nt,no=(int(x) for x in b[1:].split("_"))
+                out[b]={"kind":"test","set":i,"obj":OBJECTS[i-1][0],
+                        "t_n":nt,"o_n":no}
             else:
-                m = re.fullmatch(r"p(\d+)_([a-z]+)(\d+)_([a-z]+)(\d+)", b)
-                i, t_obj, t_n, o_obj, o_n = m.groups()
-                out[b] = (int(i), t_obj, int(t_n), o_obj, int(o_n))
+                m=re.fullmatch(r"p(\d+)_([a-z-]+)__([a-z-]+)", b)
+                i,t,o_=m.groups()
+                out[b]={"kind":"practice","set":int(i),
+                        "t_objs":t.split("-"),"o_objs":o_.split("-")}
     return out
