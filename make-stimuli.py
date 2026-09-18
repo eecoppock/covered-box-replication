@@ -175,14 +175,18 @@ def cluster(d,cx,top,n,draw):
         r,c=divmod(i,cols)
         draw(d, int(cx+(c-(cols-1)/2)*SX), int(top-(rows-1-r)*SY))
 
-def scalar_box(n_target, n_other, obj, names, total=4):
+def scalar_box(n_target, n_other, obj, names, total=4, obj_other=None):
+    """obj_other lets the two characters hold DIFFERENT objects, which the
+    practice trials need: there the two boxes differ by which of them holds the
+    carrot, so quantity never varies and only the object kind and the possessor
+    do. The test trials pass one object and it is used for both."""
     img,d = blank()
     base = BOX_H - 76
     d.line([BOX_W//2, PAD+18, BOX_W//2, BOX_H-PAD-18], fill=(222,222,222), width=2)
     character(d, 112, base, (108,150,220), names[0])
     character(d, 308, base, (232,178,80), names[1])
     cluster(d, 112, base-158, n_target, obj)
-    cluster(d, 308, base-158, n_other,  obj)
+    cluster(d, 308, base-158, n_other,  obj_other or obj)
     return img
 
 def number_box(n, obj):
@@ -220,10 +224,10 @@ if __name__ == "__main__":
     # familiarization and fillers included, is the same two-character
     # possession display, which is the point: the practice trials no longer
     # look nothing like the test trials.
-    for name, (set_i, n_target, n_other) in sorted(design.all_boxes().items()):
-        obj   = DRAW[design.OBJECTS[set_i-1][0]]
+    for name, (set_i, t_obj, t_n, o_obj, o_n) in sorted(design.all_boxes().items()):
         names = design.NAMES[set_i-1]
-        scalar_box(n_target, n_other, obj, names).save(f"{OUT}/{name}.png")
+        scalar_box(t_n, o_n, DRAW[t_obj], names,
+                   obj_other=DRAW[o_obj]).save(f"{OUT}/{name}.png")
         n += 1
 
     print(f"wrote {n} box images to {OUT}/")

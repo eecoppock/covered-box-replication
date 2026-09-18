@@ -171,96 +171,100 @@ PASS2_NOTE = ("<p>Now the same four practice screens again. This time there is "
               "no feedback, and the closed box stays closed.</p><br>")
 
 # ---- boxes ------------------------------------------------------------------
-# Every open box is one image, drawn by make-stimuli.py, and its name carries
-# everything needed to draw it: which object set, how many the TARGET character
-# has, how many the other one has. Four objects per box throughout, as in
-# Huang et al.
+# Every open box is one image and its name is its recipe, so make-stimuli.py
+# draws straight from the design and there is no tag table to drift.
+#
+# TEST boxes:      s<nameset>_<target's count>_<other's count>, one object type
+# PRACTICE boxes:  p<nameset>_<target obj><n>_<other obj><n>, two object types
+
 def box(set_i, n_target, n_other):
     return f"s{set_i}_{n_target}_{n_other}"
+
+def pbox(set_i, t_obj, o_obj, t_n=1, o_n=1):
+    return f"p{set_i}_{t_obj}{t_n}_{o_obj}{o_n}"
 
 NONE_ = lambda i: box(i, 0, 4)   # target has none, other has all
 ALL_  = lambda i: box(i, 4, 0)   # target has all, other has none
 ONE_  = lambda i: box(i, 1, 3)   # the less-than option in two(1,3)
 THREE_= lambda i: box(i, 3, 1)   # the more-than option in two(1,3)
 
-# Familiarization and filler boxes. The target holds EXACTLY ONE when he has
-# the named object, because the prompt is "has a carrot" and one carrot is what
-# makes that true and fully informative. An earlier version gave him three,
-# which made the correct box true-but-underinformative -- the very relation the
-# ALL box bears to "some" on the critical trial. Worse, that box was keyed as
-# correct, so a participant who read "a carrot" as exactly one would have taken
-# the covered box and been excluded for failing familiarization: the rule would
-# have thrown out the implicature computers and biased the sample toward the
-# readers who make Huang et al.'s result easy to reproduce.
-#
-# The counts are 1-of-3 and 0-of-3, which appear nowhere in the test trials
-# (0-of-4 and 4-of-4 for the scalar criticals, 1-of-4 and 3-of-4 for the number
-# ones), so nothing practised here maps onto a configuration that matters.
-HAS_   = lambda i: box(i, 1, 2)  # target has exactly one, other has two
-HASNT_ = lambda i: box(i, 0, 3)  # target has none, other has three
-
 # ---- object and character assignment ---------------------------------------
-# Disjoint across roles so nothing carries over.
 CRIT_SCALAR = [1, 2, 3]    # cookies, apples, balloons
 CRIT_NUMBER = [4, 5, 6]    # fish, birds, flowers
-FILLERS     = [7, 8, 9]    # stars, hearts, leaves
-FAM_SETS    = [10, 11]     # carrots, mushrooms
+FILL_NAMES  = [7, 8, 9]    # Jom/Nid, Vex/Pol, Gub/Tam
+FAM_NAMES   = [10, 11]     # Ral/Fen, Sib/Yon
 
 # ---- the trial list ---------------------------------------------------------
 # A trial is (tag, prompt, [box1, box2], meaning1, meaning2, correct).
-# "correct" is set only where there is a right answer: the familiarization and
-# the fillers. The criticals are the measurement and have none.
+# "correct" is set only where there is a right answer: familiarization and the
+# fillers. The criticals are the measurement and have none.
 #
-# Fillers and familiarization use a BARE INDEFINITE -- "has a carrot" -- so no
-# quantity judgment is involved and no partitive presupposition is in play.
-# What varies across the two boxes is which character has the thing, or whether
-# the named object is present at all. Neither ever shows the 4-0 configuration,
-# because that box is the dependent variable and nobody should be taught how to
-# treat it.
+# In EVERY practice box each character holds EXACTLY ONE object, so quantity is
+# constant across the whole practice phase and nothing about number can be
+# learned there. The two boxes differ by which of them holds the named object:
+# a carrot is visible in both, in the wrong hands in one. That keeps the trial
+# training attention to WHO has what -- which the critical trial needs, since
+# it turns on whether Zip or Nub holds the cookies -- without any quantity
+# contrast at all.
+#
+# Two earlier versions got this wrong and are worth not repeating. Giving the
+# target THREE carrots against a prompt of "a carrot" made the correct box
+# true-but-underinformative, the same relation the ALL box bears to "some"; and
+# because that box was keyed correct, the exclusion rule would have thrown out
+# anyone who read "a carrot" as exactly one, i.e. the implicature computers.
+# Contrasting one carrot against none fixed the informativeness but still put a
+# quantity difference in the practice phase. This version removes it.
 
 def _fam():
-    c, m = FAM_SETS                       # carrots, mushrooms
-    cn, mn = NAMES[c-1], NAMES[m-1]
+    r, sb = FAM_NAMES
+    rn, sn = NAMES[r-1], NAMES[sb-1]
     return [
-      ("fam1", f"Give me the box where {cn[0]} has a carrot.",
-       [HASNT_(c), HAS_(c)], "other has them", "match", "2"),
-      ("fam2", f"Give me the box where {mn[0]} has a mushroom.",
-       [HAS_(m), HASNT_(m)], "match", "other has them", "1"),
-      ("fam3", f"Give me the box where {cn[0]} has a mushroom.",
-       [HAS_(c), HASNT_(c)], "wrong object", "wrong object", "3"),
-      ("fam4", f"Give me the box where {mn[0]} has a carrot.",
-       [HASNT_(m), HAS_(m)], "wrong object", "wrong object", "3"),
+      ("fam1", f"Give me the box where {rn[0]} has a carrot.",
+       [pbox(r,"mushroom","carrot"), pbox(r,"carrot","mushroom")],
+       "other has it", "match", "2"),
+      ("fam2", f"Give me the box where {sn[0]} has a mushroom.",
+       [pbox(sb,"mushroom","carrot"), pbox(sb,"carrot","mushroom")],
+       "match", "other has it", "1"),
+      ("fam3", f"Give me the box where {rn[0]} has a leaf.",
+       [pbox(r,"carrot","mushroom"), pbox(r,"mushroom","carrot")],
+       "no leaf", "no leaf", "3"),
+      ("fam4", f"Give me the box where {sn[0]} has a carrot.",
+       [pbox(sb,"mushroom","leaf"), pbox(sb,"leaf","mushroom")],
+       "no carrot", "no carrot", "3"),
     ]
 
 def _fillers():
-    a, b, c = FILLERS                     # stars, hearts, leaves
+    a, b, c = FILL_NAMES
     an, bn, cn = NAMES[a-1], NAMES[b-1], NAMES[c-1]
     return [
       ("fill1", f"Give me the box where {an[0]} has a star.",
-       [HAS_(a), HASNT_(a)], "match", "other has them", "1"),
+       [pbox(a,"star","heart"), pbox(a,"heart","star")],
+       "match", "other has it", "1"),
       ("fill2", f"Give me the box where {bn[0]} has a heart.",
-       [HASNT_(b), HAS_(b)], "other has them", "match", "2"),
-      # the one filler answered by the covered box, placed late, where
+       [pbox(b,"star","heart"), pbox(b,"heart","star")],
+       "other has it", "match", "2"),
+      # the one practice trial answered by the covered box, placed late, where
       # extinction would otherwise start to bite
       ("fill3", f"Give me the box where {cn[0]} has a carrot.",
-       [HAS_(c), HASNT_(c)], "wrong object", "wrong object", "3"),
+       [pbox(c,"star","heart"), pbox(c,"heart","star")],
+       "no carrot", "no carrot", "3"),
     ]
 
 def _scalar_criticals():
-    out = []
-    for n, i in enumerate(CRIT_SCALAR, start=1):
-        target = NAMES[i-1][0]; plural = OBJECTS[i-1][1]
+    out=[]
+    for i in CRIT_SCALAR:
+        t=NAMES[i-1][0]; pl=OBJECTS[i-1][1]
         out.append((f"scalar_critical_s{i}",
-                    f"Give me the box where {target} has some of the {plural}.",
+                    f"Give me the box where {t} has some of the {pl}.",
                     [NONE_(i), ALL_(i)], "none", "all", None))
     return out
 
 def _number_criticals():
-    out = []
-    for n, i in enumerate(CRIT_NUMBER, start=1):
-        target = NAMES[i-1][0]; plural = OBJECTS[i-1][1]
+    out=[]
+    for i in CRIT_NUMBER:
+        t=NAMES[i-1][0]; pl=OBJECTS[i-1][1]
         out.append((f"number_critical_s{i}",
-                    f"Give me the box where {target} has two of the {plural}.",
+                    f"Give me the box where {t} has two of the {pl}.",
                     [ONE_(i), THREE_(i)], "one", "three", None))
     return out
 
@@ -270,11 +274,11 @@ def familiarization():
     return _fam()
 
 def scalar_block():
-    """Three fillers interleaved with the three criticals. Huang et al.
-    randomized the six; the order here is fixed, so that every critical has a
-    filler before it and the covered-box filler falls late rather than beside
-    the first and most naive critical."""
-    f = _fillers(); c = _scalar_criticals()
+    """Three fillers interleaved with the three criticals, as in Exp 4. The
+    order is fixed rather than randomized so that every critical has a filler
+    before it and the covered-box filler falls late rather than beside the
+    first and most naive critical."""
+    f=_fillers(); c=_scalar_criticals()
     return [f[0], c[0], f[1], c[1], f[2], c[2]]
 
 def number_block():
@@ -284,10 +288,18 @@ def all_trials():
     return familiarization() + scalar_block() + number_block()
 
 def all_boxes():
-    """image name -> (object set, n_target, n_other), for make-stimuli.py"""
-    out = {}
-    for _tag, _p, boxes, _m1, _m2, _c in all_trials():
+    """image name -> (name set, target's object, target's count,
+                      other's object, other's count)"""
+    import re
+    out={}
+    for _tag,_p,boxes,_m1,_m2,_c in all_trials():
         for b in boxes:
-            s_i, nt, no = (int(x) for x in b[1:].split("_"))
-            out[b] = (s_i, nt, no)
+            if b.startswith("s"):
+                i,nt,no = (int(x) for x in b[1:].split("_"))
+                obj = OBJECTS[i-1][0]
+                out[b] = (i, obj, nt, obj, no)
+            else:
+                m = re.fullmatch(r"p(\d+)_([a-z]+)(\d+)_([a-z]+)(\d+)", b)
+                i, t_obj, t_n, o_obj, o_n = m.groups()
+                out[b] = (int(i), t_obj, int(t_n), o_obj, int(o_n))
     return out

@@ -161,22 +161,27 @@ familiarization is the only thing establishing that the covered box is ever the
 answer, so it has to be the same shape as the thing it prepares for.
 
 Familiarization and fillers ask with a **bare indefinite** — *give me the box
-where Ral has a carrot* — and the target holds **exactly one** whenever he has
-the named object, so the sentence is true and fully informative of the box it
-picks out. That detail matters more than it looks. An earlier draft gave him
-three carrots, which made the correct box true-but-underinformative, the very
-relation the ALL box bears to *some* on the critical trial; and since that box
-was keyed correct, a participant reading *a carrot* as exactly one would have
-taken the covered box and been excluded for failing familiarization. The rule
-would have thrown out the implicature computers and biased the sample toward the
-readers who make the published result easy to reproduce.
+where Ral has a carrot* — and in every practice box **each character holds
+exactly one object**. Quantity is therefore constant across the whole practice
+phase and nothing about number can be learned there. The two boxes differ by
+which of them holds the named object: a carrot is visible in both, in the wrong
+hands in one. So the trial still trains attention to **who** has what, which the
+critical trial needs since it turns on whether Zip or Nub holds the cookies,
+with no quantity contrast anywhere.
 
-The practice boxes are therefore **1 of 3 and 0 of 3**, counts that appear
-nowhere in the test trials: the scalar criticals use 0 of 4 and 4 of 4, the
-number criticals 1 of 4 and 3 of 4. Nothing practised maps onto a configuration
-that matters, and no practice trial offers a true-but-underinformative option at
-all. What varies across the two boxes is which character has the thing, or
-whether the named object is present.
+Two earlier versions got this wrong and the mistakes are worth not repeating.
+Giving the target **three** carrots against a prompt of *a carrot* made the
+correct box true-but-underinformative, which is the same relation the ALL box
+bears to *some* on the critical trial; and because that box was keyed correct,
+the exclusion rule would have thrown out anyone reading *a carrot* as exactly
+one, meaning the implicature computers, biasing the sample toward the readers
+who make the published result easy to reproduce. Contrasting **one** carrot
+against **none** fixed the informativeness but still left a quantity difference
+in the practice phase. Holding every count at one removes it.
+
+No practice box shares a configuration with a test trial either. The scalar
+criticals use 0 of 4 and 4 of 4, the number criticals 1 of 4 and 3 of 4, and the
+practice boxes hold one object each.
 
 ### The departures that are left
 

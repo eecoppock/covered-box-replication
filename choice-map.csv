@@ -1,52 +1,52 @@
 question,choice_id,meaning
-fam1,1,other has them
+fam1,1,other has it
 fam1,2,match
 fam1,3,covered
 fam1,correct,2
 fam2,1,match
-fam2,2,other has them
+fam2,2,other has it
 fam2,3,covered
 fam2,correct,1
-fam3,1,wrong object
-fam3,2,wrong object
+fam3,1,no leaf
+fam3,2,no leaf
 fam3,3,covered
 fam3,correct,3
-fam4,1,wrong object
-fam4,2,wrong object
+fam4,1,no carrot
+fam4,2,no carrot
 fam4,3,covered
 fam4,correct,3
-fam1_p2,1,other has them
+fam1_p2,1,other has it
 fam1_p2,2,match
 fam1_p2,3,covered
 fam1_p2,correct,2
 fam2_p2,1,match
-fam2_p2,2,other has them
+fam2_p2,2,other has it
 fam2_p2,3,covered
 fam2_p2,correct,1
-fam3_p2,1,wrong object
-fam3_p2,2,wrong object
+fam3_p2,1,no leaf
+fam3_p2,2,no leaf
 fam3_p2,3,covered
 fam3_p2,correct,3
-fam4_p2,1,wrong object
-fam4_p2,2,wrong object
+fam4_p2,1,no carrot
+fam4_p2,2,no carrot
 fam4_p2,3,covered
 fam4_p2,correct,3
 fill1,1,match
-fill1,2,other has them
+fill1,2,other has it
 fill1,3,covered
 fill1,correct,1
 scalar_critical_s1,1,none
 scalar_critical_s1,2,all
 scalar_critical_s1,3,covered
-fill2,1,other has them
+fill2,1,other has it
 fill2,2,match
 fill2,3,covered
 fill2,correct,2
 scalar_critical_s2,1,none
 scalar_critical_s2,2,all
 scalar_critical_s2,3,covered
-fill3,1,wrong object
-fill3,2,wrong object
+fill3,1,no carrot
+fill3,2,no carrot
 fill3,3,covered
 fill3,correct,3
 scalar_critical_s3,1,none
