@@ -141,10 +141,10 @@
         "QuestionDescription": "Give me the box where Ral has a carrot.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s10_0_4.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s10_0_3.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s10_3_1.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s10_1_2.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "3": {
             "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
@@ -230,10 +230,10 @@
         "QuestionDescription": "Give me the box where Sib has a mushroom.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s11_3_1.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s11_1_2.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s11_0_4.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s11_0_3.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "3": {
             "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
@@ -319,10 +319,10 @@
         "QuestionDescription": "Give me the box where Ral has a mushroom.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s10_3_1.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s10_1_2.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s10_0_4.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s10_0_3.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "3": {
             "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
@@ -408,10 +408,10 @@
         "QuestionDescription": "Give me the box where Sib has a carrot.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s11_0_4.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s11_0_3.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s11_3_1.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s11_1_2.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "3": {
             "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
@@ -497,10 +497,10 @@
         "QuestionDescription": "Give me the box where Ral has a carrot.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s10_0_4.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s10_0_3.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s10_3_1.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s10_1_2.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "3": {
             "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
@@ -546,10 +546,10 @@
         "QuestionDescription": "Give me the box where Sib has a mushroom.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s11_3_1.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s11_1_2.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s11_0_4.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s11_0_3.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "3": {
             "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
@@ -595,10 +595,10 @@
         "QuestionDescription": "Give me the box where Ral has a mushroom.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s10_3_1.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s10_1_2.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s10_0_4.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s10_0_3.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "3": {
             "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
@@ -644,10 +644,10 @@
         "QuestionDescription": "Give me the box where Sib has a carrot.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s11_0_4.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s11_0_3.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s11_3_1.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s11_1_2.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "3": {
             "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
@@ -693,10 +693,10 @@
         "QuestionDescription": "Give me the box where Jom has a star.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s7_3_1.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s7_1_2.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s7_0_4.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s7_0_3.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "3": {
             "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
@@ -791,10 +791,10 @@
         "QuestionDescription": "Give me the box where Vex has a heart.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s8_0_4.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s8_0_3.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s8_3_1.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s8_1_2.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "3": {
             "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
@@ -889,10 +889,10 @@
         "QuestionDescription": "Give me the box where Gub has a carrot.",
         "Choices": {
           "1": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s9_3_1.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s9_1_2.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "2": {
-            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s9_0_4.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
+            "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/s9_0_3.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"
           },
           "3": {
             "Display": "<img src=\"https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli/covered.png\" style=\"width:100%;max-width:280px;height:auto;\" alt=\"\">"

@@ -161,12 +161,22 @@ familiarization is the only thing establishing that the covered box is ever the
 answer, so it has to be the same shape as the thing it prepares for.
 
 Familiarization and fillers ask with a **bare indefinite** — *give me the box
-where Ral has a carrot* — so no quantity judgment is involved and no partitive
-presupposition is in play. What varies is which character has the thing, or
-whether the named object is there at all. **Neither ever shows the 4-0
-configuration**, because that box is the dependent variable and nobody should be
-taught how to treat it. The 0-4 box does appear, which is safe: it is rejected
-under every reading of *some*, so it cannot bias between them.
+where Ral has a carrot* — and the target holds **exactly one** whenever he has
+the named object, so the sentence is true and fully informative of the box it
+picks out. That detail matters more than it looks. An earlier draft gave him
+three carrots, which made the correct box true-but-underinformative, the very
+relation the ALL box bears to *some* on the critical trial; and since that box
+was keyed correct, a participant reading *a carrot* as exactly one would have
+taken the covered box and been excluded for failing familiarization. The rule
+would have thrown out the implicature computers and biased the sample toward the
+readers who make the published result easy to reproduce.
+
+The practice boxes are therefore **1 of 3 and 0 of 3**, counts that appear
+nowhere in the test trials: the scalar criticals use 0 of 4 and 4 of 4, the
+number criticals 1 of 4 and 3 of 4. Nothing practised maps onto a configuration
+that matters, and no practice trial offers a true-but-underinformative option at
+all. What varies across the two boxes is which character has the thing, or
+whether the named object is present.
 
 ### The departures that are left
 

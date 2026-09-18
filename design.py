@@ -181,8 +181,23 @@ def box(set_i, n_target, n_other):
 NONE_ = lambda i: box(i, 0, 4)   # target has none, other has all
 ALL_  = lambda i: box(i, 4, 0)   # target has all, other has none
 ONE_  = lambda i: box(i, 1, 3)   # the less-than option in two(1,3)
-THREE_= lambda i: box(i, 3, 1)   # the more-than option in two(1,3), and the
-                                 # "has some of them" box in the fillers
+THREE_= lambda i: box(i, 3, 1)   # the more-than option in two(1,3)
+
+# Familiarization and filler boxes. The target holds EXACTLY ONE when he has
+# the named object, because the prompt is "has a carrot" and one carrot is what
+# makes that true and fully informative. An earlier version gave him three,
+# which made the correct box true-but-underinformative -- the very relation the
+# ALL box bears to "some" on the critical trial. Worse, that box was keyed as
+# correct, so a participant who read "a carrot" as exactly one would have taken
+# the covered box and been excluded for failing familiarization: the rule would
+# have thrown out the implicature computers and biased the sample toward the
+# readers who make Huang et al.'s result easy to reproduce.
+#
+# The counts are 1-of-3 and 0-of-3, which appear nowhere in the test trials
+# (0-of-4 and 4-of-4 for the scalar criticals, 1-of-4 and 3-of-4 for the number
+# ones), so nothing practised here maps onto a configuration that matters.
+HAS_   = lambda i: box(i, 1, 2)  # target has exactly one, other has two
+HASNT_ = lambda i: box(i, 0, 3)  # target has none, other has three
 
 # ---- object and character assignment ---------------------------------------
 # Disjoint across roles so nothing carries over.
@@ -208,13 +223,13 @@ def _fam():
     cn, mn = NAMES[c-1], NAMES[m-1]
     return [
       ("fam1", f"Give me the box where {cn[0]} has a carrot.",
-       [NONE_(c), THREE_(c)], "other has them", "match", "2"),
+       [HASNT_(c), HAS_(c)], "other has them", "match", "2"),
       ("fam2", f"Give me the box where {mn[0]} has a mushroom.",
-       [THREE_(m), NONE_(m)], "match", "other has them", "1"),
+       [HAS_(m), HASNT_(m)], "match", "other has them", "1"),
       ("fam3", f"Give me the box where {cn[0]} has a mushroom.",
-       [THREE_(c), NONE_(c)], "wrong object", "wrong object", "3"),
+       [HAS_(c), HASNT_(c)], "wrong object", "wrong object", "3"),
       ("fam4", f"Give me the box where {mn[0]} has a carrot.",
-       [NONE_(m), THREE_(m)], "wrong object", "wrong object", "3"),
+       [HASNT_(m), HAS_(m)], "wrong object", "wrong object", "3"),
     ]
 
 def _fillers():
@@ -222,13 +237,13 @@ def _fillers():
     an, bn, cn = NAMES[a-1], NAMES[b-1], NAMES[c-1]
     return [
       ("fill1", f"Give me the box where {an[0]} has a star.",
-       [THREE_(a), NONE_(a)], "match", "other has them", "1"),
+       [HAS_(a), HASNT_(a)], "match", "other has them", "1"),
       ("fill2", f"Give me the box where {bn[0]} has a heart.",
-       [NONE_(b), THREE_(b)], "other has them", "match", "2"),
+       [HASNT_(b), HAS_(b)], "other has them", "match", "2"),
       # the one filler answered by the covered box, placed late, where
       # extinction would otherwise start to bite
       ("fill3", f"Give me the box where {cn[0]} has a carrot.",
-       [THREE_(c), NONE_(c)], "wrong object", "wrong object", "3"),
+       [HAS_(c), HASNT_(c)], "wrong object", "wrong object", "3"),
     ]
 
 def _scalar_criticals():
