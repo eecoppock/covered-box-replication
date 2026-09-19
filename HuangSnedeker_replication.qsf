@@ -122,6 +122,39 @@
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
       "PrimaryAttribute": "QID1",
+      "SecondaryAttribute": "welcome",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "\n<p style='font-size:1.15em;font-weight:600;margin-bottom:.4em'>Before you start</p>\n\n<p>This is a class activity for LX 433/733. You will see a series of pictures of\nboxes, and on each screen you will be asked to choose one of them. It takes\nabout five minutes.</p>\n\n<p><b>Taking part is voluntary.</b> You may stop at any time by closing the\nwindow, and you do not have to answer any question you would rather skip.\nNothing about your grade depends on <i>which</i> boxes you choose. At the end\nyou will be asked whether your responses may be included in the class analysis,\nand saying no there will not affect your credit for the activity.</p>\n\n<p><b>Risks and benefits.</b> There are no risks beyond those of ordinary\ncomputer use. The class will analyse its own data together, which is the point\nof the exercise.</p>\n\n<p><b>What happens to your responses.</b> They are recorded alongside your\nKerberos ID so that completion can be credited. The analysis reports the class\nas a whole; no individual's answers are identified in class or in anyone's\nwrite-up, and the data are not published.</p>\n\n<p><b>Questions</b> at any point, now or later: Elizabeth Coppock,\n<a href='mailto:ecoppock@bu.edu'>ecoppock@bu.edu</a>.</p>\n\n<p style='margin-top:1em'>Clicking the arrow below means you have read this and\nagree to take part.</p>\n",
+        "DefaultChoices": false,
+        "DataExportTag": "welcome",
+        "QuestionID": "QID1",
+        "QuestionType": "DB",
+        "Selector": "TB",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "welcome",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1
+      }
+    },
+    {
+      "SurveyID": "SV_3kLZ1KUE87N0MMm",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID2",
       "SecondaryAttribute": "Give me the box where Ral has a carrot.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -164,13 +197,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID1"
+        "QuestionID": "QID2"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID2",
+      "PrimaryAttribute": "QID3",
       "SecondaryAttribute": "fam1_fb",
       "TertiaryAttribute": null,
       "Payload": {
@@ -204,13 +237,13 @@
         "Language": [],
         "NextChoiceId": 2,
         "NextAnswerId": 1,
-        "QuestionID": "QID2"
+        "QuestionID": "QID3"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID3",
+      "PrimaryAttribute": "QID4",
       "SecondaryAttribute": "Give me the box where Sib has a mushroom.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -253,13 +286,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID3"
+        "QuestionID": "QID4"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID4",
+      "PrimaryAttribute": "QID5",
       "SecondaryAttribute": "fam2_fb",
       "TertiaryAttribute": null,
       "Payload": {
@@ -293,13 +326,13 @@
         "Language": [],
         "NextChoiceId": 2,
         "NextAnswerId": 1,
-        "QuestionID": "QID4"
+        "QuestionID": "QID5"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID5",
+      "PrimaryAttribute": "QID6",
       "SecondaryAttribute": "Give me the box where Ral has a leaf.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -342,13 +375,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID5"
+        "QuestionID": "QID6"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID6",
+      "PrimaryAttribute": "QID7",
       "SecondaryAttribute": "fam3_fb",
       "TertiaryAttribute": null,
       "Payload": {
@@ -382,13 +415,13 @@
         "Language": [],
         "NextChoiceId": 2,
         "NextAnswerId": 1,
-        "QuestionID": "QID6"
+        "QuestionID": "QID7"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID7",
+      "PrimaryAttribute": "QID8",
       "SecondaryAttribute": "Give me the box where Sib has a carrot.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -431,13 +464,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID7"
+        "QuestionID": "QID8"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID8",
+      "PrimaryAttribute": "QID9",
       "SecondaryAttribute": "fam4_fb",
       "TertiaryAttribute": null,
       "Payload": {
@@ -471,13 +504,13 @@
         "Language": [],
         "NextChoiceId": 2,
         "NextAnswerId": 1,
-        "QuestionID": "QID8"
+        "QuestionID": "QID9"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID9",
+      "PrimaryAttribute": "QID10",
       "SecondaryAttribute": "Give me the box where Ral has a carrot.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -520,13 +553,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID9"
+        "QuestionID": "QID10"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID10",
+      "PrimaryAttribute": "QID11",
       "SecondaryAttribute": "Give me the box where Sib has a mushroom.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -569,13 +602,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID10"
+        "QuestionID": "QID11"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID11",
+      "PrimaryAttribute": "QID12",
       "SecondaryAttribute": "Give me the box where Ral has a leaf.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -618,13 +651,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID11"
+        "QuestionID": "QID12"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID12",
+      "PrimaryAttribute": "QID13",
       "SecondaryAttribute": "Give me the box where Sib has a carrot.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -667,13 +700,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID12"
+        "QuestionID": "QID13"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID13",
+      "PrimaryAttribute": "QID14",
       "SecondaryAttribute": "Give me the box where Jom has a star.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -716,13 +749,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID13"
+        "QuestionID": "QID14"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID14",
+      "PrimaryAttribute": "QID15",
       "SecondaryAttribute": "Give me the box where Zip has some of the cookies.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -765,13 +798,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID14"
+        "QuestionID": "QID15"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID15",
+      "PrimaryAttribute": "QID16",
       "SecondaryAttribute": "Give me the box where both Vex and Pol have a heart.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -814,13 +847,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID15"
+        "QuestionID": "QID16"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID16",
+      "PrimaryAttribute": "QID17",
       "SecondaryAttribute": "Give me the box where Mo has some of the apples.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -863,13 +896,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID16"
+        "QuestionID": "QID17"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID17",
+      "PrimaryAttribute": "QID18",
       "SecondaryAttribute": "Give me the box where Gub has a carrot.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -912,13 +945,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID17"
+        "QuestionID": "QID18"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID18",
+      "PrimaryAttribute": "QID19",
       "SecondaryAttribute": "Give me the box where Dax has some of the balloons.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -961,13 +994,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID18"
+        "QuestionID": "QID19"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID19",
+      "PrimaryAttribute": "QID20",
       "SecondaryAttribute": "Give me the box where Quo has a mushroom.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -1010,13 +1043,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID19"
+        "QuestionID": "QID20"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID20",
+      "PrimaryAttribute": "QID21",
       "SecondaryAttribute": "Give me the box where Tev has two of the fish.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -1059,13 +1092,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID20"
+        "QuestionID": "QID21"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID21",
+      "PrimaryAttribute": "QID22",
       "SecondaryAttribute": "Give me the box where Hix has a leaf.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -1108,13 +1141,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID21"
+        "QuestionID": "QID22"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID22",
+      "PrimaryAttribute": "QID23",
       "SecondaryAttribute": "Give me the box where Bix has two of the birds.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -1157,13 +1190,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID22"
+        "QuestionID": "QID23"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID23",
+      "PrimaryAttribute": "QID24",
       "SecondaryAttribute": "Give me the box where Nal has a star.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -1206,13 +1239,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID23"
+        "QuestionID": "QID24"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID24",
+      "PrimaryAttribute": "QID25",
       "SecondaryAttribute": "Give me the box where Kel has two of the flowers.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -1255,13 +1288,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID24"
+        "QuestionID": "QID25"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID25",
+      "PrimaryAttribute": "QID26",
       "SecondaryAttribute": "Give me the box where Jom has a star.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -1304,13 +1337,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID25"
+        "QuestionID": "QID26"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID26",
+      "PrimaryAttribute": "QID27",
       "SecondaryAttribute": "Give me the box where Tev has some of the fish.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -1353,13 +1386,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID26"
+        "QuestionID": "QID27"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID27",
+      "PrimaryAttribute": "QID28",
       "SecondaryAttribute": "Give me the box where both Vex and Pol have a heart.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -1402,13 +1435,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID27"
+        "QuestionID": "QID28"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID28",
+      "PrimaryAttribute": "QID29",
       "SecondaryAttribute": "Give me the box where Bix has some of the birds.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -1451,13 +1484,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID28"
+        "QuestionID": "QID29"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID29",
+      "PrimaryAttribute": "QID30",
       "SecondaryAttribute": "Give me the box where Gub has a carrot.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -1500,13 +1533,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID29"
+        "QuestionID": "QID30"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID30",
+      "PrimaryAttribute": "QID31",
       "SecondaryAttribute": "Give me the box where Kel has some of the flowers.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -1549,13 +1582,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID30"
+        "QuestionID": "QID31"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID31",
+      "PrimaryAttribute": "QID32",
       "SecondaryAttribute": "Give me the box where Quo has a mushroom.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -1598,13 +1631,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID31"
+        "QuestionID": "QID32"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID32",
+      "PrimaryAttribute": "QID33",
       "SecondaryAttribute": "Give me the box where Zip has two of the cookies.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -1647,13 +1680,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID32"
+        "QuestionID": "QID33"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID33",
+      "PrimaryAttribute": "QID34",
       "SecondaryAttribute": "Give me the box where Hix has a leaf.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -1696,13 +1729,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID33"
+        "QuestionID": "QID34"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID34",
+      "PrimaryAttribute": "QID35",
       "SecondaryAttribute": "Give me the box where Mo has two of the apples.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -1745,13 +1778,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID34"
+        "QuestionID": "QID35"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID35",
+      "PrimaryAttribute": "QID36",
       "SecondaryAttribute": "Give me the box where Nal has a star.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -1794,13 +1827,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID35"
+        "QuestionID": "QID36"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID36",
+      "PrimaryAttribute": "QID37",
       "SecondaryAttribute": "Give me the box where Dax has two of the balloons.",
       "TertiaryAttribute": null,
       "Payload": {
@@ -1843,13 +1876,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID36"
+        "QuestionID": "QID37"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID37",
+      "PrimaryAttribute": "QID38",
       "SecondaryAttribute": "Is English your first language? <em>(optional)</em>",
       "TertiaryAttribute": null,
       "Payload": {
@@ -1891,13 +1924,13 @@
         "Language": [],
         "NextChoiceId": 4,
         "NextAnswerId": 1,
-        "QuestionID": "QID37"
+        "QuestionID": "QID38"
       }
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "SQ",
-      "PrimaryAttribute": "QID38",
+      "PrimaryAttribute": "QID39",
       "SecondaryAttribute": "kerberos",
       "TertiaryAttribute": null,
       "Payload": {
@@ -1927,7 +1960,51 @@
         "SearchSource": {
           "AllowFreeResponse": "false"
         },
-        "QuestionID": "QID38"
+        "QuestionID": "QID39"
+      }
+    },
+    {
+      "SurveyID": "SV_3kLZ1KUE87N0MMm",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID40",
+      "SecondaryAttribute": "May your responses be included in the class analysis? <em>Saying no will not affect your credit",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<span style=\"font-size:18px;\">May your responses be included in the class analysis? <em>Saying no will not affect your credit for the activity.</em></span>",
+        "DataExportTag": "data_use",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "May your responses be included in the class analysis? <em>Saying no will not affect your credit",
+        "Choices": {
+          "1": {
+            "Display": "Yes"
+          },
+          "2": {
+            "Display": "No"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "Type": "None"
+          }
+        },
+        "Language": [],
+        "NextChoiceId": 3,
+        "NextAnswerId": 1,
+        "QuestionID": "QID40"
       }
     },
     {
@@ -2022,6 +2099,13 @@
             {
               "Type": "Question",
               "QuestionID": "QID12"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID13"
             }
           ]
         },
@@ -2030,13 +2114,6 @@
           "Description": "scalar block, objects A",
           "ID": "BL_1a683ed5ba742e7",
           "BlockElements": [
-            {
-              "Type": "Question",
-              "QuestionID": "QID13"
-            },
-            {
-              "Type": "Page Break"
-            },
             {
               "Type": "Question",
               "QuestionID": "QID14"
@@ -2068,6 +2145,13 @@
             {
               "Type": "Question",
               "QuestionID": "QID18"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID19"
             }
           ]
         },
@@ -2076,13 +2160,6 @@
           "Description": "number block, objects A",
           "ID": "BL_626b75156cfd1be",
           "BlockElements": [
-            {
-              "Type": "Question",
-              "QuestionID": "QID19"
-            },
-            {
-              "Type": "Page Break"
-            },
             {
               "Type": "Question",
               "QuestionID": "QID20"
@@ -2114,6 +2191,13 @@
             {
               "Type": "Question",
               "QuestionID": "QID24"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID25"
             }
           ]
         },
@@ -2122,13 +2206,6 @@
           "Description": "scalar block, objects B",
           "ID": "BL_31f278a8c8e8c13",
           "BlockElements": [
-            {
-              "Type": "Question",
-              "QuestionID": "QID25"
-            },
-            {
-              "Type": "Page Break"
-            },
             {
               "Type": "Question",
               "QuestionID": "QID26"
@@ -2160,6 +2237,13 @@
             {
               "Type": "Question",
               "QuestionID": "QID30"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID31"
             }
           ]
         },
@@ -2168,13 +2252,6 @@
           "Description": "number block, objects B",
           "ID": "BL_74353daec94c6cc",
           "BlockElements": [
-            {
-              "Type": "Question",
-              "QuestionID": "QID31"
-            },
-            {
-              "Type": "Page Break"
-            },
             {
               "Type": "Question",
               "QuestionID": "QID32"
@@ -2206,24 +2283,38 @@
             {
               "Type": "Question",
               "QuestionID": "QID36"
-            }
-          ]
-        },
-        {
-          "Type": "Standard",
-          "Description": "Language background and ID",
-          "ID": "BL_7572559ca86e781",
-          "BlockElements": [
-            {
-              "Type": "Question",
-              "QuestionID": "QID37"
             },
             {
               "Type": "Page Break"
             },
             {
               "Type": "Question",
+              "QuestionID": "QID37"
+            }
+          ]
+        },
+        {
+          "Type": "Standard",
+          "Description": "Language background, ID and data use",
+          "ID": "BL_7572559ca86e781",
+          "BlockElements": [
+            {
+              "Type": "Question",
               "QuestionID": "QID38"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID39"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID40"
             }
           ]
         },

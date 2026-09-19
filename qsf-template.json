@@ -260,6 +260,39 @@
         },
         "QuestionID": "QID46"
       }
+    },
+    {
+      "SurveyID": "SV_3kLZ1KUE87N0MMm",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID_DB_TEMPLATE",
+      "SecondaryAttribute": "DB_TEMPLATE",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "",
+        "DefaultChoices": false,
+        "DataExportTag": "DB_TEMPLATE",
+        "QuestionID": "QID1",
+        "QuestionType": "DB",
+        "Selector": "TB",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "DB_TEMPLATE",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1
+      }
     }
   ]
 }

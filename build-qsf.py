@@ -74,6 +74,10 @@ mc_tpl = [e for e in tpl["SurveyElements"]
 # with no diagnostic beyond "something went wrong and the project wasn't created".
 te_tpl = [e for e in tpl["SurveyElements"]
           if e.get("Element")=="SQ" and e["Payload"]["QuestionType"]=="TE"][0]
+# A text-only screen, vendored from the Rohde replication in this course, which
+# uses one for its own intro. Same rule as the others: clone, never invent.
+db_tpl = [e for e in tpl["SurveyElements"]
+          if e.get("Element")=="SQ" and e["Payload"]["QuestionType"]=="DB"][0]
 for e in tpl["SurveyElements"]:
     if e.get("Element") not in ("SQ","BL","FL"):
         qsf["SurveyElements"].append(copy.deepcopy(e))
@@ -118,6 +122,19 @@ def feedback(tag, text):
     p["ChoiceOrder"]=["1"]
     p["Validation"]["Settings"]["ForceResponse"]="OFF"
     p["NextChoiceId"]=2
+    qsf["SurveyElements"].append(el)
+    return q
+
+def prose(tag, html_text):
+    """A text-only screen with nothing to answer: the participant reads and
+    clicks on. Used for the welcome and consent screen."""
+    qid[0]+=1; q=f"QID{qid[0]}"
+    el = copy.deepcopy(db_tpl)
+    el["PrimaryAttribute"]=q; el["SecondaryAttribute"]=tag
+    p = el["Payload"]
+    p["QuestionText"]=html_text
+    p["DataExportTag"]=tag; p["QuestionID"]=q
+    p["QuestionDescription"]=tag
     qsf["SurveyElements"].append(el)
     return q
 
@@ -185,7 +202,7 @@ else:
         rows.extend([(tag,"1",m1),(tag,"2",m2),(tag,"3","covered")])
         return q
 
-    fam=[]
+    fam=[prose("welcome", design.WELCOME)]
     for i,(tag,prompt,boxes,m1,m2,correct) in enumerate(design.familiarization()):
         fam.append(add(tag, prompt, boxes, m1, m2, PREAMBLE if i==0 else ""))
         rows.append((tag,"correct",correct))
@@ -247,12 +264,16 @@ if not TEST:
     # question, so it cannot colour a single response. It is the only required
     # question outside the trials.
     kerb_q = text_entry("kerberos", design.KERBEROS_Q)
-    lang_b = block("lang", "Language background and ID", [lang_q, kerb_q])
+    use_q  = text_mc("data_use", design.DATA_USE_Q[0], design.DATA_USE_Q[1])
+    lang_b = block("lang", "Language background, ID and data use",
+                   [lang_q, kerb_q, use_q])
     blocks.append(lang_b)
     flow_inner.append({"ID": lang_b["ID"], "Type": "Block", "FlowID": "FL_7"})
     for i, o in enumerate(design.LANGUAGE_Q[1], start=1):
         rows.append(("first_language", str(i), o))
     rows.append(("kerberos", "text", "BU Kerberos ID, joins to Roster/roster-merged.csv `coder`"))
+    for i, o in enumerate(design.DATA_USE_Q[1], start=1):
+        rows.append(("data_use", str(i), o))
 
 blocks.append({"Type":"Trash","Description":"Trash / Unused Questions",
                "ID":bid("trash")})

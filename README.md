@@ -139,6 +139,7 @@ before anyone argues about whether ours replicates.
 
 | | |
 |---|---|
+| 0 | **welcome and consent**, text only |
 | 1–4 | familiarization, pass 1, each followed by a feedback screen |
 | 5–8 | familiarization, pass 2, no feedback |
 | 9 | filler, answered by an open box |
@@ -155,8 +156,9 @@ before anyone argues about whether ours replicates.
 | 20 | `two(1,3)` — flowers |
 | 21 | first language, optional |
 | 22 | **BU Kerberos ID**, required |
+| 23 | may your responses be analysed? |
 
-Twenty-six screens counting the four feedback pages, of which each participant sees one of the two object assignments. The number block is interleaved the same way the scalar block is: Exp 4's number condition had its three fillers too, and this block runs last, where extinction pressure is highest and where there would otherwise be no covered-box trial for six screens. Response **3** is the
+Twenty-eight screens counting the welcome and the four feedback pages, of which each participant sees one of the two object assignments. The number block is interleaved the same way the scalar block is: Exp 4's number condition had its three fillers too, and this block runs last, where extinction pressure is highest and where there would otherwise be no covered-box trial for six screens. Response **3** is the
 covered box throughout, and its position rotates across trials.
 
 **Every box in the study is the same display**: two named characters either side
@@ -198,6 +200,29 @@ zero-risk version if it ever looks worth taking.
 No practice box shares a configuration with a test trial: the scalar criticals
 use 0 of 4 and 4 of 4, the number criticals 1 of 4 and 3 of 4, and no practice
 character holds more than one of anything.
+
+### The welcome screen
+
+Screen one is a text-only consent screen, written around the standard elements:
+what it is, how long, voluntary, risks, benefits, what happens to the data, whom
+to ask. **It is a draft and has not been reviewed by anyone at BU.** Check it
+against whatever the CRC actually asks for before treating it as a consent form,
+and note that a class demonstration run for teaching rather than for
+generalisable knowledge may not meet the definition of human subjects research
+at all, in which case the language is good practice rather than a requirement.
+
+The tension it is written around is real and worth naming: **HW 3 is graded
+check-or-zero, and consent that a grade depends on is not voluntary.** The
+resolution is to separate the two things. The check is for taking part in the
+class activity, which the Kerberos ID records. A separate question at the end,
+`data_use`, asks whether the responses may be included in the class analysis,
+and the welcome screen promises that saying no there does not affect credit.
+`coveredbox-critical.R` honours that: the completion check counts everyone, and
+the exclusion happens afterwards.
+
+The text-only question type is vendored from the Rohde replication in this
+course, which uses one for its own intro screen. Same rule as the others: clone
+a type that has imported, never invent one.
 
 ### The identifier
 

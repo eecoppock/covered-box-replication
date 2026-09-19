@@ -152,6 +152,51 @@ NAMES = [("Zip","Nub"), ("Mo","Pim"), ("Dax","Wug"), ("Tev","Lom"), ("Bix","Rud"
          ("Kel","Sap"), ("Jom","Nid"), ("Vex","Pol"), ("Gub","Tam"), ("Ral","Fen"),
          ("Sib","Yon"), ("Quo","Bev"), ("Hix","Dru"), ("Nal","Pex")]
 
+# ---- the welcome screen -----------------------------------------------------
+# DRAFT. Modelled on the standard elements of informed consent -- what it is,
+# how long, voluntary, risks, benefits, what happens to the data, whom to ask --
+# and on the intro screen the Rohde replication in this course already uses.
+# It has NOT been reviewed by anyone at BU and should be checked against
+# whatever the CRC actually asks for before it is treated as a consent form.
+#
+# The tension it is written around: HW 3 is graded check-or-zero, and consent
+# that a grade depends on is not voluntary. The resolution is to separate the
+# two. The check is for taking part in the class activity, which the Kerberos ID
+# records; a separate question at the end lets anyone keep their responses out
+# of the analysis without touching the check. That question is DATA_USE_Q.
+WELCOME = """
+<p style='font-size:1.15em;font-weight:600;margin-bottom:.4em'>Before you start</p>
+
+<p>This is a class activity for LX 433/733. You will see a series of pictures of
+boxes, and on each screen you will be asked to choose one of them. It takes
+about five minutes.</p>
+
+<p><b>Taking part is voluntary.</b> You may stop at any time by closing the
+window, and you do not have to answer any question you would rather skip.
+Nothing about your grade depends on <i>which</i> boxes you choose. At the end
+you will be asked whether your responses may be included in the class analysis,
+and saying no there will not affect your credit for the activity.</p>
+
+<p><b>Risks and benefits.</b> There are no risks beyond those of ordinary
+computer use. The class will analyse its own data together, which is the point
+of the exercise.</p>
+
+<p><b>What happens to your responses.</b> They are recorded alongside your
+Kerberos ID so that completion can be credited. The analysis reports the class
+as a whole; no individual's answers are identified in class or in anyone's
+write-up, and the data are not published.</p>
+
+<p><b>Questions</b> at any point, now or later: Elizabeth Coppock,
+<a href='mailto:ecoppock@bu.edu'>ecoppock@bu.edu</a>.</p>
+
+<p style='margin-top:1em'>Clicking the arrow below means you have read this and
+agree to take part.</p>
+"""
+
+DATA_USE_Q = ("May your responses be included in the class analysis? "
+              "<em>Saying no will not affect your credit for the activity.</em>",
+              ["Yes", "No"])
+
 KERBEROS_Q = (
   "<p style='font-size:1.05em'>Finally: your <b>BU Kerberos ID</b>.</p>"
   "<p style='font-size:.9em;color:#666'>The username in your BU email address, "

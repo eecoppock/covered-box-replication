@@ -135,6 +135,18 @@ if (mean(fill$ok[fill$trial %in% covered_fillers]) < .8)
       "   anything about *some*.\n", sep = "")
 
 # ---- the criticals ---------------------------------------------------------
+# ---- consent to analyse ----------------------------------------------------
+# The welcome screen promises that saying no here does not affect credit, so the
+# completion check above counts everyone and this exclusion happens after it.
+if ("data_use" %in% names(dat)) {
+  declined <- dat$participant[dat$data_use == "2" & !is.na(dat$data_use)]
+  if (length(declined)) {
+    cat(sprintf("\n%d participant(s) asked to be left out of the analysis.\n",
+                length(declined)))
+    keep <- setdiff(keep, declined)
+  }
+}
+
 long <- dat |>
   filter(participant %in% keep) |>
   select(participant, objects, all_of(c(SCALAR, NUMBER))) |>
