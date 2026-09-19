@@ -1,14 +1,31 @@
 # Qualtrics links — covered-box replication
 
-**Live survey (within-subjects, 27 questions, imported 2 Sept 2026):**
+## Live, from 18 September 2026
 
-https://bostonu.qualtrics.com/jfe/form/SV_0jhdOUbkNhtMM62
+**https://bostonu.qualtrics.com/jfe/form/SV_0HFaY3KvHhJD6R0**
 
-Everyone sees both terms; order is randomised and recorded as `first_term`.
+The Experiment 4 rebuild: welcome and consent screen, familiarization run twice
+with feedback on the first pass, three fillers interleaved with three scalar
+criticals, the same for the number block, then language, Kerberos ID and the
+data-use question. Object set is counterbalanced by a block randomiser and
+recorded as `objects`. Institutional branding stripped, so it renders plain.
 
-**Superseded (between-subjects, 33 questions):**
+Built from `HuangSnedeker_replication.qsf` in this folder. Rebuild with
 
-https://bostonu.qualtrics.com/jfe/form/SV_1GMnqdyC8V1vmqa
+    python3 build-qsf.py https://raw.githubusercontent.com/eecoppock/covered-box-replication/main/stimuli
 
-Kept as a fallback and because any data already collected under it pools with
-the *first block* of the new version — that cell is the same design.
+and import as a NEW project rather than editing the live one, so that each
+instrument stays tied to the data it produced.
+
+Analysed by `coveredbox-critical.R`, which carries the preregistered rule.
+
+## Superseded
+
+**`SV_0jhdOUbkNhtMM62`** — the within-subjects instrument with the anchor, the
+probes, `criticalOneSet`, the shape fillers and the Huang controls. This is the
+survey the intro class took on 2–3 September 2026, and the one the archived data
+in `archive/2026-09-intro-run/` came from. **Leave it alone.** Editing it would
+break the link between that design and that data.
+
+**`SV_1GMnqdyC8V1vmqa`** — the earlier between-subjects version, 33 questions.
+No data collected under it that is still in use.
