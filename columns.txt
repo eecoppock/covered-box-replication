@@ -35,4 +35,5 @@ number_critical_s2
 nfill3_B
 number_critical_s3
 first_language
+kerberos
 objects

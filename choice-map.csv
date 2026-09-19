@@ -118,3 +118,4 @@ number_critical_s3,3,covered
 first_language,1,Yes
 first_language,2,No
 first_language,3,Prefer not to say
+kerberos,text,"BU Kerberos ID, joins to Roster/roster-merged.csv `coder`"

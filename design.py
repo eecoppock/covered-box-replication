@@ -152,6 +152,12 @@ NAMES = [("Zip","Nub"), ("Mo","Pim"), ("Dax","Wug"), ("Tev","Lom"), ("Bix","Rud"
          ("Kel","Sap"), ("Jom","Nid"), ("Vex","Pol"), ("Gub","Tam"), ("Ral","Fen"),
          ("Sib","Yon"), ("Quo","Bev"), ("Hix","Dru"), ("Nal","Pex")]
 
+KERBEROS_Q = (
+  "<p style='font-size:1.05em'>Finally: your <b>BU Kerberos ID</b>.</p>"
+  "<p style='font-size:.9em;color:#666'>The username in your BU email address, "
+  "the part before the @. This is so your completion can be recorded. It is not "
+  "used in the analysis, which reports the class as a whole.</p>")
+
 LANGUAGE_Q = ("Is English your first language? <em>(optional)</em>",
               ["Yes", "No", "Prefer not to say"])
 

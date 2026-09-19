@@ -154,8 +154,9 @@ before anyone argues about whether ours replicates.
 | 19 | filler, **covered** box |
 | 20 | `two(1,3)` — flowers |
 | 21 | first language, optional |
+| 22 | **BU Kerberos ID**, required |
 
-Twenty-five screens counting the four feedback pages, of which each participant sees one of the two object assignments. The number block is interleaved the same way the scalar block is: Exp 4's number condition had its three fillers too, and this block runs last, where extinction pressure is highest and where there would otherwise be no covered-box trial for six screens. Response **3** is the
+Twenty-six screens counting the four feedback pages, of which each participant sees one of the two object assignments. The number block is interleaved the same way the scalar block is: Exp 4's number condition had its three fillers too, and this block runs last, where extinction pressure is highest and where there would otherwise be no covered-box trial for six screens. Response **3** is the
 covered box throughout, and its position rotates across trials.
 
 **Every box in the study is the same display**: two named characters either side
@@ -197,6 +198,22 @@ zero-risk version if it ever looks worth taking.
 No practice box shares a configuration with a test trial: the scalar criticals
 use 0 of 4 and 4 of 4, the number criticals 1 of 4 and 3 of 4, and no practice
 character holds more than one of anything.
+
+### The identifier
+
+The survey ends with a **required** free-text Kerberos ID, placed after
+everything including the optional language question so it cannot colour a single
+response. It is the roster's `coder` column, so `coveredbox-critical.R` joins
+straight onto `Roster/roster-merged.csv` and prints who has not taken it by
+name, plus any ID that matches nobody and anyone who took it twice. The grading
+matters less than the gap: at twelve participants the identity of the person who
+did not take it is worth chasing the same afternoon.
+
+The free-text question type is **vendored into `qsf-template.json` from
+`Homework/hw4-form.qsf`**, which is a real export from the same account that
+contains one. The standing rule in this repository is never to invent a
+Qualtrics question type, because an invented one fails the import with no
+diagnostic beyond *"Something went wrong and the project wasn't created."*
 
 ### Counterbalancing, and what is still confounded
 

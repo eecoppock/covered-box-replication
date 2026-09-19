@@ -1896,6 +1896,42 @@
     },
     {
       "SurveyID": "SV_3kLZ1KUE87N0MMm",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID38",
+      "SecondaryAttribute": "kerberos",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p style='font-size:1.05em'>Finally: your <b>BU Kerberos ID</b>.</p><p style='font-size:.9em;color:#666'>The username in your BU email address, the part before the @. This is so your completion can be recorded. It is not used in the analysis, which reports the class as a whole.</p>",
+        "DefaultChoices": false,
+        "DataExportTag": "kerberos",
+        "QuestionType": "TE",
+        "Selector": "ML",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "kerberos",
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "SearchSource": {
+          "AllowFreeResponse": "false"
+        },
+        "QuestionID": "QID38"
+      }
+    },
+    {
+      "SurveyID": "SV_3kLZ1KUE87N0MMm",
       "Element": "BL",
       "PrimaryAttribute": "Survey Blocks",
       "SecondaryAttribute": null,
@@ -2175,12 +2211,19 @@
         },
         {
           "Type": "Standard",
-          "Description": "Language background",
+          "Description": "Language background and ID",
           "ID": "BL_7572559ca86e781",
           "BlockElements": [
             {
               "Type": "Question",
               "QuestionID": "QID37"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID38"
             }
           ]
         },

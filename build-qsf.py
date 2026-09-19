@@ -55,6 +55,12 @@ qsf["SurveyEntry"]["SurveyName"] = ("Covered box — import test" if TEST
                                     else "Covered box replication")
 mc_tpl = [e for e in tpl["SurveyElements"]
           if e.get("Element")=="SQ" and e["Payload"]["QuestionType"]=="MC"][0]
+# A free-text question type, vendored into the template from Homework/hw4-form.qsf,
+# which is a real export from the same account containing one. The rule here is
+# never to invent a Qualtrics question type: an invented one fails the import
+# with no diagnostic beyond "something went wrong and the project wasn't created".
+te_tpl = [e for e in tpl["SurveyElements"]
+          if e.get("Element")=="SQ" and e["Payload"]["QuestionType"]=="TE"][0]
 for e in tpl["SurveyElements"]:
     if e.get("Element") not in ("SQ","BL","FL"):
         qsf["SurveyElements"].append(copy.deepcopy(e))
@@ -99,6 +105,22 @@ def feedback(tag, text):
     p["ChoiceOrder"]=["1"]
     p["Validation"]["Settings"]["ForceResponse"]="OFF"
     p["NextChoiceId"]=2
+    qsf["SurveyElements"].append(el)
+    return q
+
+def text_entry(tag, prompt, required=True):
+    """One free-text box. Used for the Kerberos ID, which is what turns twelve
+    anonymous rows into twelve students who can be given a check and, more to
+    the point, tells you which student is the missing thirteenth."""
+    qid[0]+=1; q=f"QID{qid[0]}"
+    el = copy.deepcopy(te_tpl)
+    el["PrimaryAttribute"]=q; el["SecondaryAttribute"]=tag
+    p = el["Payload"]
+    p["QuestionText"]=prompt
+    p["DataExportTag"]=tag; p["QuestionID"]=q
+    p["QuestionDescription"]=tag
+    p["Validation"]={"Settings":{"ForceResponse":"ON" if required else "OFF",
+                                 "Type":"None"}}
     qsf["SurveyElements"].append(el)
     return q
 
@@ -208,11 +230,16 @@ else:
 
 if not TEST:
     lang_q = text_mc("first_language", design.LANGUAGE_Q[0], design.LANGUAGE_Q[1])
-    lang_b = block("lang", "Language background", [lang_q])
+    # The identifier goes LAST, after everything including the optional language
+    # question, so it cannot colour a single response. It is the only required
+    # question outside the trials.
+    kerb_q = text_entry("kerberos", design.KERBEROS_Q)
+    lang_b = block("lang", "Language background and ID", [lang_q, kerb_q])
     blocks.append(lang_b)
     flow_inner.append({"ID": lang_b["ID"], "Type": "Block", "FlowID": "FL_7"})
     for i, o in enumerate(design.LANGUAGE_Q[1], start=1):
         rows.append(("first_language", str(i), o))
+    rows.append(("kerberos", "text", "BU Kerberos ID, joins to Roster/roster-merged.csv `coder`"))
 
 blocks.append({"Type":"Trash","Description":"Trash / Unused Questions",
                "ID":bid("trash")})

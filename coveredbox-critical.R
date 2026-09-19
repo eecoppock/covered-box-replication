@@ -61,6 +61,41 @@ dat <- raw |>
 
 cat("\nresponses:", nrow(raw), " finished:", nrow(dat), "\n")
 
+# ---- who took it -----------------------------------------------------------
+# The survey ends with a required Kerberos ID, which is the roster's `coder`
+# column, so completion can be checked against the class list without matching
+# on names. The point is less the grading than the gap: at this n the identity
+# of the person who did NOT take it is worth chasing the same afternoon.
+ROSTER <- "../../Roster/roster-merged.csv"
+if ("kerberos" %in% names(dat) && file.exists(ROSTER)) {
+  took <- tolower(trimws(dat$kerberos))
+  took <- took[took != "" & !is.na(took)]
+  roster_all <- read_csv(ROSTER, show_col_types = FALSE) |>
+    filter(!is.na(coder), coder != "") |>
+    mutate(coder = tolower(trimws(coder)),
+           enrolled = !is.na(Course) & Course != "")
+  class_list <- filter(roster_all, enrolled)          # auditors are not graded
+  auditors   <- filter(roster_all, !enrolled)
+  missing  <- setdiff(class_list$coder, took)
+  unknown  <- setdiff(took, class_list$coder)
+  dupes    <- took[duplicated(took)]
+  cat(sprintf("\nCompletion: %d of %d enrolled\n",
+              sum(class_list$coder %in% took), nrow(class_list)))
+  if (nrow(auditors))
+    cat(sprintf("  auditing: %d of %d took it (not graded, but their data counts)\n",
+                sum(auditors$coder %in% took), nrow(auditors)))
+  if (length(missing))
+    cat("  not yet taken:", paste(
+      class_list$Name[match(missing, class_list$coder)], collapse = "; "), "\n")
+  unknown <- setdiff(unknown, auditors$coder)
+  if (length(unknown))
+    cat("  IDs not on the roster (typos?):", paste(unknown, collapse = ", "), "\n")
+  if (length(dupes))
+    cat("  took it more than once:", paste(unique(dupes), collapse = ", "), "\n")
+} else {
+  cat("\n(no kerberos column or no roster; skipping the completion check)\n")
+}
+
 # ---- exclusion: the second familiarization pass ----------------------------
 # Huang et al. included everyone, because every adult got these right. The
 # first pass had feedback and is not a test, so the criterion is the second.
