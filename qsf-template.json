@@ -145,7 +145,7 @@
         "SkinLibrary": "bostonu",
         "SkinType": "component",
         "Skin": {
-          "brandingId": "7133790721",
+          "brandingId": null,
           "templateId": "*simple",
           "overrides": null
         },

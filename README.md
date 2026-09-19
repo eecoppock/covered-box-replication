@@ -304,6 +304,23 @@ discover. The rule lives at the top of `coveredbox-critical.R` and should be on
 the board before anyone opens the survey.
 
 
+### Stripping the institutional branding
+
+A QSF exported from an account that has a brand carries its ID in
+`SurveyOptions.Skin.brandingId`, and the survey then renders with the
+university's header, colours and logo. Setting that field to `null` leaves the
+plain `*simple` theme, which is what this survey uses.
+
+It is the **only** field that matters. Everything else in Survey Options is
+identical between a branded and an unbranded export, `SkinLibrary` included —
+that is the account's library namespace, not anything a participant sees.
+Established 18 Sept 2026 by diffing against an unbranded export made by hand in
+Qualtrics, kept in `qualtrics draft export/`.
+
+`build-qsf.py` sets the field to `null` on every build as well as in
+`qsf-template.json`, so re-vendoring the template from a fresh export cannot
+quietly bring the branding back.
+
 ### A note on hand-writing QSFs
 
 Qualtrics rejects a malformed import outright, with no diagnostic beyond

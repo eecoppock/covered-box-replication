@@ -53,6 +53,19 @@ SID = tpl["SurveyEntry"]["SurveyID"]
 qsf = {"SurveyEntry": copy.deepcopy(tpl["SurveyEntry"]), "SurveyElements": []}
 qsf["SurveyEntry"]["SurveyName"] = ("Covered box — import test" if TEST
                                     else "Covered box replication")
+
+# Strip the institutional branding. A QSF exported from a Qualtrics account that
+# has a brand carries its ID in SurveyOptions.Skin.brandingId, and the survey
+# then renders with the university's header, colours and logo. Setting it to
+# null gives the plain "*simple" theme. This is enforced here as well as in the
+# template, so that re-vendoring the template from a fresh export cannot quietly
+# bring the branding back. SkinLibrary stays as it is: that is the account's
+# library namespace, not anything the participant sees.
+for _e in qsf["SurveyElements"]:
+    if _e.get("Element") == "SO" and isinstance(_e.get("Payload"), dict):
+        _skin = _e["Payload"].get("Skin")
+        if isinstance(_skin, dict):
+            _skin["brandingId"] = None
 mc_tpl = [e for e in tpl["SurveyElements"]
           if e.get("Element")=="SQ" and e["Payload"]["QuestionType"]=="MC"][0]
 # A free-text question type, vendored into the template from Homework/hw4-form.qsf,
